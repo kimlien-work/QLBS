@@ -85,6 +85,7 @@
             txtTenDangNhap.Name = "txtTenDangNhap";
             txtTenDangNhap.Size = new Size(353, 27);
             txtTenDangNhap.TabIndex = 4;
+            txtTenDangNhap.TextChanged += txtTenDangNhap_TextChanged;
             // 
             // txtMatKhau
             // 

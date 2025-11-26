@@ -16,5 +16,10 @@ namespace QLBS
         {
             InitializeComponent();
         }
+
+        private void txtTenDangNhap_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
