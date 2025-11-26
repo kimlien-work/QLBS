@@ -119,14 +119,16 @@
             // 
             dgvKhachHang.AllowUserToAddRows = false;
             dgvKhachHang.AllowUserToDeleteRows = false;
-            dgvKhachHang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvKhachHang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dgvKhachHang.ColumnHeadersHeight = 29;
             dgvKhachHang.Columns.AddRange(new DataGridViewColumn[] { MaKH, TenKH, SoDienThoai, Diem, DiaChi, Email });
             dgvKhachHang.Dock = DockStyle.Bottom;
             dgvKhachHang.Location = new Point(0, 40);
+            dgvKhachHang.MultiSelect = false;
             dgvKhachHang.Name = "dgvKhachHang";
             dgvKhachHang.ReadOnly = true;
             dgvKhachHang.RowHeadersWidth = 51;
+            dgvKhachHang.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvKhachHang.Size = new Size(802, 437);
             dgvKhachHang.TabIndex = 0;
             // 
@@ -137,6 +139,7 @@
             MaKH.MinimumWidth = 6;
             MaKH.Name = "MaKH";
             MaKH.ReadOnly = true;
+            MaKH.Width = 83;
             // 
             // TenKH
             // 
@@ -145,6 +148,7 @@
             TenKH.MinimumWidth = 6;
             TenKH.Name = "TenKH";
             TenKH.ReadOnly = true;
+            TenKH.Width = 85;
             // 
             // SoDienThoai
             // 
@@ -153,6 +157,7 @@
             SoDienThoai.MinimumWidth = 6;
             SoDienThoai.Name = "SoDienThoai";
             SoDienThoai.ReadOnly = true;
+            SoDienThoai.Width = 64;
             // 
             // Diem
             // 
@@ -161,6 +166,7 @@
             Diem.MinimumWidth = 6;
             Diem.Name = "Diem";
             Diem.ReadOnly = true;
+            Diem.Width = 151;
             // 
             // DiaChi
             // 
@@ -169,6 +175,7 @@
             DiaChi.MinimumWidth = 6;
             DiaChi.Name = "DiaChi";
             DiaChi.ReadOnly = true;
+            DiaChi.Width = 86;
             // 
             // Email
             // 
@@ -177,6 +184,7 @@
             Email.MinimumWidth = 6;
             Email.Name = "Email";
             Email.ReadOnly = true;
+            Email.Width = 75;
             // 
             // txtTenKH
             // 
@@ -231,7 +239,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(14, 8);
+            label6.Location = new Point(12, 8);
             label6.Name = "label6";
             label6.Size = new Size(114, 20);
             label6.TabIndex = 0;
@@ -240,7 +248,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(14, 273);
+            label3.Location = new Point(12, 273);
             label3.Name = "label3";
             label3.Size = new Size(57, 20);
             label3.TabIndex = 0;
@@ -257,6 +265,7 @@
             // 
             txtDiemTichLuy.Location = new Point(12, 230);
             txtDiemTichLuy.Name = "txtDiemTichLuy";
+            txtDiemTichLuy.ReadOnly = true;
             txtDiemTichLuy.Size = new Size(268, 27);
             txtDiemTichLuy.TabIndex = 7;
             // 
