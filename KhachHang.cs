@@ -1,7 +1,9 @@
-﻿using System;
+﻿using QLHS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,14 +14,251 @@ namespace QLBS
 {
     public partial class KhachHang : Form
     {
+        MyDataTable dataTable = new MyDataTable();
+        string maKhachHang = "";
         public KhachHang()
         {
             InitializeComponent();
+            dataTable.OpenConnection();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void LayDuLieu()
+        {
+            dgvKhachHang.AutoGenerateColumns = false;
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM KhachHang");
+
+            dataTable.Fill(cmd);
+            BindingSource binding = new BindingSource();
+            binding.DataSource = dataTable;
+
+            dgvKhachHang.DataSource = binding;
+
+            txtMaKH.DataBindings.Clear();
+            txtTenKH.DataBindings.Clear();
+            txtSDT.DataBindings.Clear();
+            txtEmail.DataBindings.Clear();
+            txtDiaChi.DataBindings.Clear();
+            txtDiemTichLuy.DataBindings.Clear();
+
+            txtMaKH.DataBindings.Add("Text", binding, "MaKH");
+
+            txtTenKH.DataBindings.Add("Text", binding, "TenKH");
+
+            txtSDT.DataBindings.Add("Text", binding, "SDT");
+
+            txtEmail.DataBindings.Add("Text", binding, "Email");
+
+            txtDiaChi.DataBindings.Add("Text", binding, "DiaChi");
+
+            txtDiemTichLuy.DataBindings.Add("Text", binding, "DiemTichLuy");
+        }
+
+        private void BatTat(bool giaTri)
+        {
+            txtTenKH.Enabled = giaTri;
+            txtSDT.Enabled = giaTri;
+            txtDiaChi.Enabled = giaTri;
+            txtEmail.Enabled = giaTri;
+
+
+            btnLuu.Enabled = giaTri;
+            btnHuy.Enabled = giaTri;
+
+            btnThem.Enabled = !giaTri;
+            btnSua.Enabled = !giaTri;
+            btnXoa.Enabled = !giaTri;
+
+            txtMaKH.Enabled = false;
+            txtDiemTichLuy.Enabled = false;
+        }
+
+        private void KhachHang_Load(object sender, EventArgs e)
+        {
+            LayDuLieu();
+            BatTat(false);
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            // Đánh dấu là đang Thêm Mới
+            maKhachHang = "";
+
+            txtTenKH.Clear();
+            txtSDT.Clear();
+            txtEmail.Clear();
+            txtDiaChi.Clear();
+            txtDiemTichLuy.Text = "0";
+
+            // Đặt con trỏ chuột vào ô Tên Khách để nhập
+            txtTenKH.Focus();
+
+            BatTat(true);
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            // Đánh dấu là Cập nhật
+            maKhachHang = txtMaKH.Text;
+            // Bật/Tắt các controls
+            BatTat(true);
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (txtMaKH.Text == "") return;
+
+            DialogResult kq = MessageBox.Show("Bạn có chắc muốn xoá khách hàng " + txtTenKH.Text + " không?",
+                                              "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (kq == DialogResult.Yes)
+            {
+                try
+                {
+                    string sql = @"DELETE FROM KhachHang WHERE MaKH = @MaKH";
+                    SqlCommand cmd = new SqlCommand(sql);
+                    cmd.Parameters.Add("@MaKH", SqlDbType.Int).Value = int.Parse(txtMaKH.Text);
+
+                    dataTable.Update(cmd);
+
+                    // Tải lại dữ liệu
+                    LayDuLieu();
+                    BatTat(false);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Không thể xóa khách hàng này (Có thể do họ đã có hóa đơn mua hàng).", "Lỗi CSDL");
+                }
+            }
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            // 1. Kiểm tra dữ liệu bắt buộc (Validation)
+            if (txtTenKH.Text.Trim() == "")
+            {
+                MessageBox.Show("Tên khách hàng không được bỏ trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtTenKH.Focus();
+                return;
+            }
+            if (txtSDT.Text.Trim() == "")
+            {
+                MessageBox.Show("Số điện thoại không được bỏ trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtSDT.Focus();
+                return;
+            }
+
+            try
+            {
+                // 2. Xử lý lưu xuống CSDL
+                if (maKhachHang == "")
+                {
+                    string sql = @"INSERT INTO KhachHang (TenKH, SDT, Email, DiaChi, DiemTichLuy) 
+                           VALUES(@TenKH, @SDT, @Email, @DiaChi, 0)";
+
+                    SqlCommand cmd = new SqlCommand(sql);
+                    // Ánh xạ tham số
+                    cmd.Parameters.Add("@TenKH", SqlDbType.NVarChar, 100).Value = txtTenKH.Text;
+                    cmd.Parameters.Add("@SDT", SqlDbType.NVarChar, 20).Value = txtSDT.Text;
+                    cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 100).Value = txtEmail.Text;
+                    cmd.Parameters.Add("@DiaChi", SqlDbType.NVarChar, 200).Value = txtDiaChi.Text;
+
+                    dataTable.Update(cmd);
+                }
+                else // Trường hợp: SỬA
+                {
+                    string sql = @"UPDATE KhachHang
+                           SET TenKH = @TenKH,
+                               SDT = @SDT,
+                               Email = @Email,
+                               DiaChi = @DiaChi
+                           WHERE MaKH = @MaKH";
+
+                    SqlCommand cmd = new SqlCommand(sql);
+
+                    cmd.Parameters.Add("@MaKH", SqlDbType.Int).Value = int.Parse(maKhachHang);
+                    cmd.Parameters.Add("@TenKH", SqlDbType.NVarChar, 100).Value = txtTenKH.Text;
+                    cmd.Parameters.Add("@SDT", SqlDbType.NVarChar, 20).Value = txtSDT.Text;
+                    cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 100).Value = txtEmail.Text;
+                    cmd.Parameters.Add("@DiaChi", SqlDbType.NVarChar, 200).Value = txtDiaChi.Text;
+
+                    dataTable.Update(cmd);
+                }
+
+                MessageBox.Show("Lưu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                LayDuLieu();
+                BatTat(false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            // Hủy thao tác nhập liệu, quay về trạng thái xem
+            BatTat(false);
+
+            // Reset lại dữ liệu đang hiển thị trên Textbox
+            LayDuLieu();
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            // 1.Lấy từ khóa người dùng nhập vào
+            string tuKhoa = txtTimKiem.Text.Trim();
+
+            if (tuKhoa == "")
+            {
+                LayDuLieu();
+                return;
+            }
+
+            // Ý nghĩa: Tìm KH có Tên chứa từ khóa HOẶC SĐT chứa từ khóa
+            string sql = @"SELECT * FROM KhachHang 
+                   WHERE TenKH LIKE N'%' + @TuKhoa + '%' 
+                   OR SDT LIKE '%' + @TuKhoa + '%'";
+
+            SqlCommand cmd = new SqlCommand(sql);
+
+            // Truyền tham số (Để tránh lỗi nếu người dùng nhập ký tự đặc biệt)
+            cmd.Parameters.Add("@TuKhoa", SqlDbType.NVarChar).Value = tuKhoa;
+
+            dataTable.Fill(cmd);
+
+            BindingSource binding = new BindingSource();
+            binding.DataSource = dataTable;
+
+            dgvKhachHang.DataSource = binding;
+
+            txtMaKH.DataBindings.Clear();
+            txtTenKH.DataBindings.Clear();
+            txtSDT.DataBindings.Clear();
+            txtEmail.DataBindings.Clear();
+            txtDiaChi.DataBindings.Clear();
+            txtDiemTichLuy.DataBindings.Clear();
+
+            txtMaKH.DataBindings.Add("Text", binding, "MaKH");
+            txtTenKH.DataBindings.Add("Text", binding, "TenKH");
+            txtSDT.DataBindings.Add("Text", binding, "SDT");
+            txtEmail.DataBindings.Add("Text", binding, "Email");
+            txtDiaChi.DataBindings.Add("Text", binding, "DiaChi");
+            txtDiemTichLuy.DataBindings.Add("Text", binding, "DiemTichLuy");
+        }
+
+        private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtTimKiem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnTimKiem.PerformClick(); // Tự động bấm nút Tìm Kiếm
+            }
         }
     }
 }
