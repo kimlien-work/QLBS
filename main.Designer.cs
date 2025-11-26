@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             menuStrip1 = new MenuStrip();
-            statusStrip1 = new StatusStrip();
-            toolStripStatusLabel1 = new ToolStripStatusLabel();
-            toolStripProgressBar1 = new ToolStripProgressBar();
-            toolStripStatusLabel2 = new ToolStripStatusLabel();
             hệThốngToolStripMenuItem = new ToolStripMenuItem();
             đăngNhậpToolStripMenuItem = new ToolStripMenuItem();
             đăngXuấtToolStripMenuItem = new ToolStripMenuItem();
@@ -43,12 +39,16 @@
             khoSáchToolStripMenuItem = new ToolStripMenuItem();
             danhMụcSáchToolStripMenuItem = new ToolStripMenuItem();
             báoCáoToolStripMenuItem = new ToolStripMenuItem();
-            kinhDoanhToolStripMenuItem = new ToolStripMenuItem();
-            trợToolStripMenuItem = new ToolStripMenuItem();
             doanhThuToolStripMenuItem = new ToolStripMenuItem();
+            kinhDoanhToolStripMenuItem = new ToolStripMenuItem();
             bánHàngToolStripMenuItem = new ToolStripMenuItem();
+            trợToolStripMenuItem = new ToolStripMenuItem();
             hDSDPMToolStripMenuItem = new ToolStripMenuItem();
             thôngTinPMToolStripMenuItem = new ToolStripMenuItem();
+            statusStrip1 = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            toolStripProgressBar1 = new ToolStripProgressBar();
+            toolStripStatusLabel2 = new ToolStripStatusLabel();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -62,33 +62,6 @@
             menuStrip1.Size = new Size(800, 28);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
-            // 
-            // statusStrip1
-            // 
-            statusStrip1.ImageScalingSize = new Size(20, 20);
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripProgressBar1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 424);
-            statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(800, 26);
-            statusStrip1.TabIndex = 2;
-            statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(151, 20);
-            toolStripStatusLabel1.Text = "toolStripStatusLabel1";
-            // 
-            // toolStripProgressBar1
-            // 
-            toolStripProgressBar1.Name = "toolStripProgressBar1";
-            toolStripProgressBar1.Size = new Size(100, 18);
-            // 
-            // toolStripStatusLabel2
-            // 
-            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(151, 20);
-            toolStripStatusLabel2.Text = "toolStripStatusLabel2";
             // 
             // hệThốngToolStripMenuItem
             // 
@@ -132,7 +105,7 @@
             // 
             nhânViênToolStripMenuItem.Name = "nhânViênToolStripMenuItem";
             nhânViênToolStripMenuItem.Size = new Size(224, 26);
-            nhânViênToolStripMenuItem.Text = "Nhân Viên";
+            nhânViênToolStripMenuItem.Text = "Tài Khoản";
             // 
             // khoSáchToolStripMenuItem
             // 
@@ -153,6 +126,12 @@
             báoCáoToolStripMenuItem.Size = new Size(152, 24);
             báoCáoToolStripMenuItem.Text = "Báo Cáo -Thống Kê";
             // 
+            // doanhThuToolStripMenuItem
+            // 
+            doanhThuToolStripMenuItem.Name = "doanhThuToolStripMenuItem";
+            doanhThuToolStripMenuItem.Size = new Size(164, 26);
+            doanhThuToolStripMenuItem.Text = "Doanh Thu";
+            // 
             // kinhDoanhToolStripMenuItem
             // 
             kinhDoanhToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { bánHàngToolStripMenuItem });
@@ -160,24 +139,18 @@
             kinhDoanhToolStripMenuItem.Size = new Size(100, 24);
             kinhDoanhToolStripMenuItem.Text = "Kinh Doanh";
             // 
+            // bánHàngToolStripMenuItem
+            // 
+            bánHàngToolStripMenuItem.Name = "bánHàngToolStripMenuItem";
+            bánHàngToolStripMenuItem.Size = new Size(224, 26);
+            bánHàngToolStripMenuItem.Text = "Bán Hàng";
+            // 
             // trợToolStripMenuItem
             // 
             trợToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { hDSDPMToolStripMenuItem, thôngTinPMToolStripMenuItem });
             trợToolStripMenuItem.Name = "trợToolStripMenuItem";
             trợToolStripMenuItem.Size = new Size(83, 24);
             trợToolStripMenuItem.Text = " Trợ Giúp";
-            // 
-            // doanhThuToolStripMenuItem
-            // 
-            doanhThuToolStripMenuItem.Name = "doanhThuToolStripMenuItem";
-            doanhThuToolStripMenuItem.Size = new Size(224, 26);
-            doanhThuToolStripMenuItem.Text = "Doanh Thu";
-            // 
-            // bánHàngToolStripMenuItem
-            // 
-            bánHàngToolStripMenuItem.Name = "bánHàngToolStripMenuItem";
-            bánHàngToolStripMenuItem.Size = new Size(224, 26);
-            bánHàngToolStripMenuItem.Text = "Bán Hàng";
             // 
             // hDSDPMToolStripMenuItem
             // 
@@ -190,6 +163,33 @@
             thôngTinPMToolStripMenuItem.Name = "thôngTinPMToolStripMenuItem";
             thôngTinPMToolStripMenuItem.Size = new Size(224, 26);
             thôngTinPMToolStripMenuItem.Text = "Thông Tin PM";
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.ImageScalingSize = new Size(20, 20);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripProgressBar1, toolStripStatusLabel2 });
+            statusStrip1.Location = new Point(0, 424);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(800, 26);
+            statusStrip1.TabIndex = 2;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(151, 20);
+            toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
+            // toolStripProgressBar1
+            // 
+            toolStripProgressBar1.Name = "toolStripProgressBar1";
+            toolStripProgressBar1.Size = new Size(100, 18);
+            // 
+            // toolStripStatusLabel2
+            // 
+            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            toolStripStatusLabel2.Size = new Size(151, 20);
+            toolStripStatusLabel2.Text = "toolStripStatusLabel2";
             // 
             // main
             // 
