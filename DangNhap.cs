@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace QLBS
 {
-    public partial class DangKy : Form
+    public partial class DangNhap : Form
     {
-        public DangKy()
+        public DangNhap()
         {
             InitializeComponent();
         }
