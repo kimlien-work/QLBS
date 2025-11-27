@@ -17,9 +17,19 @@ namespace QLBS
             InitializeComponent();
         }
 
-        private void txtTenDangNhap_TextChanged(object sender, EventArgs e)
+        private void btnDangNhap_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.OK;
+        }
 
+        private void btnHuyBo_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void btnDangNhap_KeyDown(object sender, KeyEventArgs e)
+        {
+            btnDangNhap_Click(sender, e);
         }
     }
 }
