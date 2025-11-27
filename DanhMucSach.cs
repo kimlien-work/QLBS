@@ -27,11 +27,15 @@ namespace QLBS
             string sql = "SELECT * FROM DanhMuc";
             SqlCommand cmd = new SqlCommand(sql);
             dataTable.Fill(cmd);
-
             BindingSource binding = new BindingSource();
             binding.DataSource = dataTable;
             dgvDanhMuc.DataSource = binding;
+
+            dgvDanhMuc.DataSource = binding;
+
+            txtMaDM.DataBindings.Clear();   
             txtTenDM.DataBindings.Clear();
+            txtMaDM.DataBindings.Add("Text", binding, "MaDM");
             txtTenDM.DataBindings.Add("Text", binding, "TenDanhMuc");
         }
 
@@ -61,7 +65,10 @@ namespace QLBS
         private void btnThem_Click(object sender, EventArgs e)
         {
             isThem = true;
+
+            txtMaDM.Text = ""; // Xóa mã cũ
             txtTenDM.Clear();
+
             txtTenDM.Focus();
             BatTat(true);
         }
@@ -80,7 +87,7 @@ namespace QLBS
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtTenDM.Text))
+            if (txtTenDM.Text.Trim() == "")
             {
                 MessageBox.Show("Tên danh mục không được để trống!");
                 return;
@@ -88,27 +95,33 @@ namespace QLBS
 
             try
             {
-                if (isThem) // TRƯỜNG HỢP THÊM MỚI
+                if (isThem) // --- TRƯỜNG HỢP THÊM MỚI ---
                 {
+                    // Không cần thêm MaDM vì SQL tự sinh số
                     string sql = "INSERT INTO DanhMuc (TenDanhMuc) VALUES (@TenDanhMuc)";
                     SqlCommand cmd = new SqlCommand(sql);
                     cmd.Parameters.Add("@TenDanhMuc", SqlDbType.NVarChar, 100).Value = txtTenDM.Text;
 
                     dataTable.Update(cmd);
-                    MessageBox.Show("Thêm mới thành công!");
                 }
-                else // TRƯỜNG HỢP SỬA
+                else // --- TRƯỜNG HỢP SỬA ---
                 {
+                    // Lấy MaDM từ chính txtMaDM trên màn hình
                     string sql = "UPDATE DanhMuc SET TenDanhMuc = @TenDanhMuc WHERE MaDM = @MaDM";
                     SqlCommand cmd = new SqlCommand(sql);
+
+                    // Tham số tên mới
                     cmd.Parameters.Add("@TenDanhMuc", SqlDbType.NVarChar, 100).Value = txtTenDM.Text;
-                    cmd.Parameters.Add("@MaDM", SqlDbType.Int).Value = int.Parse(maDM);
+
+                    // Tham số Mã (Lấy từ TextBox, chuyển sang số nguyên)
+                    cmd.Parameters.Add("@MaDM", SqlDbType.Int).Value = int.Parse(txtMaDM.Text);
 
                     dataTable.Update(cmd);
-                    MessageBox.Show("Cập nhật thành công!");
                 }
-                LayDuLieu();
-                BatTat(false);
+
+                LayDuLieu();   // Load lại lưới
+                BatTat(false); // Khóa lại
+                MessageBox.Show("Lưu thành công!");
             }
             catch (Exception ex)
             {
