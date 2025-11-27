@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-namespace QLHS
+namespace QLBS
 {
     internal class MyDataTable : DataTable
     {

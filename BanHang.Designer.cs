@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel3 = new Panel();
             lblThanhTien = new Label();
             label3 = new Label();
@@ -171,8 +171,8 @@
             // GiaBan
             // 
             GiaBan.DataPropertyName = "GiaBan";
-            dataGridViewCellStyle4.Format = "N0";
-            GiaBan.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Format = "N0";
+            GiaBan.DefaultCellStyle = dataGridViewCellStyle1;
             GiaBan.HeaderText = "Giá Bán";
             GiaBan.MinimumWidth = 6;
             GiaBan.Name = "GiaBan";
@@ -222,8 +222,8 @@
             // price
             // 
             price.DataPropertyName = "DonGia";
-            dataGridViewCellStyle5.Format = "N0";
-            price.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Format = "N0";
+            price.DefaultCellStyle = dataGridViewCellStyle2;
             price.HeaderText = "Đơn Giá ";
             price.MinimumWidth = 6;
             price.Name = "price";
@@ -231,8 +231,8 @@
             // thtien
             // 
             thtien.DataPropertyName = "ThanhTien";
-            dataGridViewCellStyle6.Format = "N0";
-            thtien.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Format = "N0";
+            thtien.DefaultCellStyle = dataGridViewCellStyle3;
             thtien.HeaderText = "Thành Tiền";
             thtien.MinimumWidth = 6;
             thtien.Name = "thtien";
@@ -269,6 +269,7 @@
             btnThemGiohang.TabIndex = 5;
             btnThemGiohang.Text = "Thêm Vào Giỏ Hàng";
             btnThemGiohang.UseVisualStyleBackColor = true;
+            btnThemGiohang.Click += btnThemGiohang_Click_1;
             // 
             // label
             // 

@@ -1,4 +1,4 @@
-﻿using QLHS;
+﻿using QLBS;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,13 +9,13 @@ namespace QLBS
     public partial class BanHang : Form
     {
         MyDataTable dataTable = new MyDataTable();
-        DataTable dtGioHang = new DataTable(); 
-        int currentTonKho = 0; 
+        DataTable dtGioHang = new DataTable();
+        int currentTonKho = 0;
 
         public BanHang()
         {
             InitializeComponent();
-            dataTable.OpenConnection(); 
+            dataTable.OpenConnection();
         }
 
         private void BanHang_Load(object sender, EventArgs e)
@@ -49,28 +49,15 @@ namespace QLBS
         // --- HÀM 2: KHỞI TẠO GIỎ HÀNG ẢO ---
         private void KhoiTaoGioHang()
         {
+            // 1. Tạo cấu trúc bảng ảo (Giữ nguyên để khớp với DataPropertyName vừa điền)
             dtGioHang.Columns.Add("MaSach", typeof(string));
             dtGioHang.Columns.Add("TenSach", typeof(string));
             dtGioHang.Columns.Add("SoLuong", typeof(int));
             dtGioHang.Columns.Add("DonGia", typeof(decimal));
             dtGioHang.Columns.Add("ThanhTien", typeof(decimal), "SoLuong * DonGia");
 
+            // 2. Gán vào lưới
             dgvGioHang.DataSource = dtGioHang;
-
-            if (dgvGioHang.Columns["idsach"] != null)
-                dgvGioHang.Columns["idsach"].DataPropertyName = "MaSach";
-
-            if (dgvGioHang.Columns["nameSach"] != null)
-                dgvGioHang.Columns["nameSach"].DataPropertyName = "TenSach";
-
-            if (dgvGioHang.Columns["slsach"] != null)
-                dgvGioHang.Columns["slsach"].DataPropertyName = "SoLuong";
-
-            if (dgvGioHang.Columns["price"] != null)
-                dgvGioHang.Columns["price"].DataPropertyName = "DonGia";
-
-            if (dgvGioHang.Columns["thtien"] != null)
-                dgvGioHang.Columns["thtien"].DataPropertyName = "ThanhTien";
         }
 
         private void dgvSach_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -241,6 +228,50 @@ namespace QLBS
                     MessageBox.Show("Lỗi thanh toán: " + ex.Message);
                 }
             }
+        }
+
+        private void btnThemGiohang_Click_1(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtMaSach.Text))
+            {
+                MessageBox.Show("Vui lòng chọn sách cần mua!");
+                return;
+            }
+
+            int soLuongMua = (int)numSoLuong.Value;
+
+            if (soLuongMua > currentTonKho || soLuongMua <= 0)
+            {
+                MessageBox.Show($"Số lượng không hợp lệ! Kho chỉ còn {currentTonKho} cuốn.");
+                return;
+            }
+
+            string maSach = txtMaSach.Text;
+            string tenSach = txtTenSach.Text;
+            decimal giaBan = 0;
+            try
+            {
+                giaBan = decimal.Parse(txtGiaBan.Text.Replace(".", "").Replace(",", ""));
+            }
+            catch { giaBan = 0; }
+
+            bool daCo = false;
+            foreach (DataRow row in dtGioHang.Rows)
+            {
+                if (row["MaSach"].ToString() == maSach)
+                {
+                    row["SoLuong"] = (int)row["SoLuong"] + soLuongMua;
+                    daCo = true;
+                    break;
+                }
+            }
+
+            if (!daCo)
+            {
+                dtGioHang.Rows.Add(maSach, tenSach, soLuongMua, giaBan);
+            }
+
+            CapNhatTongTien();
         }
     }
 }
