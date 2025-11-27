@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            label6 = new Label();
+            txtMaDM = new TextBox();
+            label1 = new Label();
+            txtTenDM = new TextBox();
             dgvDanhMuc = new DataGridView();
             MDM = new DataGridViewTextBoxColumn();
             TenDanhMuc = new DataGridViewTextBoxColumn();
@@ -39,10 +43,6 @@
             btnThoat = new Button();
             btnHuy = new Button();
             btnSua = new Button();
-            label6 = new Label();
-            txtMaDM = new TextBox();
-            label1 = new Label();
-            txtTenDM = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDanhMuc).BeginInit();
             panel2.SuspendLayout();
@@ -60,8 +60,41 @@
             panel1.Size = new Size(351, 81);
             panel1.TabIndex = 2;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(56, 15);
+            label6.Name = "label6";
+            label6.Size = new Size(65, 20);
+            label6.TabIndex = 6;
+            label6.Text = "Mã Sách";
+            // 
+            // txtMaDM
+            // 
+            txtMaDM.Location = new Point(127, 12);
+            txtMaDM.Name = "txtMaDM";
+            txtMaDM.Size = new Size(185, 27);
+            txtMaDM.TabIndex = 8;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(56, 48);
+            label1.Name = "label1";
+            label1.Size = new Size(67, 20);
+            label1.TabIndex = 7;
+            label1.Text = "Tên Sách";
+            // 
+            // txtTenDM
+            // 
+            txtTenDM.Location = new Point(127, 45);
+            txtTenDM.Name = "txtTenDM";
+            txtTenDM.Size = new Size(185, 27);
+            txtTenDM.TabIndex = 9;
+            // 
             // dgvDanhMuc
             // 
+            dgvDanhMuc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDanhMuc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDanhMuc.Columns.AddRange(new DataGridViewColumn[] { MDM, TenDanhMuc });
             dgvDanhMuc.Dock = DockStyle.Bottom;
@@ -77,7 +110,6 @@
             MDM.HeaderText = "Mã Danh Mục";
             MDM.MinimumWidth = 6;
             MDM.Name = "MDM";
-            MDM.Width = 125;
             // 
             // TenDanhMuc
             // 
@@ -85,7 +117,6 @@
             TenDanhMuc.HeaderText = "Tên Danh Mục";
             TenDanhMuc.MinimumWidth = 6;
             TenDanhMuc.Name = "TenDanhMuc";
-            TenDanhMuc.Width = 125;
             // 
             // panel2
             // 
@@ -154,38 +185,6 @@
             btnSua.TabIndex = 18;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(56, 15);
-            label6.Name = "label6";
-            label6.Size = new Size(65, 20);
-            label6.TabIndex = 6;
-            label6.Text = "Mã Sách";
-            // 
-            // txtMaDM
-            // 
-            txtMaDM.Location = new Point(127, 12);
-            txtMaDM.Name = "txtMaDM";
-            txtMaDM.Size = new Size(185, 27);
-            txtMaDM.TabIndex = 8;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(56, 48);
-            label1.Name = "label1";
-            label1.Size = new Size(67, 20);
-            label1.TabIndex = 7;
-            label1.Text = "Tên Sách";
-            // 
-            // txtTenDM
-            // 
-            txtTenDM.Location = new Point(127, 45);
-            txtTenDM.Name = "txtTenDM";
-            txtTenDM.Size = new Size(185, 27);
-            txtTenDM.TabIndex = 9;
             // 
             // DanhMucSach
             // 
