@@ -10,19 +10,23 @@ using System.Windows.Forms;
 
 namespace QLBS
 {
-    public partial class main : Form
+    public partial class Flash : Form
     {
-        DangNhap login = null;
-        string name;
-
-        public main()
+        public Flash()
         {
             InitializeComponent();
         }
 
-        public void ChuaDangNhap()
+        private void Flash_Load(object sender, EventArgs e)
         {
-            
+            timer1.Interval = 3000;
+            timer1.Start();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            this.Close();
         }
     }
 }
