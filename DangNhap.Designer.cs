@@ -85,7 +85,6 @@
             txtTenDangNhap.Name = "txtTenDangNhap";
             txtTenDangNhap.Size = new Size(353, 27);
             txtTenDangNhap.TabIndex = 4;
-            txtTenDangNhap.TextChanged += txtTenDangNhap_TextChanged;
             // 
             // txtMatKhau
             // 
@@ -115,6 +114,7 @@
             btnDangNhap.TabIndex = 5;
             btnDangNhap.Text = "Đăng nhập";
             btnDangNhap.UseVisualStyleBackColor = true;
+            btnDangNhap.KeyDown += btnDangNhap_KeyDown;
             // 
             // DangNhap
             // 
