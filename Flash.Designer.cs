@@ -44,7 +44,6 @@
             BackColor = Color.Black;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(740, 445);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Name = "Flash";

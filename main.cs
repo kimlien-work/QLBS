@@ -12,17 +12,12 @@ namespace QLBS
 {
     public partial class main : Form
     {
-        DangNhap login = null;
-        string name;
-
         public main()
         {
-            InitializeComponent();
-        }
+            Flash flash = new Flash();
+            flash.ShowDialog();
 
-        public void ChuaDangNhap()
-        {
-            
+            InitializeComponent();
         }
     }
 }

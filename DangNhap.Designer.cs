@@ -84,7 +84,8 @@
             txtTenDangNhap.Location = new Point(223, 104);
             txtTenDangNhap.Name = "txtTenDangNhap";
             txtTenDangNhap.Size = new Size(353, 27);
-            txtTenDangNhap.TabIndex = 0;
+            txtTenDangNhap.TabIndex = 4;
+            txtTenDangNhap.TextChanged += txtTenDangNhap_TextChanged;
             // 
             // txtMatKhau
             // 
@@ -115,8 +116,6 @@
             btnDangNhap.TabIndex = 2;
             btnDangNhap.Text = "Đăng nhập";
             btnDangNhap.UseVisualStyleBackColor = true;
-            btnDangNhap.Click += btnDangNhap_Click;
-            btnDangNhap.KeyDown += btnDangNhap_KeyDown;
             // 
             // DangNhap
             // 

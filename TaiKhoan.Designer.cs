@@ -49,7 +49,6 @@
             MaID = new DataGridViewTextBoxColumn();
             Account = new DataGridViewTextBoxColumn();
             MatKhau = new DataGridViewTextBoxColumn();
-            TenNV = new DataGridViewTextBoxColumn();
             ChucVu = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -226,7 +225,6 @@
             dgvTaiKhoan.AllowUserToDeleteRows = false;
             dgvTaiKhoan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvTaiKhoan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvTaiKhoan.Columns.AddRange(new DataGridViewColumn[] { MaID, Account, MatKhau, TenNV, ChucVu });
             dgvTaiKhoan.Dock = DockStyle.Fill;
             dgvTaiKhoan.Location = new Point(0, 0);
             dgvTaiKhoan.MultiSelect = false;
@@ -261,17 +259,10 @@
             MatKhau.Name = "MatKhau";
             MatKhau.ReadOnly = true;
             // 
-            // TenNV
             // 
-            TenNV.DataPropertyName = "TenNV";
-            TenNV.HeaderText = "Tên Nhân Viên";
-            TenNV.MinimumWidth = 6;
-            TenNV.Name = "TenNV";
-            TenNV.ReadOnly = true;
             // 
             // ChucVu
             // 
-            ChucVu.DataPropertyName = "ChưcVu";
             ChucVu.HeaderText = "Chức Vụ";
             ChucVu.MinimumWidth = 6;
             ChucVu.Name = "ChucVu";
@@ -320,7 +311,6 @@
         private DataGridViewTextBoxColumn MaID;
         private DataGridViewTextBoxColumn Account;
         private DataGridViewTextBoxColumn MatKhau;
-        private DataGridViewTextBoxColumn TenNV;
         private DataGridViewTextBoxColumn ChucVu;
     }
 }
