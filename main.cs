@@ -33,6 +33,11 @@ namespace QLBS
             InitializeComponent();
         }
 
+        private void mnuDangNhap_Click(object sender, EventArgs e)
+        {
+            DangNhap();
+        }
+
         private void mnuThoat_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -180,6 +185,7 @@ namespace QLBS
 
         private void mnuKhachHang_Click(object sender, EventArgs e)
         {
+            //MoFormCon(new KhachHang());
             if (khachHang == null || khachHang.IsDisposed)
             {
                 khachHang = new KhachHang();
@@ -200,6 +206,7 @@ namespace QLBS
 
         private void mnuBanHang_Click(object sender, EventArgs e)
         {
+            //MoFormCon(new BanHang());
             if (banHang == null || banHang.IsDisposed)
             {
                 banHang = new BanHang();
@@ -210,6 +217,7 @@ namespace QLBS
 
         private void mnuDoanhThu_Click(object sender, EventArgs e)
         {
+            //MoFormCon(new DoanhThu());
             if (doanhThu == null || doanhThu.IsDisposed)
             {
                 doanhThu = new DoanhThu();
@@ -218,14 +226,10 @@ namespace QLBS
             }
         }
 
-        private void mnuHDSD_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void mnuThongTinPM_Click(object sender, EventArgs e)
         {
-
+            AboutBox1 frm = new AboutBox1();
+            frm.ShowDialog();
         }
 
         private void mnuDanhNhap_Click(object sender, EventArgs e)
@@ -296,5 +300,7 @@ namespace QLBS
             mnuThoat_Click(sender, e);
         }
         #endregion
+
+        
     }
 }
