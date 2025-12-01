@@ -86,7 +86,7 @@ namespace QLBS
             mnuBanHang.Enabled = false;
             mnuDoanhThu.Enabled = false;
 
-            lblTrangThai.Text = "Quản trị viên" + hoVaTen;
+            lblTrangThai.Text = "Quản trị viên " + hoVaTen;
         }
 
         public void NhanVien()
@@ -109,7 +109,7 @@ namespace QLBS
             mnuBanHang.Enabled = true;
             mnuDoanhThu.Enabled = true;
 
-            lblTrangThai.Text = "Nhân viên" + hoVaTen;
+            lblTrangThai.Text = "Nhân viên " + hoVaTen;
         }
 
         private void DangNhap()
@@ -119,6 +119,7 @@ namespace QLBS
                 dangNhap = new DangNhap();
             if (dangNhap.ShowDialog() == DialogResult.OK)
             {
+                string tenDangNhap = dangNhap.LoggedInUsername;
                 if (dangNhap.txtTenDangNhap.Text.Trim() == "")
                 {
                     MessageBox.Show("Tên đăng nhập không được bỏ trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -144,12 +145,19 @@ namespace QLBS
                     {
                         hoVaTen = dataTable.Rows[0]["TenNhanVien"].ToString();
                         string quyenHan = dataTable.Rows[0]["ChucVu"].ToString();
+
+                        using (WelcomeForm welcomeForm = new WelcomeForm(hoVaTen))
+                        {
+                            welcomeForm.ShowDialog(); // Chặn Form main
+                        }
+
                         if (quyenHan == "1")
                             QuanTriVien();
                         else if (quyenHan == "0")
                             NhanVien();
                         else
                             ChuaDangNhap();
+                        return;
                     }
                     else
                     {
@@ -300,7 +308,5 @@ namespace QLBS
             mnuThoat_Click(sender, e);
         }
         #endregion
-
-        
     }
 }

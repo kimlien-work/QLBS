@@ -167,7 +167,7 @@
             Padding = new Padding(12, 14, 12, 14);
             ShowIcon = false;
             ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "AboutBox1";
             tableLayoutPanel.ResumeLayout(false);
             tableLayoutPanel.PerformLayout();

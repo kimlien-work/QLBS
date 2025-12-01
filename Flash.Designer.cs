@@ -41,16 +41,17 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Black;
+            BackColor = Color.Lime;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(573, 330);
+            ClientSize = new Size(772, 459);
             DoubleBuffered = true;
+            ForeColor = Color.Lime;
             FormBorderStyle = FormBorderStyle.None;
             Name = "Flash";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Flash";
-            TransparencyKey = Color.Black;
+            TransparencyKey = Color.Lime;
             Load += Flash_Load;
             ResumeLayout(false);
         }

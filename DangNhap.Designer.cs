@@ -37,7 +37,12 @@
             txtMatKhau = new TextBox();
             btnHuyBo = new Button();
             btnDangNhap = new Button();
+            pnlLoading = new Panel();
+            label4 = new Label();
+            pictureBox2 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            pnlLoading.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -118,13 +123,46 @@
             btnDangNhap.UseVisualStyleBackColor = true;
             btnDangNhap.Click += btnDangNhap_Click;
             // 
+            // pnlLoading
+            // 
+            pnlLoading.Controls.Add(pictureBox2);
+            pnlLoading.Controls.Add(label4);
+            pnlLoading.Dock = DockStyle.Fill;
+            pnlLoading.Location = new Point(0, 0);
+            pnlLoading.Name = "pnlLoading";
+            pnlLoading.Size = new Size(607, 292);
+            pnlLoading.TabIndex = 4;
+            pnlLoading.Visible = false;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(302, 126);
+            label4.Name = "label4";
+            label4.Size = new Size(112, 20);
+            label4.TabIndex = 1;
+            label4.Text = "Đang kiểm tra...";
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(110, 78);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(125, 117);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 2;
+            pictureBox2.TabStop = false;
+            // 
             // DangNhap
             // 
+            AcceptButton = btnDangNhap;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnHuyBo;
             ClientSize = new Size(607, 292);
-            Controls.Add(btnDangNhap);
+            Controls.Add(pnlLoading);
             Controls.Add(btnHuyBo);
+            Controls.Add(btnDangNhap);
             Controls.Add(txtMatKhau);
             Controls.Add(txtTenDangNhap);
             Controls.Add(label3);
@@ -138,6 +176,9 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Đăng nhập";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            pnlLoading.ResumeLayout(false);
+            pnlLoading.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -152,5 +193,8 @@
         private Button btnDangNhap;
         public TextBox txtTenDangNhap;
         public TextBox txtMatKhau;
+        private Panel pnlLoading;
+        private Label label4;
+        private PictureBox pictureBox2;
     }
 }
