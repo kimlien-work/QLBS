@@ -50,11 +50,25 @@
             mnuHDSD = new ToolStripMenuItem();
             mnuThongTinPM = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
-            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            lblTrangThai = new ToolStripStatusLabel();
             toolStripStatusLabel2 = new ToolStripStatusLabel();
             toolStripStatusLabel3 = new ToolStripStatusLabel();
+            toolStrip = new ToolStrip();
+            btnDangNhap = new ToolStripButton();
+            btnDangXuat = new ToolStripButton();
+            toolStripSeparator4 = new ToolStripSeparator();
+            btnDanhMucSach = new ToolStripButton();
+            btnKhoSach = new ToolStripButton();
+            btnKhachHang = new ToolStripButton();
+            btnTaiKhoan = new ToolStripButton();
+            toolStripSeparator5 = new ToolStripSeparator();
+            btnBanHang = new ToolStripButton();
+            btnDoanhThu = new ToolStripButton();
+            toolStripSeparator6 = new ToolStripSeparator();
+            btnThoat = new ToolStripButton();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
+            toolStrip.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -63,7 +77,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { hệThốngToolStripMenuItem, quảnLýToolStripMenuItem, báoCáoThốngKêToolStripMenuItem, trợGiúpToolStripMenuItem, gioithieiu });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 28);
+            menuStrip1.Size = new Size(1074, 28);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -78,26 +92,28 @@
             // 
             mnuDanhNhap.Image = (Image)resources.GetObject("mnuDanhNhap.Image");
             mnuDanhNhap.Name = "mnuDanhNhap";
-            mnuDanhNhap.Size = new Size(165, 26);
+            mnuDanhNhap.Size = new Size(224, 26);
             mnuDanhNhap.Text = "Đăng nhập";
+            mnuDanhNhap.Click += mnuDanhNhap_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(162, 6);
+            toolStripSeparator1.Size = new Size(221, 6);
             // 
             // mnuDangXuat
             // 
             mnuDangXuat.Image = (Image)resources.GetObject("mnuDangXuat.Image");
             mnuDangXuat.Name = "mnuDangXuat";
-            mnuDangXuat.Size = new Size(165, 26);
+            mnuDangXuat.Size = new Size(224, 26);
             mnuDangXuat.Text = "Đăng xuất";
+            mnuDangXuat.Click += mnuDangXuat_Click;
             // 
             // mnuThoat
             // 
             mnuThoat.Image = (Image)resources.GetObject("mnuThoat.Image");
             mnuThoat.Name = "mnuThoat";
-            mnuThoat.Size = new Size(165, 26);
+            mnuThoat.Size = new Size(224, 26);
             mnuThoat.Text = "Thoát";
             mnuThoat.Click += mnuThoat_Click;
             // 
@@ -205,36 +221,143 @@
             // statusStrip1
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2, toolStripStatusLabel3 });
-            statusStrip1.Location = new Point(0, 424);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { lblTrangThai, toolStripStatusLabel2, toolStripStatusLabel3 });
+            statusStrip1.Location = new Point(0, 559);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(800, 26);
+            statusStrip1.Size = new Size(1074, 26);
             statusStrip1.TabIndex = 2;
             statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // lblTrangThai
             // 
-            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(151, 20);
-            toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            lblTrangThai.Name = "lblTrangThai";
+            lblTrangThai.Size = new Size(237, 20);
+            lblTrangThai.Text = "Cửa hàng sách Hoa Hướng Dương";
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(151, 20);
-            toolStripStatusLabel2.Text = "toolStripStatusLabel2";
+            toolStripStatusLabel2.Size = new Size(671, 20);
+            toolStripStatusLabel2.Spring = true;
             // 
             // toolStripStatusLabel3
             // 
             toolStripStatusLabel3.Name = "toolStripStatusLabel3";
             toolStripStatusLabel3.Size = new Size(151, 20);
-            toolStripStatusLabel3.Text = "toolStripStatusLabel3";
+            toolStripStatusLabel3.Text = "https://fit.agu.edu.vn/";
+            // 
+            // toolStrip
+            // 
+            toolStrip.ImageScalingSize = new Size(20, 20);
+            toolStrip.Items.AddRange(new ToolStripItem[] { btnDangNhap, btnDangXuat, toolStripSeparator4, btnDanhMucSach, btnKhoSach, btnKhachHang, btnTaiKhoan, toolStripSeparator5, btnBanHang, btnDoanhThu, toolStripSeparator6, btnThoat });
+            toolStrip.Location = new Point(0, 28);
+            toolStrip.Name = "toolStrip";
+            toolStrip.Size = new Size(1074, 27);
+            toolStrip.TabIndex = 4;
+            toolStrip.Text = "toolStrip1";
+            // 
+            // btnDangNhap
+            // 
+            btnDangNhap.Image = (Image)resources.GetObject("btnDangNhap.Image");
+            btnDangNhap.ImageTransparentColor = Color.Magenta;
+            btnDangNhap.Name = "btnDangNhap";
+            btnDangNhap.Size = new Size(106, 24);
+            btnDangNhap.Text = "Đăng nhập";
+            btnDangNhap.Click += btnDangNhap_Click;
+            // 
+            // btnDangXuat
+            // 
+            btnDangXuat.Image = (Image)resources.GetObject("btnDangXuat.Image");
+            btnDangXuat.ImageTransparentColor = Color.Magenta;
+            btnDangXuat.Name = "btnDangXuat";
+            btnDangXuat.Size = new Size(101, 24);
+            btnDangXuat.Text = "Đăng xuất";
+            btnDangXuat.Click += btnDangXuat_Click;
+            // 
+            // toolStripSeparator4
+            // 
+            toolStripSeparator4.Name = "toolStripSeparator4";
+            toolStripSeparator4.Size = new Size(6, 27);
+            // 
+            // btnDanhMucSach
+            // 
+            btnDanhMucSach.Image = (Image)resources.GetObject("btnDanhMucSach.Image");
+            btnDanhMucSach.ImageTransparentColor = Color.Magenta;
+            btnDanhMucSach.Name = "btnDanhMucSach";
+            btnDanhMucSach.Size = new Size(133, 24);
+            btnDanhMucSach.Text = "Danh mục sách";
+            btnDanhMucSach.Click += btnDanhMucSach_Click;
+            // 
+            // btnKhoSach
+            // 
+            btnKhoSach.Image = (Image)resources.GetObject("btnKhoSach.Image");
+            btnKhoSach.ImageTransparentColor = Color.Magenta;
+            btnKhoSach.Name = "btnKhoSach";
+            btnKhoSach.Size = new Size(92, 24);
+            btnKhoSach.Text = "Kho sách";
+            btnKhoSach.Click += btnKhoSach_Click;
+            // 
+            // btnKhachHang
+            // 
+            btnKhachHang.Image = (Image)resources.GetObject("btnKhachHang.Image");
+            btnKhachHang.ImageTransparentColor = Color.Magenta;
+            btnKhachHang.Name = "btnKhachHang";
+            btnKhachHang.Size = new Size(110, 24);
+            btnKhachHang.Text = "Khách hàng";
+            btnKhachHang.Click += btnKhachHang_Click;
+            // 
+            // btnTaiKhoan
+            // 
+            btnTaiKhoan.Image = (Image)resources.GetObject("btnTaiKhoan.Image");
+            btnTaiKhoan.ImageTransparentColor = Color.Magenta;
+            btnTaiKhoan.Name = "btnTaiKhoan";
+            btnTaiKhoan.Size = new Size(95, 24);
+            btnTaiKhoan.Text = "Tài khoản";
+            btnTaiKhoan.Click += btnTaiKhoan_Click;
+            // 
+            // toolStripSeparator5
+            // 
+            toolStripSeparator5.Name = "toolStripSeparator5";
+            toolStripSeparator5.Size = new Size(6, 27);
+            // 
+            // btnBanHang
+            // 
+            btnBanHang.Image = (Image)resources.GetObject("btnBanHang.Image");
+            btnBanHang.ImageTransparentColor = Color.Magenta;
+            btnBanHang.Name = "btnBanHang";
+            btnBanHang.Size = new Size(95, 24);
+            btnBanHang.Text = "Bán hàng";
+            btnBanHang.Click += btnBanHang_Click;
+            // 
+            // btnDoanhThu
+            // 
+            btnDoanhThu.Image = (Image)resources.GetObject("btnDoanhThu.Image");
+            btnDoanhThu.ImageTransparentColor = Color.Magenta;
+            btnDoanhThu.Name = "btnDoanhThu";
+            btnDoanhThu.Size = new Size(102, 24);
+            btnDoanhThu.Text = "Doanh thu";
+            btnDoanhThu.Click += btnDoanhThu_Click;
+            // 
+            // toolStripSeparator6
+            // 
+            toolStripSeparator6.Name = "toolStripSeparator6";
+            toolStripSeparator6.Size = new Size(6, 27);
+            // 
+            // btnThoat
+            // 
+            btnThoat.Image = (Image)resources.GetObject("btnThoat.Image");
+            btnThoat.ImageTransparentColor = Color.Magenta;
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(71, 24);
+            btnThoat.Text = "Thoát";
+            btnThoat.Click += btnThoat_Click;
             // 
             // main
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1074, 585);
+            Controls.Add(toolStrip);
             Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
@@ -243,10 +366,13 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản lý bán sách";
             WindowState = FormWindowState.Maximized;
+            Load += main_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
+            toolStrip.ResumeLayout(false);
+            toolStrip.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -290,8 +416,21 @@
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem mnuTaiKhoan;
         private StatusStrip statusStrip1;
-        private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripStatusLabel lblTrangThai;
         private ToolStripStatusLabel toolStripStatusLabel2;
         private ToolStripStatusLabel toolStripStatusLabel3;
+        private ToolStrip toolStrip;
+        private ToolStripButton btnDangNhap;
+        private ToolStripButton btnDangXuat;
+        private ToolStripSeparator toolStripSeparator4;
+        private ToolStripButton btnDanhMucSach;
+        private ToolStripButton btnKhoSach;
+        private ToolStripButton btnKhachHang;
+        private ToolStripButton btnTaiKhoan;
+        private ToolStripSeparator toolStripSeparator5;
+        private ToolStripButton btnBanHang;
+        private ToolStripButton btnDoanhThu;
+        private ToolStripSeparator toolStripSeparator6;
+        private ToolStripButton btnThoat;
     }
 }

@@ -84,12 +84,13 @@
             txtTenDangNhap.Location = new Point(223, 104);
             txtTenDangNhap.Name = "txtTenDangNhap";
             txtTenDangNhap.Size = new Size(353, 27);
-            txtTenDangNhap.TabIndex = 4;
+            txtTenDangNhap.TabIndex = 0;
             // 
             // txtMatKhau
             // 
             txtMatKhau.Location = new Point(223, 185);
             txtMatKhau.Name = "txtMatKhau";
+            txtMatKhau.PasswordChar = '•';
             txtMatKhau.Size = new Size(353, 27);
             txtMatKhau.TabIndex = 1;
             // 
@@ -146,9 +147,9 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private TextBox txtTenDangNhap;
-        private TextBox txtMatKhau;
         private Button btnHuyBo;
         private Button btnDangNhap;
+        public TextBox txtTenDangNhap;
+        public TextBox txtMatKhau;
     }
 }
