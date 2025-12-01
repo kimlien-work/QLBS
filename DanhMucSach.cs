@@ -27,9 +27,9 @@ namespace QLBS
             string sql = "SELECT * FROM DanhMuc";
             SqlCommand cmd = new SqlCommand(sql);
             dataTable.Fill(cmd);
+
             BindingSource binding = new BindingSource();
             binding.DataSource = dataTable;
-            dgvDanhMuc.DataSource = binding;
 
             dgvDanhMuc.DataSource = binding;
 

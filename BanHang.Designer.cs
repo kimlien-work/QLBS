@@ -380,6 +380,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "BanHang";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Bán Hàng";
             Load += BanHang_Load;
             panel3.ResumeLayout(false);

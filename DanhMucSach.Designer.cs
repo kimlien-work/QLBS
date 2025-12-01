@@ -94,12 +94,15 @@
             // 
             // dgvDanhMuc
             // 
+            dgvDanhMuc.AllowUserToAddRows = false;
+            dgvDanhMuc.AllowUserToDeleteRows = false;
             dgvDanhMuc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDanhMuc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDanhMuc.Columns.AddRange(new DataGridViewColumn[] { MDM, TenDanhMuc });
             dgvDanhMuc.Dock = DockStyle.Bottom;
             dgvDanhMuc.Location = new Point(0, 189);
             dgvDanhMuc.Name = "dgvDanhMuc";
+            dgvDanhMuc.ReadOnly = true;
             dgvDanhMuc.RowHeadersWidth = 51;
             dgvDanhMuc.Size = new Size(351, 286);
             dgvDanhMuc.TabIndex = 19;
@@ -110,6 +113,7 @@
             MDM.HeaderText = "Mã Danh Mục";
             MDM.MinimumWidth = 6;
             MDM.Name = "MDM";
+            MDM.ReadOnly = true;
             // 
             // TenDanhMuc
             // 
@@ -117,6 +121,7 @@
             TenDanhMuc.HeaderText = "Tên Danh Mục";
             TenDanhMuc.MinimumWidth = 6;
             TenDanhMuc.Name = "TenDanhMuc";
+            TenDanhMuc.ReadOnly = true;
             // 
             // panel2
             // 
@@ -197,6 +202,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "DanhMucSach";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Danh Mục Sách";
             Load += DanhMucSach_Load;
             panel1.ResumeLayout(false);
