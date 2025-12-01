@@ -31,22 +31,22 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
             menuStrip1 = new MenuStrip();
             hệThốngToolStripMenuItem = new ToolStripMenuItem();
-            mnuDanhNhap = new ToolStripMenuItem();
+            mnuDangNhap = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             mnuDangXuat = new ToolStripMenuItem();
             mnuThoat = new ToolStripMenuItem();
-            quảnLýToolStripMenuItem = new ToolStripMenuItem();
+            mnuQuanLy = new ToolStripMenuItem();
             mnuDanhMucSach = new ToolStripMenuItem();
             mnuKhoSach = new ToolStripMenuItem();
             toolStripSeparator3 = new ToolStripSeparator();
             mnuKhachHang = new ToolStripMenuItem();
             toolStripSeparator2 = new ToolStripSeparator();
             mnuTaiKhoan = new ToolStripMenuItem();
-            báoCáoThốngKêToolStripMenuItem = new ToolStripMenuItem();
+            mnuThongKe = new ToolStripMenuItem();
             mnuBanHang = new ToolStripMenuItem();
             mnuDoanhThu = new ToolStripMenuItem();
-            trợGiúpToolStripMenuItem = new ToolStripMenuItem();
-            gioithieiu = new ToolStripMenuItem();
+            mnuTroGiup = new ToolStripMenuItem();
+            mnuGioiThieu = new ToolStripMenuItem();
             mnuHDSD = new ToolStripMenuItem();
             mnuThongTinPM = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
@@ -60,7 +60,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { hệThốngToolStripMenuItem, quảnLýToolStripMenuItem, báoCáoThốngKêToolStripMenuItem, trợGiúpToolStripMenuItem, gioithieiu });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { hệThốngToolStripMenuItem, mnuQuanLy, mnuThongKe, mnuTroGiup, mnuGioiThieu });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 28);
@@ -69,50 +69,52 @@
             // 
             // hệThốngToolStripMenuItem
             // 
-            hệThốngToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { mnuDanhNhap, toolStripSeparator1, mnuDangXuat, mnuThoat });
+            hệThốngToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { mnuDangNhap, toolStripSeparator1, mnuDangXuat, mnuThoat });
             hệThốngToolStripMenuItem.Name = "hệThốngToolStripMenuItem";
             hệThốngToolStripMenuItem.Size = new Size(85, 24);
             hệThốngToolStripMenuItem.Text = "Hệ thống";
             // 
-            // mnuDanhNhap
+            // mnuDangNhap
             // 
-            mnuDanhNhap.Image = (Image)resources.GetObject("mnuDanhNhap.Image");
-            mnuDanhNhap.Name = "mnuDanhNhap";
-            mnuDanhNhap.Size = new Size(165, 26);
-            mnuDanhNhap.Text = "Đăng nhập";
+            mnuDangNhap.Image = (Image)resources.GetObject("mnuDangNhap.Image");
+            mnuDangNhap.Name = "mnuDangNhap";
+            mnuDangNhap.Size = new Size(224, 26);
+            mnuDangNhap.Text = "Đăng nhập";
+            mnuDangNhap.Click += mnuDanhNhap_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(162, 6);
+            toolStripSeparator1.Size = new Size(221, 6);
             // 
             // mnuDangXuat
             // 
             mnuDangXuat.Image = (Image)resources.GetObject("mnuDangXuat.Image");
             mnuDangXuat.Name = "mnuDangXuat";
-            mnuDangXuat.Size = new Size(165, 26);
+            mnuDangXuat.Size = new Size(224, 26);
             mnuDangXuat.Text = "Đăng xuất";
+            mnuDangXuat.Click += mnuDangXuat_Click;
             // 
             // mnuThoat
             // 
             mnuThoat.Image = (Image)resources.GetObject("mnuThoat.Image");
             mnuThoat.Name = "mnuThoat";
-            mnuThoat.Size = new Size(165, 26);
+            mnuThoat.Size = new Size(224, 26);
             mnuThoat.Text = "Thoát";
             mnuThoat.Click += mnuThoat_Click;
             // 
-            // quảnLýToolStripMenuItem
+            // mnuQuanLy
             // 
-            quảnLýToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { mnuDanhMucSach, mnuKhoSach, toolStripSeparator3, mnuKhachHang, toolStripSeparator2, mnuTaiKhoan });
-            quảnLýToolStripMenuItem.Name = "quảnLýToolStripMenuItem";
-            quảnLýToolStripMenuItem.Size = new Size(73, 24);
-            quảnLýToolStripMenuItem.Text = "Quản lý";
+            mnuQuanLy.DropDownItems.AddRange(new ToolStripItem[] { mnuDanhMucSach, mnuKhoSach, toolStripSeparator3, mnuKhachHang, toolStripSeparator2, mnuTaiKhoan });
+            mnuQuanLy.Name = "mnuQuanLy";
+            mnuQuanLy.Size = new Size(73, 24);
+            mnuQuanLy.Text = "Quản lý";
             // 
             // mnuDanhMucSach
             // 
             mnuDanhMucSach.Image = (Image)resources.GetObject("mnuDanhMucSach.Image");
             mnuDanhMucSach.Name = "mnuDanhMucSach";
-            mnuDanhMucSach.Size = new Size(192, 26);
+            mnuDanhMucSach.Size = new Size(224, 26);
             mnuDanhMucSach.Text = "Danh mục sách";
             mnuDanhMucSach.Click += mnuDanhMucSach_Click;
             // 
@@ -120,48 +122,48 @@
             // 
             mnuKhoSach.Image = (Image)resources.GetObject("mnuKhoSach.Image");
             mnuKhoSach.Name = "mnuKhoSach";
-            mnuKhoSach.Size = new Size(192, 26);
+            mnuKhoSach.Size = new Size(224, 26);
             mnuKhoSach.Text = "Kho sách";
             mnuKhoSach.Click += mnuKhoSach_Click;
             // 
             // toolStripSeparator3
             // 
             toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(189, 6);
+            toolStripSeparator3.Size = new Size(221, 6);
             // 
             // mnuKhachHang
             // 
             mnuKhachHang.Image = (Image)resources.GetObject("mnuKhachHang.Image");
             mnuKhachHang.Name = "mnuKhachHang";
-            mnuKhachHang.Size = new Size(192, 26);
+            mnuKhachHang.Size = new Size(224, 26);
             mnuKhachHang.Text = "Khách hàng";
             mnuKhachHang.Click += mnuKhachHang_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(189, 6);
+            toolStripSeparator2.Size = new Size(221, 6);
             // 
             // mnuTaiKhoan
             // 
             mnuTaiKhoan.Image = (Image)resources.GetObject("mnuTaiKhoan.Image");
             mnuTaiKhoan.Name = "mnuTaiKhoan";
-            mnuTaiKhoan.Size = new Size(192, 26);
+            mnuTaiKhoan.Size = new Size(224, 26);
             mnuTaiKhoan.Text = "Tài khoản";
             mnuTaiKhoan.Click += mnuTaiKhoan_Click;
             // 
-            // báoCáoThốngKêToolStripMenuItem
+            // mnuThongKe
             // 
-            báoCáoThốngKêToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { mnuBanHang, mnuDoanhThu });
-            báoCáoThốngKêToolStripMenuItem.Name = "báoCáoThốngKêToolStripMenuItem";
-            báoCáoThốngKêToolStripMenuItem.Size = new Size(152, 24);
-            báoCáoThốngKêToolStripMenuItem.Text = "Báo cáo - Thống kê";
+            mnuThongKe.DropDownItems.AddRange(new ToolStripItem[] { mnuBanHang, mnuDoanhThu });
+            mnuThongKe.Name = "mnuThongKe";
+            mnuThongKe.Size = new Size(152, 24);
+            mnuThongKe.Text = "Báo cáo - Thống kê";
             // 
             // mnuBanHang
             // 
             mnuBanHang.Image = (Image)resources.GetObject("mnuBanHang.Image");
             mnuBanHang.Name = "mnuBanHang";
-            mnuBanHang.Size = new Size(161, 26);
+            mnuBanHang.Size = new Size(224, 26);
             mnuBanHang.Text = "Bán hàng";
             mnuBanHang.Click += mnuBanHang_Click;
             // 
@@ -169,22 +171,22 @@
             // 
             mnuDoanhThu.Image = (Image)resources.GetObject("mnuDoanhThu.Image");
             mnuDoanhThu.Name = "mnuDoanhThu";
-            mnuDoanhThu.Size = new Size(161, 26);
+            mnuDoanhThu.Size = new Size(224, 26);
             mnuDoanhThu.Text = "Doanh thu";
             mnuDoanhThu.Click += mnuDoanhThu_Click;
             // 
-            // trợGiúpToolStripMenuItem
+            // mnuTroGiup
             // 
-            trợGiúpToolStripMenuItem.Name = "trợGiúpToolStripMenuItem";
-            trợGiúpToolStripMenuItem.Size = new Size(78, 24);
-            trợGiúpToolStripMenuItem.Text = "Trợ giúp";
+            mnuTroGiup.Name = "mnuTroGiup";
+            mnuTroGiup.Size = new Size(78, 24);
+            mnuTroGiup.Text = "Trợ giúp";
             // 
-            // gioithieiu
+            // mnuGioiThieu
             // 
-            gioithieiu.DropDownItems.AddRange(new ToolStripItem[] { mnuHDSD, mnuThongTinPM });
-            gioithieiu.Name = "gioithieiu";
-            gioithieiu.Size = new Size(181, 24);
-            gioithieiu.Text = "Giới thiệu về phần mềm";
+            mnuGioiThieu.DropDownItems.AddRange(new ToolStripItem[] { mnuHDSD, mnuThongTinPM });
+            mnuGioiThieu.Name = "mnuGioiThieu";
+            mnuGioiThieu.Size = new Size(181, 24);
+            mnuGioiThieu.Text = "Giới thiệu về phần mềm";
             // 
             // mnuHDSD
             // 
@@ -192,7 +194,6 @@
             mnuHDSD.Name = "mnuHDSD";
             mnuHDSD.Size = new Size(230, 26);
             mnuHDSD.Text = "Hướng dẫn sử dụng";
-            mnuHDSD.Click += mnuHDSD_Click;
             // 
             // mnuThongTinPM
             // 
@@ -243,6 +244,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản lý bán sách";
             WindowState = FormWindowState.Maximized;
+            Load += main_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             statusStrip1.ResumeLayout(false);
@@ -271,13 +273,13 @@
         private ToolStripMenuItem menuHDSD;
         private ToolStripMenuItem menuThongTinPM;
         private ToolStripMenuItem hệThốngToolStripMenuItem;
-        private ToolStripMenuItem mnuDanhNhap;
+        private ToolStripMenuItem mnuDangNhap;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripMenuItem mnuDangXuat;
-        private ToolStripMenuItem quảnLýToolStripMenuItem;
-        private ToolStripMenuItem báoCáoThốngKêToolStripMenuItem;
-        private ToolStripMenuItem trợGiúpToolStripMenuItem;
-        private ToolStripMenuItem gioithieiu;
+        private ToolStripMenuItem mnuQuanLy;
+        private ToolStripMenuItem mnuThongKe;
+        private ToolStripMenuItem mnuTroGiup;
+        private ToolStripMenuItem mnuGioiThieu;
         private ToolStripMenuItem mnuDanhMucSach;
         private ToolStripMenuItem mnuKhoSach;
         private ToolStripSeparator toolStripSeparator3;
