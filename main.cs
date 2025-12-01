@@ -139,9 +139,9 @@ namespace QLBS
                     {
                         hoVaTen = dataTable.Rows[0]["TenNhanVien"].ToString();
                         string quyenHan = dataTable.Rows[0]["ChucVu"].ToString();
-                        if (quyenHan == "admin")
+                        if (quyenHan == "1")
                             QuanTriVien();
-                        else if (quyenHan == "user")
+                        else if (quyenHan == "0")
                             NhanVien();
                         else
                             ChuaDangNhap();
