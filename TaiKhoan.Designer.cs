@@ -131,6 +131,7 @@
             // cboChucVu
             // 
             cboChucVu.FormattingEnabled = true;
+            cboChucVu.Items.AddRange(new object[] { "Admin", "Nhân Viên" });
             cboChucVu.Location = new Point(12, 294);
             cboChucVu.Name = "cboChucVu";
             cboChucVu.Size = new Size(268, 28);
@@ -242,6 +243,7 @@
             MaID.MinimumWidth = 6;
             MaID.Name = "MaID";
             MaID.ReadOnly = true;
+            MaID.Width = 125;
             // 
             // Account
             // 
@@ -250,6 +252,7 @@
             Account.MinimumWidth = 6;
             Account.Name = "Account";
             Account.ReadOnly = true;
+            Account.Width = 125;
             // 
             // MatKhau
             // 
@@ -258,8 +261,7 @@
             MatKhau.MinimumWidth = 6;
             MatKhau.Name = "MatKhau";
             MatKhau.ReadOnly = true;
-            // 
-            // 
+            MatKhau.Width = 125;
             // 
             // ChucVu
             // 
@@ -267,6 +269,7 @@
             ChucVu.MinimumWidth = 6;
             ChucVu.Name = "ChucVu";
             ChucVu.ReadOnly = true;
+            ChucVu.Width = 125;
             // 
             // TaiKhoan
             // 
