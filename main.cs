@@ -55,7 +55,8 @@ namespace QLBS
             btnBanHang.Enabled = false;
             btnDoanhThu.Enabled = false;
 
-            mnuDangXuat.Enabled = false;
+            
+            mnuDangXuat.Enabled = true;
             mnuDanhMucSach.Enabled = false;
             mnuKhoSach.Enabled = false;
             mnuKhachHang.Enabled = false;
@@ -78,7 +79,8 @@ namespace QLBS
             btnBanHang.Enabled = false;
             btnDoanhThu.Enabled = false;
 
-            mnuDangXuat.Enabled = false;
+            mnuDangNhap.Enabled = false;
+            mnuDangXuat.Enabled = true;
             mnuDanhMucSach.Enabled = false;
             mnuKhoSach.Enabled = false;
             mnuKhachHang.Enabled = false;
@@ -101,6 +103,7 @@ namespace QLBS
             btnBanHang.Enabled = true;
             btnDoanhThu.Enabled = true;
 
+            mnuDangNhap.Enabled = false;
             mnuDangXuat.Enabled = true;
             mnuDanhMucSach.Enabled = true;
             mnuKhoSach.Enabled = true;
