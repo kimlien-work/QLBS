@@ -46,7 +46,6 @@ namespace QLBS
         public void ChuaDangNhap()
         {
             btnDangNhap.Enabled = true;
-
             btnDangXuat.Enabled = false;
             btnDanhMucSach.Enabled = false;
             btnKhoSach.Enabled = false;
@@ -55,8 +54,8 @@ namespace QLBS
             btnBanHang.Enabled = false;
             btnDoanhThu.Enabled = false;
 
-            
-            mnuDangXuat.Enabled = true;
+            mnuDangNhap.Enabled = true;
+            mnuDangXuat.Enabled = false;
             mnuDanhMucSach.Enabled = false;
             mnuKhoSach.Enabled = false;
             mnuKhachHang.Enabled = false;
@@ -70,14 +69,13 @@ namespace QLBS
         public void QuanTriVien()
         {
             btnDangNhap.Enabled = false;
-
             btnDangXuat.Enabled = true;
             btnDanhMucSach.Enabled = false;
             btnKhoSach.Enabled = false;
             btnKhachHang.Enabled = false;
             btnTaiKhoan.Enabled = true;
             btnBanHang.Enabled = false;
-            btnDoanhThu.Enabled = false;
+            btnDoanhThu.Enabled = true;
 
             mnuDangNhap.Enabled = false;
             mnuDangXuat.Enabled = true;
@@ -86,7 +84,7 @@ namespace QLBS
             mnuKhachHang.Enabled = false;
             mnuTaiKhoan.Enabled = true;
             mnuBanHang.Enabled = false;
-            mnuDoanhThu.Enabled = false;
+            mnuDoanhThu.Enabled = true;
 
             lblTrangThai.Text = "Quản trị viên " + hoVaTen;
         }
@@ -94,14 +92,13 @@ namespace QLBS
         public void NhanVien()
         {
             btnDangNhap.Enabled = false;
-
             btnDangXuat.Enabled = true;
             btnDanhMucSach.Enabled = true;
             btnKhoSach.Enabled = true;
             btnKhachHang.Enabled = true;
             btnTaiKhoan.Enabled = false;
             btnBanHang.Enabled = true;
-            btnDoanhThu.Enabled = true;
+            btnDoanhThu.Enabled = false;
 
             mnuDangNhap.Enabled = false;
             mnuDangXuat.Enabled = true;
@@ -110,7 +107,7 @@ namespace QLBS
             mnuKhachHang.Enabled = true;
             mnuTaiKhoan.Enabled = false;
             mnuBanHang.Enabled = true;
-            mnuDoanhThu.Enabled = true;
+            mnuDoanhThu.Enabled = false;
 
             lblTrangThai.Text = "Nhân viên " + hoVaTen;
         }
