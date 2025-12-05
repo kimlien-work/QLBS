@@ -48,13 +48,6 @@
             label2 = new Label();
             txtTimKiem = new TextBox();
             dgvSach = new DataGridView();
-            label1 = new Label();
-            txtTenSach = new TextBox();
-            label4 = new Label();
-            panel1 = new Panel();
-            cboDanhMuc = new ComboBox();
-            label7 = new Label();
-            txtSoLuong = new TextBox();
             MSach = new DataGridViewTextBoxColumn();
             MaDM = new DataGridViewTextBoxColumn();
             TenSach = new DataGridViewTextBoxColumn();
@@ -62,6 +55,11 @@
             GiaBan = new DataGridViewTextBoxColumn();
             SoLuongTon = new DataGridViewTextBoxColumn();
             GhiChu = new DataGridViewTextBoxColumn();
+            label1 = new Label();
+            txtTenSach = new TextBox();
+            panel1 = new Panel();
+            cboDanhMuc = new ComboBox();
+            label7 = new Label();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSach).BeginInit();
@@ -71,7 +69,7 @@
             // label
             // 
             label.AutoSize = true;
-            label.Location = new Point(12, 243);
+            label.Location = new Point(12, 188);
             label.Name = "label";
             label.Size = new Size(64, 20);
             label.TabIndex = 0;
@@ -89,7 +87,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 301);
+            label3.Location = new Point(12, 246);
             label3.Name = "label3";
             label3.Size = new Size(101, 20);
             label3.TabIndex = 0;
@@ -97,7 +95,7 @@
             // 
             // txtSoLuongTon
             // 
-            txtSoLuongTon.Location = new Point(12, 324);
+            txtSoLuongTon.Location = new Point(12, 269);
             txtSoLuongTon.Name = "txtSoLuongTon";
             txtSoLuongTon.ReadOnly = true;
             txtSoLuongTon.Size = new Size(268, 27);
@@ -105,7 +103,7 @@
             // 
             // txtGiaBan
             // 
-            txtGiaBan.Location = new Point(12, 266);
+            txtGiaBan.Location = new Point(12, 211);
             txtGiaBan.Name = "txtGiaBan";
             txtGiaBan.Size = new Size(268, 27);
             txtGiaBan.TabIndex = 7;
@@ -119,7 +117,7 @@
             // 
             // btnXoa
             // 
-            btnXoa.Location = new Point(150, 454);
+            btnXoa.Location = new Point(150, 399);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(125, 29);
             btnXoa.TabIndex = 12;
@@ -129,7 +127,7 @@
             // 
             // btnLuu
             // 
-            btnLuu.Location = new Point(12, 490);
+            btnLuu.Location = new Point(12, 435);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(132, 29);
             btnLuu.TabIndex = 10;
@@ -139,7 +137,7 @@
             // 
             // btnThem
             // 
-            btnThem.Location = new Point(12, 419);
+            btnThem.Location = new Point(12, 364);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(263, 29);
             btnThem.TabIndex = 3;
@@ -149,7 +147,7 @@
             // 
             // btnHuy
             // 
-            btnHuy.Location = new Point(150, 489);
+            btnHuy.Location = new Point(150, 434);
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(125, 29);
             btnHuy.TabIndex = 11;
@@ -159,7 +157,7 @@
             // 
             // btnSua
             // 
-            btnSua.Location = new Point(12, 455);
+            btnSua.Location = new Point(12, 400);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(132, 29);
             btnSua.TabIndex = 13;
@@ -170,7 +168,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(12, 359);
+            label5.Location = new Point(12, 304);
             label5.Name = "label5";
             label5.Size = new Size(60, 20);
             label5.TabIndex = 0;
@@ -178,7 +176,7 @@
             // 
             // txtGhiChu
             // 
-            txtGhiChu.Location = new Point(12, 382);
+            txtGhiChu.Location = new Point(12, 327);
             txtGhiChu.Name = "txtGhiChu";
             txtGhiChu.Size = new Size(268, 27);
             txtGhiChu.TabIndex = 9;
@@ -249,85 +247,6 @@
             dgvSach.Size = new Size(770, 485);
             dgvSach.TabIndex = 0;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 68);
-            label1.Name = "label1";
-            label1.Size = new Size(67, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Tên Sách";
-            // 
-            // txtTenSach
-            // 
-            txtTenSach.Location = new Point(12, 91);
-            txtTenSach.Name = "txtTenSach";
-            txtTenSach.Size = new Size(268, 27);
-            txtTenSach.TabIndex = 5;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(12, 185);
-            label4.Name = "label4";
-            label4.Size = new Size(72, 20);
-            label4.TabIndex = 0;
-            label4.Tag = "";
-            label4.Text = "Số Lượng";
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(cboDanhMuc);
-            panel1.Controls.Add(label7);
-            panel1.Controls.Add(label);
-            panel1.Controls.Add(label6);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(txtSoLuongTon);
-            panel1.Controls.Add(txtGiaBan);
-            panel1.Controls.Add(txtMaSach);
-            panel1.Controls.Add(btnXoa);
-            panel1.Controls.Add(btnLuu);
-            panel1.Controls.Add(btnThem);
-            panel1.Controls.Add(btnHuy);
-            panel1.Controls.Add(btnSua);
-            panel1.Controls.Add(label5);
-            panel1.Controls.Add(txtGhiChu);
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(txtSoLuong);
-            panel1.Controls.Add(txtTenSach);
-            panel1.Dock = DockStyle.Left;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(287, 525);
-            panel1.TabIndex = 2;
-            // 
-            // cboDanhMuc
-            // 
-            cboDanhMuc.FormattingEnabled = true;
-            cboDanhMuc.Location = new Point(12, 149);
-            cboDanhMuc.Name = "cboDanhMuc";
-            cboDanhMuc.Size = new Size(263, 28);
-            cboDanhMuc.TabIndex = 16;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(12, 126);
-            label7.Name = "label7";
-            label7.Size = new Size(76, 20);
-            label7.TabIndex = 15;
-            label7.Tag = "";
-            label7.Text = "Danh Mục";
-            // 
-            // txtSoLuong
-            // 
-            txtSoLuong.Location = new Point(12, 208);
-            txtSoLuong.Name = "txtSoLuong";
-            txtSoLuong.Size = new Size(268, 27);
-            txtSoLuong.TabIndex = 5;
-            txtSoLuong.TextChanged += txtSoLuong_TextChanged;
-            // 
             // MSach
             // 
             MSach.DataPropertyName = "MaSach";
@@ -387,6 +306,65 @@
             GhiChu.Name = "GhiChu";
             GhiChu.ReadOnly = true;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 68);
+            label1.Name = "label1";
+            label1.Size = new Size(67, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Tên Sách";
+            // 
+            // txtTenSach
+            // 
+            txtTenSach.Location = new Point(12, 91);
+            txtTenSach.Name = "txtTenSach";
+            txtTenSach.Size = new Size(268, 27);
+            txtTenSach.TabIndex = 5;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(cboDanhMuc);
+            panel1.Controls.Add(label7);
+            panel1.Controls.Add(label);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(txtSoLuongTon);
+            panel1.Controls.Add(txtGiaBan);
+            panel1.Controls.Add(txtMaSach);
+            panel1.Controls.Add(btnXoa);
+            panel1.Controls.Add(btnLuu);
+            panel1.Controls.Add(btnThem);
+            panel1.Controls.Add(btnHuy);
+            panel1.Controls.Add(btnSua);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(txtGhiChu);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(txtTenSach);
+            panel1.Dock = DockStyle.Left;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(287, 525);
+            panel1.TabIndex = 2;
+            // 
+            // cboDanhMuc
+            // 
+            cboDanhMuc.FormattingEnabled = true;
+            cboDanhMuc.Location = new Point(12, 149);
+            cboDanhMuc.Name = "cboDanhMuc";
+            cboDanhMuc.Size = new Size(263, 28);
+            cboDanhMuc.TabIndex = 16;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(12, 126);
+            label7.Name = "label7";
+            label7.Size = new Size(76, 20);
+            label7.TabIndex = 15;
+            label7.Tag = "";
+            label7.Text = "Danh Mục";
+            // 
             // KhoSach
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -431,11 +409,9 @@
         private TextBox txtTimKiem;
         private Label label1;
         private TextBox txtTenSach;
-        private Label label4;
         private Panel panel1;
         private ComboBox cboDanhMuc;
         private Label label7;
-        private TextBox txtSoLuong;
         private DataGridView dgvSach;
         private DataGridViewTextBoxColumn MSach;
         private DataGridViewTextBoxColumn MaDM;
