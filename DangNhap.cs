@@ -8,7 +8,7 @@ namespace QLBS
 {
     public partial class DangNhap : Form
     {
-        private const string con = @"Server=.;Database=QLBS;Integrated Security=True";
+        private const string con = @"Server=.\SQLEXPRESS;Database=QLBS;Integrated Security=True";
         public string LoggedInUsername { get; private set; }
         public DangNhap()
         {
@@ -44,7 +44,7 @@ namespace QLBS
                 {
                     // 1. Sử dụng tham số để truyền giá trị
                     cmd.Parameters.AddWithValue("@user", trimmedUsername);
-                    cmd.Parameters.AddWithValue("@pass", trimmedPassword); // *Giả sử mật khẩu chưa mã hóa*
+                    cmd.Parameters.AddWithValue("@pass", trimmedPassword); 
 
                     try
                     {
