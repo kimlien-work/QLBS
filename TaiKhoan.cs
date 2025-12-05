@@ -13,41 +13,79 @@ namespace QLBS
 {
     public partial class TaiKhoan : Form
     {
+        // Khởi tạo lớp kết nối CSDL (Đảm bảo lớp MyDataTable của bạn đã hoạt động đúng)
         MyDataTable dataTable = new MyDataTable();
-        string iD = "";
+
+        // Biến BindingSource để quản lý việc đồng bộ dữ liệu giữa Grid và Textbox
+        BindingSource binding = new BindingSource();
+
         public TaiKhoan()
         {
             InitializeComponent();
             dataTable.OpenConnection();
         }
+
+        private void TaiKhoan_Load(object sender, EventArgs e)
+        {
+            // 1. Nạp dữ liệu cho ComboBox chức vụ trước
+            LoadComboBoxChucVu();
+
+            // 2. Lấy dữ liệu lên Grid và Binding
+            LayDuLieu();
+
+            // 3. Thiết lập trạng thái ban đầu
+            BatTat(false);
+        }
+
+        // Hàm tạo dữ liệu giả cho ComboBox Chức vụ (Admin/Nhân viên)
+        private void LoadComboBoxChucVu()
+        {
+            DataTable dtChucVu = new DataTable();
+            dtChucVu.Columns.Add("MaCV", typeof(int));
+            dtChucVu.Columns.Add("TenCV", typeof(string));
+
+            // Thêm dòng dữ liệu: 1 là Admin, 0 là Nhân viên (Khớp với quy ước trong SQL)
+            dtChucVu.Rows.Add(1, "Quản Lý (Admin)");
+            dtChucVu.Rows.Add(0, "Nhân Viên");
+
+            cboChucVu.DataSource = dtChucVu;
+            cboChucVu.DisplayMember = "TenCV"; // Hiển thị tên
+            cboChucVu.ValueMember = "MaCV";    // Giá trị ngầm là số (int)
+        }
+
         private void LayDuLieu()
         {
+            // Ngăn Grid tự tạo cột linh tinh, chỉ dùng cột đã thiết kế trong Design
             dgvTaiKhoan.AutoGenerateColumns = false;
 
+            // Lấy dữ liệu từ SQL
             SqlCommand cmd = new SqlCommand("SELECT * FROM TaiKhoan");
-
             dataTable.Fill(cmd);
-            BindingSource binding = new BindingSource();
+
+            // Gán dữ liệu vào BindingSource
             binding.DataSource = dataTable;
 
+            // Gán BindingSource vào DataGridView
             dgvTaiKhoan.DataSource = binding;
 
+            // --- XÓA BINDING CŨ TRƯỚC KHI ADD MỚI (Tránh lỗi trùng lặp) ---
             txtID.DataBindings.Clear();
             txtAccount.DataBindings.Clear();
             txtMatKhau.DataBindings.Clear();
             txtTenNhanVien.DataBindings.Clear();
             cboChucVu.DataBindings.Clear();
 
-            txtID.DataBindings.Add("Text", binding, "ID");
+            // --- THIẾT LẬP BINDING MỚI ---
+            // Tham số thứ 3 ("Account", "MatKhau"...) phải khớp với tên cột trong SQL Table
+            txtID.DataBindings.Add("Text", binding, "ID", true, DataSourceUpdateMode.Never);
+            txtAccount.DataBindings.Add("Text", binding, "Account", true, DataSourceUpdateMode.Never);
+            txtMatKhau.DataBindings.Add("Text", binding, "MatKhau", true, DataSourceUpdateMode.Never);
+            txtTenNhanVien.DataBindings.Add("Text", binding, "TenNhanVien", true, DataSourceUpdateMode.Never);
 
-            txtAccount.DataBindings.Add("Text", binding, "Account");
-
-            txtMatKhau.DataBindings.Add("Text", binding, "MatKhau");
-
-            txtTenNhanVien.DataBindings.Add("Text", binding, "TenNhanVien");
-
-            cboChucVu.DataBindings.Add("SelectedValue", binding, "ChucVu");
+            // Binding cho ComboBox (SelectedValue sẽ ăn theo cột ChucVu của dòng đang chọn)
+            cboChucVu.DataBindings.Add("SelectedValue", binding, "ChucVu", true, DataSourceUpdateMode.Never);
         }
+
         private void BatTat(bool giaTri)
         {
             txtTenNhanVien.Enabled = giaTri;
@@ -62,105 +100,88 @@ namespace QLBS
             btnSua.Enabled = !giaTri;
             btnXoa.Enabled = !giaTri;
 
+            // ID luôn luôn bị khóa (vì là tự tăng)
             txtID.Enabled = false;
         }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            txtID.Clear();
-            txtAccount.Clear();
-            txtMatKhau.Clear();
-            txtTenNhanVien.Clear();
+            // Xóa trắng các ô nhập liệu để nhập mới
+            txtID.Text = ""; // ID rỗng để nhận biết là đang Thêm mới
+            txtAccount.Text = "";
+            txtMatKhau.Text = "";
+            txtTenNhanVien.Text = "";
+            if (cboChucVu.Items.Count > 0) cboChucVu.SelectedIndex = 1; // Mặc định chọn Nhân viên
 
-            if (cboChucVu.Items.Count > 0) cboChucVu.SelectedIndex = 0;
-            txtAccount.Focus();
             BatTat(true);
+            txtAccount.Focus();
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
+            // Nếu không có ID (chưa chọn dòng nào) thì báo lỗi
             if (string.IsNullOrEmpty(txtID.Text))
             {
                 MessageBox.Show("Vui lòng chọn nhân viên cần sửa trên danh sách!", "Thông báo");
                 return;
             }
             BatTat(true);
+            // Khi sửa thì không cho sửa Tên đăng nhập (Account) - Tùy nghiệp vụ
+            txtAccount.Enabled = false;
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
+            // Hủy bỏ thao tác, load lại dữ liệu gốc từ Binding
+            binding.CancelEdit();
             LayDuLieu();
             BatTat(false);
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            if (txtAccount.Text.Trim() == "")
-            {
-                MessageBox.Show("Tên tài khoản không được bỏ trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtAccount.Focus();
-                return;
-            }
-            if (txtMatKhau.Text.Trim() == "")
-            {
-                MessageBox.Show("Mật khẩu không được bỏ trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtMatKhau.Focus();
-                return;
-            }
-            if (txtTenNhanVien.Text.Trim() == "")
-            {
-                MessageBox.Show("Tên nhân viên không được bỏ trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtTenNhanVien.Focus();
-                return;
-            }
+            // Kiểm tra dữ liệu rỗng
+            if (string.IsNullOrWhiteSpace(txtAccount.Text)) { MessageBox.Show("Chưa nhập tài khoản!"); txtAccount.Focus(); return; }
+            if (string.IsNullOrWhiteSpace(txtMatKhau.Text)) { MessageBox.Show("Chưa nhập mật khẩu!"); txtMatKhau.Focus(); return; }
+            if (string.IsNullOrWhiteSpace(txtTenNhanVien.Text)) { MessageBox.Show("Chưa nhập tên nhân viên!"); txtTenNhanVien.Focus(); return; }
 
             try
             {
                 SqlCommand cmd;
                 string sql;
 
-                // 2. Xử lý lưu xuống CSDL
-
-                // TRƯỜNG HỢP: THÊM MỚI (Dựa vào việc txtID đang rỗng)
-                if (txtID.Text == "")
+                // --- TRƯỜNG HỢP THÊM MỚI (txtID rỗng) ---
+                if (string.IsNullOrEmpty(txtID.Text))
                 {
-                    // Lưu ý: KHÔNG INSERT cột ID vì là IDENTITY (Tự tăng)
                     sql = @"INSERT INTO TaiKhoan (Account, MatKhau, TenNhanVien, ChucVu) 
-                    VALUES(@Account, @MatKhau, @TenNhanVien, @ChucVu)";
-
+                            VALUES(@Account, @MatKhau, @TenNhanVien, @ChucVu)";
                     cmd = new SqlCommand(sql);
                 }
-                // TRƯỜNG HỢP: SỬA (Dựa vào việc txtID đang có số)
+                // --- TRƯỜNG HỢP SỬA (txtID có số) ---
                 else
                 {
-                    sql = @"UPDATE TaiKhoan
-                    SET Account = @Account,
-                        MatKhau = @MatKhau,
-                        TenNhanVien = @TenNhanVien,
-                        ChucVu = @ChucVu
-                    WHERE ID = @ID";
-
+                    sql = @"UPDATE TaiKhoan 
+                            SET MatKhau = @MatKhau, 
+                                TenNhanVien = @TenNhanVien, 
+                                ChucVu = @ChucVu 
+                            WHERE ID = @ID";
                     cmd = new SqlCommand(sql);
-                    // UPDATE cần thêm tham số ID
                     cmd.Parameters.Add("@ID", SqlDbType.Int).Value = int.Parse(txtID.Text);
                 }
 
-                // --- ÁNH XẠ THAM SỐ CHUNG ---
+                // Gán tham số chung
                 cmd.Parameters.Add("@Account", SqlDbType.NVarChar, 50).Value = txtAccount.Text;
                 cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 100).Value = txtMatKhau.Text;
                 cmd.Parameters.Add("@TenNhanVien", SqlDbType.NVarChar, 100).Value = txtTenNhanVien.Text;
 
-                // Lấy Chức vụ từ ComboBox (Giả sử ValueMember là 0 hoặc 1)
-                // Nếu dùng SelectedIndex: cmd.Parameters.Add("@ChucVu", SqlDbType.Int).Value = cboChucVu.SelectedIndex;
-                cmd.Parameters.Add("@ChucVu", SqlDbType.Int).Value = cboChucVu.SelectedValue ?? 0;
+                // Lấy giá trị int từ ComboBox (0 hoặc 1)
+                cmd.Parameters.Add("@ChucVu", SqlDbType.Int).Value = cboChucVu.SelectedValue;
 
-                // Thực thi lệnh
+                // Thực thi Update xuống CSDL
                 dataTable.Update(cmd);
 
-                MessageBox.Show("Lưu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Tải lại form
-                LayDuLieu();
+                MessageBox.Show("Lưu thành công!", "Thông báo");
+                LayDuLieu(); // Tải lại để cập nhật Grid và ID mới
                 BatTat(false);
             }
             catch (Exception ex)
@@ -171,47 +192,25 @@ namespace QLBS
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            // Kiểm tra nếu chưa chọn ID thì không làm gì cả
-            if (txtID.Text == "") return;
+            if (string.IsNullOrEmpty(txtID.Text)) return;
 
-            // Hiển thị hộp thoại xác nhận
-            DialogResult kq = MessageBox.Show("Bạn có chắc muốn xoá nhân viên " + txtTenNhanVien.Text + " không?",
-                                              "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (kq == DialogResult.Yes)
+            if (MessageBox.Show("Bạn có chắc muốn xoá " + txtTenNhanVien.Text + "?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
                 {
-                    // Câu lệnh Delete cho bảng TaiKhoan
-                    string sql = @"DELETE FROM TaiKhoan WHERE ID = @ID";
+                    string sql = "DELETE FROM TaiKhoan WHERE ID = @ID";
                     SqlCommand cmd = new SqlCommand(sql);
-
-                    // Tham số ID lấy từ Textbox (Khóa chính int)
                     cmd.Parameters.Add("@ID", SqlDbType.Int).Value = int.Parse(txtID.Text);
 
                     dataTable.Update(cmd);
-
-                    // Tải lại dữ liệu
                     LayDuLieu();
                     BatTat(false);
-
-                    // Xóa trắng các ô sau khi xóa thành công
-                    txtID.Clear();
-                    txtAccount.Clear();
-                    txtMatKhau.Clear();
-                    txtTenNhanVien.Clear();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Không thể xóa nhân viên này (Có thể tài khoản này đang gắn với hóa đơn).", "Lỗi CSDL");
+                    MessageBox.Show("Lỗi khi xóa (Có thể tài khoản này đã tạo hóa đơn): " + ex.Message);
                 }
             }
-        }
-
-        private void TaiKhoan_Load(object sender, EventArgs e)
-        {
-            LayDuLieu();
-            BatTat(false);
         }
     }
 }
