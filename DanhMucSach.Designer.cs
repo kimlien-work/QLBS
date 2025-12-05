@@ -145,6 +145,7 @@
             btnXoa.TabIndex = 17;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click_1;
             // 
             // btnLuu
             // 
@@ -154,6 +155,7 @@
             btnLuu.TabIndex = 15;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
+            btnLuu.Click += btnLuu_Click_1;
             // 
             // btnThem
             // 
@@ -163,6 +165,7 @@
             btnThem.TabIndex = 14;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click_1;
             // 
             // btnThoat
             // 
@@ -172,6 +175,7 @@
             btnThoat.TabIndex = 16;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click_1;
             // 
             // btnHuy
             // 
@@ -181,6 +185,7 @@
             btnHuy.TabIndex = 16;
             btnHuy.Text = "Hủy";
             btnHuy.UseVisualStyleBackColor = true;
+            btnHuy.Click += btnHuy_Click_1;
             // 
             // btnSua
             // 
@@ -190,6 +195,7 @@
             btnSua.TabIndex = 18;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
+            btnSua.Click += btnSua_Click_1;
             // 
             // DanhMucSach
             // 
