@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             label = new Label();
             label6 = new Label();
             label3 = new Label();
@@ -47,13 +48,6 @@
             label2 = new Label();
             txtTimKiem = new TextBox();
             dgvSach = new DataGridView();
-            MSach = new DataGridViewTextBoxColumn();
-            MaDM = new DataGridViewTextBoxColumn();
-            TenSach = new DataGridViewTextBoxColumn();
-            TenDanhMuc = new DataGridViewTextBoxColumn();
-            GiaBan = new DataGridViewTextBoxColumn();
-            SoLuongTon = new DataGridViewTextBoxColumn();
-            GhiChu = new DataGridViewTextBoxColumn();
             label1 = new Label();
             txtTenSach = new TextBox();
             label4 = new Label();
@@ -61,6 +55,13 @@
             cboDanhMuc = new ComboBox();
             label7 = new Label();
             txtSoLuong = new TextBox();
+            MSach = new DataGridViewTextBoxColumn();
+            MaDM = new DataGridViewTextBoxColumn();
+            TenSach = new DataGridViewTextBoxColumn();
+            TenDanhMuc = new DataGridViewTextBoxColumn();
+            GiaBan = new DataGridViewTextBoxColumn();
+            SoLuongTon = new DataGridViewTextBoxColumn();
+            GhiChu = new DataGridViewTextBoxColumn();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSach).BeginInit();
@@ -248,62 +249,6 @@
             dgvSach.Size = new Size(770, 485);
             dgvSach.TabIndex = 0;
             // 
-            // MSach
-            // 
-            MSach.DataPropertyName = "MaSach";
-            MSach.HeaderText = "Mã Sách";
-            MSach.MinimumWidth = 6;
-            MSach.Name = "MSach";
-            MSach.ReadOnly = true;
-            // 
-            // MaDM
-            // 
-            MaDM.DataPropertyName = "MaDM";
-            MaDM.HeaderText = "Mã DM";
-            MaDM.MinimumWidth = 6;
-            MaDM.Name = "MaDM";
-            MaDM.ReadOnly = true;
-            // 
-            // TenSach
-            // 
-            TenSach.DataPropertyName = "TenSach";
-            TenSach.HeaderText = "Tên Sách";
-            TenSach.MinimumWidth = 6;
-            TenSach.Name = "TenSach";
-            TenSach.ReadOnly = true;
-            // 
-            // TenDanhMuc
-            // 
-            TenDanhMuc.DataPropertyName = "TenDanhMuc";
-            TenDanhMuc.HeaderText = "Danh Mục";
-            TenDanhMuc.MinimumWidth = 6;
-            TenDanhMuc.Name = "TenDanhMuc";
-            TenDanhMuc.ReadOnly = true;
-            // 
-            // GiaBan
-            // 
-            GiaBan.DataPropertyName = "GiaBan";
-            GiaBan.HeaderText = "Giá ";
-            GiaBan.MinimumWidth = 6;
-            GiaBan.Name = "GiaBan";
-            GiaBan.ReadOnly = true;
-            // 
-            // SoLuongTon
-            // 
-            SoLuongTon.DataPropertyName = "SoLuongTon";
-            SoLuongTon.HeaderText = "Tồn Kho";
-            SoLuongTon.MinimumWidth = 6;
-            SoLuongTon.Name = "SoLuongTon";
-            SoLuongTon.ReadOnly = true;
-            // 
-            // GhiChu
-            // 
-            GhiChu.DataPropertyName = "GhiChu";
-            GhiChu.HeaderText = "Ghi Chú";
-            GhiChu.MinimumWidth = 6;
-            GhiChu.Name = "GhiChu";
-            GhiChu.ReadOnly = true;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -383,6 +328,65 @@
             txtSoLuong.TabIndex = 5;
             txtSoLuong.TextChanged += txtSoLuong_TextChanged;
             // 
+            // MSach
+            // 
+            MSach.DataPropertyName = "MaSach";
+            MSach.HeaderText = "Mã Sách";
+            MSach.MinimumWidth = 6;
+            MSach.Name = "MSach";
+            MSach.ReadOnly = true;
+            // 
+            // MaDM
+            // 
+            MaDM.DataPropertyName = "MaDM";
+            MaDM.HeaderText = "Mã DM";
+            MaDM.MinimumWidth = 6;
+            MaDM.Name = "MaDM";
+            MaDM.ReadOnly = true;
+            // 
+            // TenSach
+            // 
+            TenSach.DataPropertyName = "TenSach";
+            TenSach.HeaderText = "Tên Sách";
+            TenSach.MinimumWidth = 6;
+            TenSach.Name = "TenSach";
+            TenSach.ReadOnly = true;
+            // 
+            // TenDanhMuc
+            // 
+            TenDanhMuc.DataPropertyName = "TenDanhMuc";
+            TenDanhMuc.HeaderText = "Danh Mục";
+            TenDanhMuc.MinimumWidth = 6;
+            TenDanhMuc.Name = "TenDanhMuc";
+            TenDanhMuc.ReadOnly = true;
+            // 
+            // GiaBan
+            // 
+            GiaBan.DataPropertyName = "GiaBan";
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
+            GiaBan.DefaultCellStyle = dataGridViewCellStyle1;
+            GiaBan.HeaderText = "Giá ";
+            GiaBan.MinimumWidth = 6;
+            GiaBan.Name = "GiaBan";
+            GiaBan.ReadOnly = true;
+            // 
+            // SoLuongTon
+            // 
+            SoLuongTon.DataPropertyName = "SoLuongTon";
+            SoLuongTon.HeaderText = "Tồn Kho";
+            SoLuongTon.MinimumWidth = 6;
+            SoLuongTon.Name = "SoLuongTon";
+            SoLuongTon.ReadOnly = true;
+            // 
+            // GhiChu
+            // 
+            GhiChu.DataPropertyName = "GhiChu";
+            GhiChu.HeaderText = "Ghi Chú";
+            GhiChu.MinimumWidth = 6;
+            GhiChu.Name = "GhiChu";
+            GhiChu.ReadOnly = true;
+            // 
             // KhoSach
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -432,6 +436,7 @@
         private ComboBox cboDanhMuc;
         private Label label7;
         private TextBox txtSoLuong;
+        private DataGridView dgvSach;
         private DataGridViewTextBoxColumn MSach;
         private DataGridViewTextBoxColumn MaDM;
         private DataGridViewTextBoxColumn TenSach;
@@ -439,6 +444,5 @@
         private DataGridViewTextBoxColumn GiaBan;
         private DataGridViewTextBoxColumn SoLuongTon;
         private DataGridViewTextBoxColumn GhiChu;
-        private DataGridView dgvSach;
     }
 }
