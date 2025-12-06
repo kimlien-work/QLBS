@@ -22,40 +22,41 @@ namespace QLBS
             LayDuLieu();
             BatTat(false);
         }
-
-        // --- HÀM LẤY DỮ LIỆU ---
+        #region HÀM LẤY DỮ LIỆU
         private void LayDuLieu()
-        {
-            dataTable.OpenConnection();
+                {
+                    dataTable.OpenConnection();
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM DanhMuc");
-            dataTable.Fill(cmd);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM DanhMuc");
+                    dataTable.Fill(cmd);
 
-            BindingSource binding = new BindingSource();
-            binding.DataSource = dataTable;
+                    BindingSource binding = new BindingSource();
+                    binding.DataSource = dataTable;
 
-            dgvDanhMuc.DataSource = binding;
+                    dgvDanhMuc.DataSource = binding;
 
-            txtMaDM.DataBindings.Clear();
-            txtTenDM.DataBindings.Clear();
+                    txtMaDM.DataBindings.Clear();
+                    txtTenDM.DataBindings.Clear();
 
-            txtMaDM.DataBindings.Add("Text", binding, "MaDM");
-            txtTenDM.DataBindings.Add("Text", binding, "TenDanhMuc");
-        }
+                    txtMaDM.DataBindings.Add("Text", binding, "MaDM");
+                    txtTenDM.DataBindings.Add("Text", binding, "TenDanhMuc");
+                }
+        #endregion
 
-        // --- HÀM BẬT TẮT ---
+        #region HÀM BẬT TẮT
         private void BatTat(bool giaTri)
-        {
-            txtMaDM.Enabled = false;
-            txtTenDM.Enabled = giaTri;
+                {
+                    txtMaDM.Enabled = false;
+                    txtTenDM.Enabled = giaTri;
 
-            btnLuu.Enabled = giaTri;
-            btnHuy.Enabled = giaTri;
+                    btnLuu.Enabled = giaTri;
+                    btnHuy.Enabled = giaTri;
 
-            btnThem.Enabled = !giaTri;
-            btnSua.Enabled = !giaTri;
-            btnXoa.Enabled = !giaTri;
-        }
+                    btnThem.Enabled = !giaTri;
+                    btnSua.Enabled = !giaTri;
+                    btnXoa.Enabled = !giaTri;
+                }
+        #endregion
 
         // --- NÚT THÊM ---
         private void btnThem_Click(object sender, EventArgs e)
@@ -110,37 +111,42 @@ namespace QLBS
 
             try
             {
-                // -- TRƯỜNG HỢP THÊM MỚI --
+                #region TRƯỜNG HỢP THÊM MỚI
                 if (maDM == "")
-                {
-                    string sql = "INSERT INTO DanhMuc(TenDanhMuc) VALUES(@TenDanhMuc)";
-                    SqlCommand cmd = new SqlCommand(sql);
+                                {
+                                    string sql = "INSERT INTO DanhMuc(TenDanhMuc) VALUES(@TenDanhMuc)";
+                                    SqlCommand cmd = new SqlCommand(sql);
 
-                    cmd.Parameters.Add("@TenDanhMuc", SqlDbType.NVarChar, 100).Value = txtTenDM.Text;
+                                    cmd.Parameters.Add("@TenDanhMuc", SqlDbType.NVarChar, 100).Value = txtTenDM.Text;
 
-                    dataTable.Update(cmd);
-                }
-                // -- TRƯỜNG HỢP SỬA --
+                                    dataTable.Update(cmd);
+                                }
+                #endregion
+
+                #region TRƯỜNG HỢP SỬA
                 else
-                {
-                    string sql = "UPDATE DanhMuc SET TenDanhMuc = @TenDanhMuc WHERE MaDM = @MaDM";
-                    SqlCommand cmd = new SqlCommand(sql);
+                                {
+                                    string sql = "UPDATE DanhMuc SET TenDanhMuc = @TenDanhMuc WHERE MaDM = @MaDM";
+                                    SqlCommand cmd = new SqlCommand(sql);
 
-                    cmd.Parameters.Add("@TenDanhMuc", SqlDbType.NVarChar, 100).Value = txtTenDM.Text;
-                    cmd.Parameters.Add("@MaDM", SqlDbType.Int).Value = Convert.ToInt32(maDM); // Convert về int vì SQL là int
+                                    cmd.Parameters.Add("@TenDanhMuc", SqlDbType.NVarChar, 100).Value = txtTenDM.Text;
+                                    cmd.Parameters.Add("@MaDM", SqlDbType.Int).Value = Convert.ToInt32(maDM); // Convert về int vì SQL là int
 
-                    dataTable.Update(cmd);
-                }
+                                    dataTable.Update(cmd);
+                                }
 
-                MessageBox.Show("Lưu thành công!", "Thông báo");
+                                MessageBox.Show("Lưu thành công!", "Thông báo");
 
-                LayDuLieu();
-                BatTat(false);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message);
-            }
+                                LayDuLieu();
+                                BatTat(false);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Lỗi: " + ex.Message);
+                            }
+                #endregion
+
+                
         }
 
         private void btnXoa_Click(object sender, EventArgs e)

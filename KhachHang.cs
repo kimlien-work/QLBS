@@ -21,57 +21,61 @@ namespace QLBS
             InitializeComponent();
             dataTable.OpenConnection();
         }
-
+        #region Lấy Dữ Liệu
         private void LayDuLieu()
-        {
-            dgvKhachHang.AutoGenerateColumns = false;
+                {
+                    dgvKhachHang.AutoGenerateColumns = false;
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM KhachHang");
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM KhachHang");
 
-            dataTable.Fill(cmd);
-            BindingSource binding = new BindingSource();
-            binding.DataSource = dataTable;
+                    dataTable.Fill(cmd);
+                    BindingSource binding = new BindingSource();
+                    binding.DataSource = dataTable;
 
-            dgvKhachHang.DataSource = binding;
+                    dgvKhachHang.DataSource = binding;
 
-            txtMaKH.DataBindings.Clear();
-            txtTenKH.DataBindings.Clear();
-            txtSDT.DataBindings.Clear();
-            txtEmail.DataBindings.Clear();
-            txtDiaChi.DataBindings.Clear();
-            txtDiemTichLuy.DataBindings.Clear();
+                    txtMaKH.DataBindings.Clear();
+                    txtTenKH.DataBindings.Clear();
+                    txtSDT.DataBindings.Clear();
+                    txtEmail.DataBindings.Clear();
+                    txtDiaChi.DataBindings.Clear();
+                    txtDiemTichLuy.DataBindings.Clear();
 
-            txtMaKH.DataBindings.Add("Text", binding, "MaKH");
+                    txtMaKH.DataBindings.Add("Text", binding, "MaKH");
 
-            txtTenKH.DataBindings.Add("Text", binding, "TenKH");
+                    txtTenKH.DataBindings.Add("Text", binding, "TenKH");
 
-            txtSDT.DataBindings.Add("Text", binding, "SDT");
+                    txtSDT.DataBindings.Add("Text", binding, "SDT");
 
-            txtEmail.DataBindings.Add("Text", binding, "Email");
+                    txtEmail.DataBindings.Add("Text", binding, "Email");
 
-            txtDiaChi.DataBindings.Add("Text", binding, "DiaChi");
+                    txtDiaChi.DataBindings.Add("Text", binding, "DiaChi");
 
-            txtDiemTichLuy.DataBindings.Add("Text", binding, "DiemTichLuy");
-        }
+                    txtDiemTichLuy.DataBindings.Add("Text", binding, "DiemTichLuy");
+                }
+        #endregion
 
+        #region Bật Tắt
         private void BatTat(bool giaTri)
-        {
-            txtTenKH.Enabled = giaTri;
-            txtSDT.Enabled = giaTri;
-            txtDiaChi.Enabled = giaTri;
-            txtEmail.Enabled = giaTri;
+                {
+                    txtTenKH.Enabled = giaTri;
+                    txtSDT.Enabled = giaTri;
+                    txtDiaChi.Enabled = giaTri;
+                    txtEmail.Enabled = giaTri;
 
 
-            btnLuu.Enabled = giaTri;
-            btnHuy.Enabled = giaTri;
+                    btnLuu.Enabled = giaTri;
+                    btnHuy.Enabled = giaTri;
 
-            btnThem.Enabled = !giaTri;
-            btnSua.Enabled = !giaTri;
-            btnXoa.Enabled = !giaTri;
+                    btnThem.Enabled = !giaTri;
+                    btnSua.Enabled = !giaTri;
+                    btnXoa.Enabled = !giaTri;
 
-            txtMaKH.Enabled = false;
-            txtDiemTichLuy.Enabled = false;
-        }
+                    txtMaKH.Enabled = false;
+                    txtDiemTichLuy.Enabled = false;
+                }
+        #endregion
+        
 
         private void KhachHang_Load(object sender, EventArgs e)
         {
@@ -81,7 +85,6 @@ namespace QLBS
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            // Đánh dấu là đang Thêm Mới
             maKhachHang = "";
 
             txtTenKH.Clear();
@@ -90,7 +93,6 @@ namespace QLBS
             txtDiaChi.Clear();
             txtDiemTichLuy.Text = "0";
 
-            // Đặt con trỏ chuột vào ô Tên Khách để nhập
             txtTenKH.Focus();
 
             BatTat(true);
@@ -98,9 +100,7 @@ namespace QLBS
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            // Đánh dấu là Cập nhật
             maKhachHang = txtMaKH.Text;
-            // Bật/Tắt các controls
             BatTat(true);
         }
 
@@ -121,7 +121,6 @@ namespace QLBS
 
                     dataTable.Update(cmd);
 
-                    // Tải lại dữ liệu
                     LayDuLieu();
                     BatTat(false);
                 }
@@ -134,7 +133,6 @@ namespace QLBS
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            // 1. Kiểm tra dữ liệu bắt buộc (Validation)
             if (txtTenKH.Text.Trim() == "")
             {
                 MessageBox.Show("Tên khách hàng không được bỏ trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -150,14 +148,12 @@ namespace QLBS
 
             try
             {
-                // 2. Xử lý lưu xuống CSDL
                 if (maKhachHang == "")
                 {
                     string sql = @"INSERT INTO KhachHang (TenKH, SDT, Email, DiaChi, DiemTichLuy) 
                            VALUES(@TenKH, @SDT, @Email, @DiaChi, 0)";
 
                     SqlCommand cmd = new SqlCommand(sql);
-                    // Ánh xạ tham số
                     cmd.Parameters.Add("@TenKH", SqlDbType.NVarChar, 100).Value = txtTenKH.Text;
                     cmd.Parameters.Add("@SDT", SqlDbType.NVarChar, 20).Value = txtSDT.Text;
                     cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 100).Value = txtEmail.Text;
@@ -165,14 +161,16 @@ namespace QLBS
 
                     dataTable.Update(cmd);
                 }
-                else // Trường hợp: SỬA
+                else 
+                
                 {
+                    #region Trường hợp: SỬA
                     string sql = @"UPDATE KhachHang
-                           SET TenKH = @TenKH,
-                               SDT = @SDT,
-                               Email = @Email,
-                               DiaChi = @DiaChi
-                           WHERE MaKH = @MaKH";
+                                   SET TenKH = @TenKH,
+                                       SDT = @SDT,
+                                       Email = @Email,
+                                       DiaChi = @DiaChi
+                                   WHERE MaKH = @MaKH";
 
                     SqlCommand cmd = new SqlCommand(sql);
 
@@ -183,31 +181,31 @@ namespace QLBS
                     cmd.Parameters.Add("@DiaChi", SqlDbType.NVarChar, 200).Value = txtDiaChi.Text;
 
                     dataTable.Update(cmd);
+                    #endregion
                 }
-
+                
                 MessageBox.Show("Lưu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                LayDuLieu();
-                BatTat(false);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message);
-            }
+                        LayDuLieu();
+                        BatTat(false);
+                    }
+                
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi: " + ex.Message);
+                    }
+               
+                
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            // Hủy thao tác nhập liệu, quay về trạng thái xem
             BatTat(false);
-
-            // Reset lại dữ liệu đang hiển thị trên Textbox
             LayDuLieu();
         }
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            // 1.Lấy từ khóa người dùng nhập vào
             string tuKhoa = txtTimKiem.Text.Trim();
 
             if (tuKhoa == "")
@@ -215,15 +213,12 @@ namespace QLBS
                 LayDuLieu();
                 return;
             }
-
-            // Ý nghĩa: Tìm KH có Tên chứa từ khóa HOẶC SĐT chứa từ khóa
             string sql = @"SELECT * FROM KhachHang 
                    WHERE TenKH LIKE N'%' + @TuKhoa + '%' 
                    OR SDT LIKE '%' + @TuKhoa + '%'";
 
             SqlCommand cmd = new SqlCommand(sql);
 
-            // Truyền tham số (Để tránh lỗi nếu người dùng nhập ký tự đặc biệt)
             cmd.Parameters.Add("@TuKhoa", SqlDbType.NVarChar).Value = tuKhoa;
 
             dataTable.Fill(cmd);
@@ -257,7 +252,7 @@ namespace QLBS
         {
             if (e.KeyCode == Keys.Enter)
             {
-                btnTimKiem.PerformClick(); // Tự động bấm nút Tìm Kiếm
+                btnTimKiem.PerformClick();
             }
         }
     }

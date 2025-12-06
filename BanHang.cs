@@ -46,7 +46,7 @@ namespace QLBS
             dgvSach.DataSource = dtSach;
         }
 
-        // --- HÀM 2: KHỞI TẠO GIỎ HÀNG ẢO ---
+        #region KHỞI TẠO GIỎ HÀNG ẢO
         private void KhoiTaoGioHang()
         {
             // 1. Tạo cấu trúc bảng ảo (Giữ nguyên để khớp với DataPropertyName vừa điền)
@@ -59,7 +59,7 @@ namespace QLBS
             // 2. Gán vào lưới
             dgvGioHang.DataSource = dtGioHang;
         }
-
+        #endregion
         private void dgvSach_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.RowIndex < dgvSach.Rows.Count)
@@ -147,7 +147,7 @@ namespace QLBS
             }
         }
 
-
+        #region Cập NhậT Tổng Tiền
         private void CapNhatTongTien()
         {
             decimal tong = 0;
@@ -162,6 +162,8 @@ namespace QLBS
 
             lblThanhTien.Text = tong.ToString("N0");
         }
+        #endregion
+        
 
         private void BtnThanhToan_Click(object sender, EventArgs e)
         {
