@@ -14,7 +14,7 @@ namespace QLBS
         public string ConnectionString()
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder["Server"] = @".\SQLEXPRESS";
+            builder["Server"] = @".";
             builder["Database"] = "QLBS";
             builder["Integrated Security"] = "True";
             return builder.ConnectionString;
@@ -39,20 +39,22 @@ namespace QLBS
         // Thực thi câu lệnh Select
         public void Fill(SqlCommand selectCommand)
         {
-            command = selectCommand; try
+            command = selectCommand;
+            try
             {
                 command.Connection = connection;
                 adapter = new SqlDataAdapter();
                 adapter.SelectCommand = command;
+
                 this.Clear();
+
                 adapter.Fill(this);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi truy vấn", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
-        // Thực thi câu lệnh Insert, Update, Delete
         public int Update(SqlCommand insertUpdateDeleteCommand)
         {
             int result = 0;

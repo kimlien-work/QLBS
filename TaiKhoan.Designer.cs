@@ -50,6 +50,10 @@
             Account = new DataGridViewTextBoxColumn();
             MatKhau = new DataGridViewTextBoxColumn();
             ChucVu = new DataGridViewTextBoxColumn();
+            acc = new DataGridViewTextBoxColumn();
+            Pass = new DataGridViewTextBoxColumn();
+            tenNv = new DataGridViewTextBoxColumn();
+            cv = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvTaiKhoan).BeginInit();
@@ -226,6 +230,7 @@
             dgvTaiKhoan.AllowUserToDeleteRows = false;
             dgvTaiKhoan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvTaiKhoan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvTaiKhoan.Columns.AddRange(new DataGridViewColumn[] { acc, Pass, tenNv, cv });
             dgvTaiKhoan.Dock = DockStyle.Fill;
             dgvTaiKhoan.Location = new Point(0, 0);
             dgvTaiKhoan.MultiSelect = false;
@@ -271,6 +276,38 @@
             ChucVu.ReadOnly = true;
             ChucVu.Width = 125;
             // 
+            // acc
+            // 
+            acc.DataPropertyName = "Account";
+            acc.HeaderText = "Account";
+            acc.MinimumWidth = 6;
+            acc.Name = "acc";
+            acc.ReadOnly = true;
+            // 
+            // Pass
+            // 
+            Pass.DataPropertyName = "MatKhau";
+            Pass.HeaderText = "Mật Khẩu";
+            Pass.MinimumWidth = 6;
+            Pass.Name = "Pass";
+            Pass.ReadOnly = true;
+            // 
+            // tenNv
+            // 
+            tenNv.DataPropertyName = "TenNhanVien";
+            tenNv.HeaderText = "Tên Nhân Viên";
+            tenNv.MinimumWidth = 6;
+            tenNv.Name = "tenNv";
+            tenNv.ReadOnly = true;
+            // 
+            // cv
+            // 
+            cv.DataPropertyName = "ChucVu";
+            cv.HeaderText = "Chức Vụ";
+            cv.MinimumWidth = 6;
+            cv.Name = "cv";
+            cv.ReadOnly = true;
+            // 
             // TaiKhoan
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -315,5 +352,9 @@
         private DataGridViewTextBoxColumn Account;
         private DataGridViewTextBoxColumn MatKhau;
         private DataGridViewTextBoxColumn ChucVu;
+        private DataGridViewTextBoxColumn acc;
+        private DataGridViewTextBoxColumn Pass;
+        private DataGridViewTextBoxColumn tenNv;
+        private DataGridViewTextBoxColumn cv;
     }
 }

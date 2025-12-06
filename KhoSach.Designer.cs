@@ -54,12 +54,15 @@
             TenDanhMuc = new DataGridViewTextBoxColumn();
             GiaBan = new DataGridViewTextBoxColumn();
             SoLuongTon = new DataGridViewTextBoxColumn();
+            TacGia = new DataGridViewTextBoxColumn();
             GhiChu = new DataGridViewTextBoxColumn();
             label1 = new Label();
             txtTenSach = new TextBox();
             panel1 = new Panel();
             cboDanhMuc = new ComboBox();
             label7 = new Label();
+            label4 = new Label();
+            txtTacGia = new TextBox();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSach).BeginInit();
@@ -69,7 +72,7 @@
             // label
             // 
             label.AutoSize = true;
-            label.Location = new Point(12, 188);
+            label.Location = new Point(12, 240);
             label.Name = "label";
             label.Size = new Size(64, 20);
             label.TabIndex = 0;
@@ -87,7 +90,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 246);
+            label3.Location = new Point(12, 298);
             label3.Name = "label3";
             label3.Size = new Size(101, 20);
             label3.TabIndex = 0;
@@ -95,7 +98,7 @@
             // 
             // txtSoLuongTon
             // 
-            txtSoLuongTon.Location = new Point(12, 269);
+            txtSoLuongTon.Location = new Point(12, 321);
             txtSoLuongTon.Name = "txtSoLuongTon";
             txtSoLuongTon.ReadOnly = true;
             txtSoLuongTon.Size = new Size(268, 27);
@@ -103,7 +106,7 @@
             // 
             // txtGiaBan
             // 
-            txtGiaBan.Location = new Point(12, 211);
+            txtGiaBan.Location = new Point(12, 263);
             txtGiaBan.Name = "txtGiaBan";
             txtGiaBan.Size = new Size(268, 27);
             txtGiaBan.TabIndex = 7;
@@ -117,7 +120,7 @@
             // 
             // btnXoa
             // 
-            btnXoa.Location = new Point(150, 399);
+            btnXoa.Location = new Point(150, 451);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(125, 29);
             btnXoa.TabIndex = 12;
@@ -127,7 +130,7 @@
             // 
             // btnLuu
             // 
-            btnLuu.Location = new Point(12, 435);
+            btnLuu.Location = new Point(12, 487);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(132, 29);
             btnLuu.TabIndex = 10;
@@ -137,7 +140,7 @@
             // 
             // btnThem
             // 
-            btnThem.Location = new Point(12, 364);
+            btnThem.Location = new Point(12, 416);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(263, 29);
             btnThem.TabIndex = 3;
@@ -147,7 +150,7 @@
             // 
             // btnHuy
             // 
-            btnHuy.Location = new Point(150, 434);
+            btnHuy.Location = new Point(150, 486);
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(125, 29);
             btnHuy.TabIndex = 11;
@@ -157,7 +160,7 @@
             // 
             // btnSua
             // 
-            btnSua.Location = new Point(12, 400);
+            btnSua.Location = new Point(12, 452);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(132, 29);
             btnSua.TabIndex = 13;
@@ -168,7 +171,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(12, 304);
+            label5.Location = new Point(12, 356);
             label5.Name = "label5";
             label5.Size = new Size(60, 20);
             label5.TabIndex = 0;
@@ -176,7 +179,7 @@
             // 
             // txtGhiChu
             // 
-            txtGhiChu.Location = new Point(12, 327);
+            txtGhiChu.Location = new Point(12, 379);
             txtGhiChu.Name = "txtGhiChu";
             txtGhiChu.Size = new Size(268, 27);
             txtGhiChu.TabIndex = 9;
@@ -237,7 +240,7 @@
             dgvSach.AllowUserToDeleteRows = false;
             dgvSach.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSach.ColumnHeadersHeight = 29;
-            dgvSach.Columns.AddRange(new DataGridViewColumn[] { MSach, MaDM, TenSach, TenDanhMuc, GiaBan, SoLuongTon, GhiChu });
+            dgvSach.Columns.AddRange(new DataGridViewColumn[] { MSach, MaDM, TenSach, TenDanhMuc, GiaBan, SoLuongTon, TacGia, GhiChu });
             dgvSach.Dock = DockStyle.Bottom;
             dgvSach.Location = new Point(0, 40);
             dgvSach.Name = "dgvSach";
@@ -298,6 +301,14 @@
             SoLuongTon.Name = "SoLuongTon";
             SoLuongTon.ReadOnly = true;
             // 
+            // TacGia
+            // 
+            TacGia.DataPropertyName = "TacGia";
+            TacGia.HeaderText = "Tác Giả";
+            TacGia.MinimumWidth = 6;
+            TacGia.Name = "TacGia";
+            TacGia.ReadOnly = true;
+            // 
             // GhiChu
             // 
             GhiChu.DataPropertyName = "GhiChu";
@@ -324,6 +335,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(txtTacGia);
             panel1.Controls.Add(cboDanhMuc);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(label);
@@ -364,6 +377,22 @@
             label7.TabIndex = 15;
             label7.Tag = "";
             label7.Text = "Danh Mục";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(13, 187);
+            label4.Name = "label4";
+            label4.Size = new Size(56, 20);
+            label4.TabIndex = 17;
+            label4.Text = "Tác Giả";
+            // 
+            // txtTacGia
+            // 
+            txtTacGia.Location = new Point(13, 210);
+            txtTacGia.Name = "txtTacGia";
+            txtTacGia.Size = new Size(268, 27);
+            txtTacGia.TabIndex = 18;
             // 
             // KhoSach
             // 
@@ -419,6 +448,9 @@
         private DataGridViewTextBoxColumn TenDanhMuc;
         private DataGridViewTextBoxColumn GiaBan;
         private DataGridViewTextBoxColumn SoLuongTon;
+        private DataGridViewTextBoxColumn TacGia;
         private DataGridViewTextBoxColumn GhiChu;
+        private Label label4;
+        private TextBox txtTacGia;
     }
 }
