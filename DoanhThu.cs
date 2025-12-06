@@ -67,7 +67,7 @@ namespace QLBS
                 txtSlSachBan.Text = "0";
             }
         }
-    
+
 
         private void DoanhThu_Load(object sender, EventArgs e)
         {

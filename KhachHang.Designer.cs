@@ -381,13 +381,11 @@
         private Panel panel3;
         private Label label2;
         private TextBox txtTimKiem;
-        private TextBox txtTenKH;
         private Label label1;
         private Panel panel1;
         private Label label5;
         private TextBox txtEmail;
         private Label label4;
-        private TextBox txtSDT;
         private Label label3;
         private TextBox txtDiaChi;
         private Button btnXoa;
@@ -398,8 +396,6 @@
         private Button btnTimKiem;
         private Label label;
         private Label label6;
-        private TextBox txtDiemTichLuy;
-        private TextBox txtMaKH;
         private DataGridViewTextBoxColumn MaKH;
         private DataGridViewTextBoxColumn TenKH;
         private DataGridViewTextBoxColumn SoDienThoai;
@@ -407,5 +403,9 @@
         private DataGridViewTextBoxColumn DiaChi;
         private DataGridViewTextBoxColumn Email;
         public DataGridView dgvKhachHang;
+        public TextBox txtSDT;
+        public TextBox txtTenKH;
+        public TextBox txtDiemTichLuy;
+        public TextBox txtMaKH;
     }
 }

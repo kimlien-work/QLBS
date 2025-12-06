@@ -8,7 +8,7 @@ namespace QLBS
 {
     public partial class DangNhap : Form
     {
-        private const string con = @"Server=.;Database=QLBS;Integrated Security=True";
+        private const string con = @"Server=.\SQLEXPRESS;Database=QLBS;Integrated Security=True";
         public string LoggedInUsername { get; private set; }
         public DangNhap()
         {

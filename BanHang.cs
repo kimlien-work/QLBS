@@ -273,5 +273,12 @@ namespace QLBS
 
             CapNhatTongTien();
         }
+
+        
+
+        private void btnTichDiem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
