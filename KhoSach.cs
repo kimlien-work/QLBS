@@ -7,7 +7,6 @@ namespace QLBS
 {
     public partial class KhoSach : Form
     {
-        // Khai báo biến toàn cục
         MyDataTable dataTable = new MyDataTable();
         BindingSource binding = new BindingSource();
 
@@ -16,74 +15,76 @@ namespace QLBS
             InitializeComponent();
             dataTable.OpenConnection();
         }
-
-        // --- 1. HÀM LẤY DỮ LIỆU CHUNG ---
+        #region HÀM LẤY DỮ LIỆU CHUNG
         private void LayDuLieu()
-        {
+                {
 
-            DataTable dtDanhMuc = new DataTable();
-            string sqlDanhMuc = "SELECT * FROM DanhMuc";
-            SqlDataAdapter daDM = new SqlDataAdapter(sqlDanhMuc, dataTable.ConnectionString());
-            daDM.Fill(dtDanhMuc);
+                    DataTable dtDanhMuc = new DataTable();
+                    string sqlDanhMuc = "SELECT * FROM DanhMuc";
+                    SqlDataAdapter daDM = new SqlDataAdapter(sqlDanhMuc, dataTable.ConnectionString());
+                    daDM.Fill(dtDanhMuc);
 
-            cboDanhMuc.DataSource = dtDanhMuc;
-            cboDanhMuc.DisplayMember = "TenDanhMuc";
-            cboDanhMuc.ValueMember = "MaDM";
+                    cboDanhMuc.DataSource = dtDanhMuc;
+                    cboDanhMuc.DisplayMember = "TenDanhMuc";
+                    cboDanhMuc.ValueMember = "MaDM";
 
-            string sqlSach = @"SELECT S.MaSach, S.TenSach, S.TacGia, S.GiaBan, S.SoLuongTon, S.GhiChu, S.MaDM, D.TenDanhMuc 
-                               FROM Sach S 
-                               INNER JOIN DanhMuc D ON S.MaDM = D.MaDM";
+                    string sqlSach = @"SELECT S.MaSach, S.TenSach, S.TacGia, S.GiaBan, S.SoLuongTon, S.GhiChu, S.MaDM, D.TenDanhMuc 
+                                       FROM Sach S 
+                                       INNER JOIN DanhMuc D ON S.MaDM = D.MaDM";
 
-            SqlCommand cmd = new SqlCommand(sqlSach);
-            dataTable.Fill(cmd);
+                    SqlCommand cmd = new SqlCommand(sqlSach);
+                    dataTable.Fill(cmd);
 
-            binding.DataSource = dataTable;
-            dgvSach.DataSource = binding;
+                    binding.DataSource = dataTable;
+                    dgvSach.DataSource = binding;
 
-            LienKetDuLieu();
-        }
+                    LienKetDuLieu();
+                }
+        #endregion
 
-        // --- 2. HÀM BINDING (Code binding tách riêng để dùng lại) ---
+        #region HÀM BINDING
         private void LienKetDuLieu()
-        {
-            txtMaSach.DataBindings.Clear();
-            txtTenSach.DataBindings.Clear();
-            txtTacGia.DataBindings.Clear(); // Thêm binding Tác Giả
-            txtGiaBan.DataBindings.Clear();
-            txtSoLuongTon.DataBindings.Clear();
-            txtGhiChu.DataBindings.Clear();
-            cboDanhMuc.DataBindings.Clear();
+                {
+                    txtMaSach.DataBindings.Clear();
+                    txtTenSach.DataBindings.Clear();
+                    txtTacGia.DataBindings.Clear(); // Thêm binding Tác Giả
+                    txtGiaBan.DataBindings.Clear();
+                    txtSoLuongTon.DataBindings.Clear();
+                    txtGhiChu.DataBindings.Clear();
+                    cboDanhMuc.DataBindings.Clear();
 
 
-            txtMaSach.DataBindings.Add("Text", binding, "MaSach", true, DataSourceUpdateMode.Never);
-            txtTenSach.DataBindings.Add("Text", binding, "TenSach", true, DataSourceUpdateMode.Never);
-            txtTacGia.DataBindings.Add("Text", binding, "TacGia", true, DataSourceUpdateMode.Never); // Thêm
-            txtGiaBan.DataBindings.Add("Text", binding, "GiaBan", true, DataSourceUpdateMode.Never);
-            txtSoLuongTon.DataBindings.Add("Text", binding, "SoLuongTon", true, DataSourceUpdateMode.Never);
-            txtGhiChu.DataBindings.Add("Text", binding, "GhiChu", true, DataSourceUpdateMode.Never);
+                    txtMaSach.DataBindings.Add("Text", binding, "MaSach", true, DataSourceUpdateMode.Never);
+                    txtTenSach.DataBindings.Add("Text", binding, "TenSach", true, DataSourceUpdateMode.Never);
+                    txtTacGia.DataBindings.Add("Text", binding, "TacGia", true, DataSourceUpdateMode.Never); // Thêm
+                    txtGiaBan.DataBindings.Add("Text", binding, "GiaBan", true, DataSourceUpdateMode.Never);
+                    txtSoLuongTon.DataBindings.Add("Text", binding, "SoLuongTon", true, DataSourceUpdateMode.Never);
+                    txtGhiChu.DataBindings.Add("Text", binding, "GhiChu", true, DataSourceUpdateMode.Never);
 
-            cboDanhMuc.DataBindings.Add("SelectedValue", binding, "MaDM", true, DataSourceUpdateMode.Never);
-        }
+                    cboDanhMuc.DataBindings.Add("SelectedValue", binding, "MaDM", true, DataSourceUpdateMode.Never);
+                }
+        #endregion
 
-        // --- 3. HÀM BẬT TẮT ---
+        #region HÀM BẬT TẮT
         private void BatTat(bool giaTri)
-        {
-            txtMaSach.Enabled = giaTri;
-            txtTenSach.Enabled = giaTri;
-            txtTacGia.Enabled = giaTri; // Thêm
-            cboDanhMuc.Enabled = giaTri;
-            txtGiaBan.Enabled = giaTri;
-            txtGhiChu.Enabled = giaTri;
+                {
+                    txtMaSach.Enabled = giaTri;
+                    txtTenSach.Enabled = giaTri;
+                    txtTacGia.Enabled = giaTri; // Thêm
+                    cboDanhMuc.Enabled = giaTri;
+                    txtGiaBan.Enabled = giaTri;
+                    txtGhiChu.Enabled = giaTri;
 
-            txtSoLuongTon.Enabled = false;
+                    txtSoLuongTon.Enabled = false;
 
-            btnLuu.Enabled = giaTri;
-            btnHuy.Enabled = giaTri;
+                    btnLuu.Enabled = giaTri;
+                    btnHuy.Enabled = giaTri;
 
-            btnThem.Enabled = !giaTri;
-            btnSua.Enabled = !giaTri;
-            btnXoa.Enabled = !giaTri;
-        }
+                    btnThem.Enabled = !giaTri;
+                    btnSua.Enabled = !giaTri;
+                    btnXoa.Enabled = !giaTri;
+                }
+        #endregion
 
         private void KhoSach_Load(object sender, EventArgs e)
         {
@@ -92,7 +93,6 @@ namespace QLBS
             BatTat(false);
         }
 
-        // --- NÚT THÊM ---
         private void btnThem_Click(object sender, EventArgs e)
         {
             txtMaSach.Clear();
@@ -108,7 +108,6 @@ namespace QLBS
             txtMaSach.Focus();
         }
 
-        // --- NÚT SỬA ---
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtMaSach.Text))
@@ -121,7 +120,6 @@ namespace QLBS
             txtMaSach.Enabled = false; // Không cho sửa Mã Sách (Khóa chính)
         }
 
-        // --- NÚT XÓA ---
         private void btnXoa_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtMaSach.Text)) return;
@@ -146,10 +144,8 @@ namespace QLBS
             }
         }
 
-        // --- NÚT LƯU (QUAN TRỌNG NHẤT: Thêm cột TacGia) ---
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            // Validate dữ liệu
             if (txtMaSach.Text.Trim() == "") { MessageBox.Show("Chưa nhập Mã sách!"); txtMaSach.Focus(); return; }
             if (txtTenSach.Text.Trim() == "") { MessageBox.Show("Chưa nhập Tên sách!"); txtTenSach.Focus(); return; }
             if (cboDanhMuc.SelectedValue == null) { MessageBox.Show("Chưa chọn Danh mục!"); cboDanhMuc.Focus(); return; }
@@ -180,7 +176,6 @@ namespace QLBS
 
                 cmd.CommandText = sql;
 
-                // Truyền tham số (Bao gồm TacGia mới thêm)
                 cmd.Parameters.Add("@Ma", SqlDbType.NVarChar, 20).Value = txtMaSach.Text;
                 cmd.Parameters.Add("@Ten", SqlDbType.NVarChar, 200).Value = txtTenSach.Text;
                 cmd.Parameters.Add("@TacGia", SqlDbType.NVarChar, 100).Value = txtTacGia.Text; // Tham số tác giả
@@ -200,15 +195,13 @@ namespace QLBS
             }
         }
 
-        // --- NÚT HỦY ---
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            binding.CancelEdit(); // Hủy bỏ chỉnh sửa trên Binding
+            binding.CancelEdit(); 
             BatTat(false);
             LayDuLieu();
         }
 
-        // --- TÌM KIẾM ---
         private void txtTimKiem_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -227,7 +220,6 @@ namespace QLBS
                 return;
             }
 
-            // SQL Tìm kiếm (Đã thêm tìm theo Tác giả)
             string sql = @"SELECT S.*, D.TenDanhMuc 
                            FROM Sach S 
                            INNER JOIN DanhMuc D ON S.MaDM = D.MaDM

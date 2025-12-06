@@ -21,39 +21,41 @@ namespace QLBS
             dataTable.OpenConnection();
         }
 
-
+        #region Tính Tổng
         private void TinhTongKet(DataTable dt)
-        {
-            txtTongDonHang.Text = dt.Rows.Count.ToString();
-
-            decimal tongTien = 0;
-            if (dt.Rows.Count > 0)
-            {
-                object sumResult = dt.Compute("SUM(TongTien)", "");
-                if (sumResult != DBNull.Value)
-                    tongTien = Convert.ToDecimal(sumResult);
-            }
-
-            txtTongDoanhThu.Text = tongTien.ToString("N0");
-
-            LayTongSoLuongSach();
-        }
-
-        private void LayTongSoLuongSach()
-        {
-            try
-            {
-                string sql = @"SELECT SUM(CT.SoLuong) 
-                               FROM ChiTietHoaDon CT
-                               JOIN HoaDon H ON CT.MaHD = H.MaHD
-                               WHERE H.NgayTao BETWEEN @TuNgay AND @DenNgay";
-
-                using (SqlConnection conn = new SqlConnection(dataTable.ConnectionString()))
                 {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.Add("@TuNgay", SqlDbType.DateTime).Value = dtpTuNgay.Value.Date;
-                    cmd.Parameters.Add("@DenNgay", SqlDbType.DateTime).Value = dtpDenNgay.Value.Date.AddDays(1).AddSeconds(-1);
+                    txtTongDonHang.Text = dt.Rows.Count.ToString();
+
+                    decimal tongTien = 0;
+                    if (dt.Rows.Count > 0)
+                    {
+                        object sumResult = dt.Compute("SUM(TongTien)", "");
+                        if (sumResult != DBNull.Value)
+                            tongTien = Convert.ToDecimal(sumResult);
+                    }
+
+                    txtTongDoanhThu.Text = tongTien.ToString("N0");
+
+                    LayTongSoLuongSach();
+                }
+        #endregion
+
+        #region Lấy Tổng Số Lượng Sách
+        private void LayTongSoLuongSach()
+                {
+                    try
+                    {
+                        string sql = @"SELECT SUM(CT.SoLuong) 
+                                       FROM ChiTietHoaDon CT
+                                       JOIN HoaDon H ON CT.MaHD = H.MaHD
+                                       WHERE H.NgayTao BETWEEN @TuNgay AND @DenNgay";
+
+                        using (SqlConnection conn = new SqlConnection(dataTable.ConnectionString()))
+                        {
+                            conn.Open();
+                            SqlCommand cmd = new SqlCommand(sql, conn);
+                            cmd.Parameters.Add("@TuNgay", SqlDbType.DateTime).Value = dtpTuNgay.Value.Date;
+                            cmd.Parameters.Add("@DenNgay", SqlDbType.DateTime).Value = dtpDenNgay.Value.Date.AddDays(1).AddSeconds(-1);
 
                     object result = cmd.ExecuteScalar();
                     if (result != DBNull.Value && result != null)
