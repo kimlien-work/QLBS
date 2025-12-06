@@ -163,7 +163,7 @@ namespace QLBS
             lblThanhTien.Text = tong.ToString("N0");
         }
         #endregion
-        
+
 
         private void BtnThanhToan_Click(object sender, EventArgs e)
         {
@@ -275,5 +275,7 @@ namespace QLBS
 
             CapNhatTongTien();
         }
+
+       
     }
 }
