@@ -75,7 +75,6 @@ namespace QLBS
             txtGiaBan.Enabled = giaTri;
             txtGhiChu.Enabled = giaTri;
 
-            // Số lượng tồn thường không cho sửa tay trực tiếp mà qua Nhập Kho
             txtSoLuongTon.Enabled = false;
 
             btnLuu.Enabled = giaTri;
@@ -88,7 +87,7 @@ namespace QLBS
 
         private void KhoSach_Load(object sender, EventArgs e)
         {
-            dgvSach.AutoGenerateColumns = false; // Đảm bảo Grid hiện đúng cột đã Design
+            dgvSach.AutoGenerateColumns = false;
             LayDuLieu();
             BatTat(false);
         }
@@ -96,10 +95,9 @@ namespace QLBS
         // --- NÚT THÊM ---
         private void btnThem_Click(object sender, EventArgs e)
         {
-            // Xóa trắng các ô
             txtMaSach.Clear();
             txtTenSach.Clear();
-            txtTacGia.Clear(); // Thêm
+            txtTacGia.Clear();
             txtGiaBan.Clear();
             txtGhiChu.Clear();
             txtSoLuongTon.Text = "0";
@@ -223,7 +221,6 @@ namespace QLBS
         {
             string tuKhoa = txtTimKiem.Text.Trim();
 
-            // Nếu ô tìm kiếm rỗng thì Load lại tất cả
             if (tuKhoa == "")
             {
                 LayDuLieu();

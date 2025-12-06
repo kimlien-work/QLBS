@@ -7,13 +7,8 @@ namespace QLBS
 {
     public partial class DanhMucSach : Form
     {
-        // 1. Khai báo biến toàn cục
         MyDataTable dataTable = new MyDataTable();
-        BindingSource binding = new BindingSource();
-
-        // Biến cờ hiệu để biết đang Thêm hay đang Sửa
-        bool isThem = false;
-
+        string maDM = "";
         public DanhMucSach()
         {
             InitializeComponent();
@@ -25,64 +20,69 @@ namespace QLBS
             dgvDanhMuc.AutoGenerateColumns = false;
 
             LayDuLieu();
-            BatTat(false); // Mặc định khóa các ô nhập
+            BatTat(false);
         }
 
         // --- HÀM LẤY DỮ LIỆU ---
         private void LayDuLieu()
         {
-            // Lấy dữ liệu từ SQL
+            dataTable.OpenConnection();
+
             SqlCommand cmd = new SqlCommand("SELECT * FROM DanhMuc");
             dataTable.Fill(cmd);
 
+            BindingSource binding = new BindingSource();
             binding.DataSource = dataTable;
+
             dgvDanhMuc.DataSource = binding;
 
             txtMaDM.DataBindings.Clear();
             txtTenDM.DataBindings.Clear();
 
-            txtMaDM.DataBindings.Add("Text", binding, "MaDM", true, DataSourceUpdateMode.Never);
-            txtTenDM.DataBindings.Add("Text", binding, "TenDanhMuc", true, DataSourceUpdateMode.Never);
+            txtMaDM.DataBindings.Add("Text", binding, "MaDM");
+            txtTenDM.DataBindings.Add("Text", binding, "TenDanhMuc");
         }
 
         // --- HÀM BẬT TẮT ---
-        private void BatTat(bool cheDoNhap)
+        private void BatTat(bool giaTri)
         {
-            txtTenDM.Enabled = cheDoNhap;
-
             txtMaDM.Enabled = false;
+            txtTenDM.Enabled = giaTri;
 
-            btnLuu.Enabled = cheDoNhap;
-            btnHuy.Enabled = cheDoNhap;
+            btnLuu.Enabled = giaTri;
+            btnHuy.Enabled = giaTri;
 
-            btnThem.Enabled = !cheDoNhap;
-            btnSua.Enabled = !cheDoNhap;
-            btnXoa.Enabled = !cheDoNhap;
+            btnThem.Enabled = !giaTri;
+            btnSua.Enabled = !giaTri;
+            btnXoa.Enabled = !giaTri;
         }
 
         // --- NÚT THÊM ---
         private void btnThem_Click(object sender, EventArgs e)
         {
-            isThem = true; // Đánh dấu đang thêm mới
+            maDM = "";
 
-            // Xóa trắng ô nhập liệu
+            txtMaDM.DataBindings.Clear();
+            txtTenDM.DataBindings.Clear();
+
             txtMaDM.Text = "";
             txtTenDM.Text = "";
 
-            BatTat(true);
             txtTenDM.Focus();
+
+            BatTat(true);
         }
 
         // --- NÚT SỬA ---
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtMaDM.Text))
+            maDM = txtMaDM.Text;
+
+            if (string.IsNullOrEmpty(maDM))
             {
                 MessageBox.Show("Vui lòng chọn danh mục cần sửa!", "Thông báo");
                 return;
             }
-
-            isThem = false; // Đánh dấu đang sửa
             BatTat(true);
             txtTenDM.Focus();
         }
@@ -94,41 +94,46 @@ namespace QLBS
             BatTat(false);
         }
 
-        // --- NÚT LƯU ---
+        private void btnThoat_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtTenDM.Text))
+            if (txtTenDM.Text.Trim() == "")
             {
-                MessageBox.Show("Tên danh mục không được để trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Tên danh mục không được để trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtTenDM.Focus();
                 return;
             }
 
             try
             {
-                string sql = "";
-                SqlCommand cmd = new SqlCommand();
-
-                if (isThem)
+                // -- TRƯỜNG HỢP THÊM MỚI --
+                if (maDM == "")
                 {
-                    // TRƯỜNG HỢP THÊM:
-                    sql = "INSERT INTO DanhMuc (TenDanhMuc) VALUES (@Ten)";
-                    cmd.Parameters.Add("@Ten", SqlDbType.NVarChar, 100).Value = txtTenDM.Text;
+                    string sql = "INSERT INTO DanhMuc(TenDanhMuc) VALUES(@TenDanhMuc)";
+                    SqlCommand cmd = new SqlCommand(sql);
+
+                    cmd.Parameters.Add("@TenDanhMuc", SqlDbType.NVarChar, 100).Value = txtTenDM.Text;
+
+                    dataTable.Update(cmd);
                 }
+                // -- TRƯỜNG HỢP SỬA --
                 else
                 {
-                    // TRƯỜNG HỢP SỬA:
-                    sql = "UPDATE DanhMuc SET TenDanhMuc = @Ten WHERE MaDM = @Ma";
-                    cmd.Parameters.Add("@Ten", SqlDbType.NVarChar, 100).Value = txtTenDM.Text;
-                    cmd.Parameters.Add("@Ma", SqlDbType.Int).Value = int.Parse(txtMaDM.Text);
+                    string sql = "UPDATE DanhMuc SET TenDanhMuc = @TenDanhMuc WHERE MaDM = @MaDM";
+                    SqlCommand cmd = new SqlCommand(sql);
+
+                    cmd.Parameters.Add("@TenDanhMuc", SqlDbType.NVarChar, 100).Value = txtTenDM.Text;
+                    cmd.Parameters.Add("@MaDM", SqlDbType.Int).Value = Convert.ToInt32(maDM); // Convert về int vì SQL là int
+
+                    dataTable.Update(cmd);
                 }
 
-                cmd.CommandText = sql;
-
-                // Thực thi lệnh
-                dataTable.Update(cmd);
-
                 MessageBox.Show("Lưu thành công!", "Thông báo");
+
                 LayDuLieu();
                 BatTat(false);
             }
@@ -138,34 +143,37 @@ namespace QLBS
             }
         }
 
-        // --- NÚT XÓA ---
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtMaDM.Text)) return;
+            if (txtMaDM.Text == "")
+            {
+                MessageBox.Show("Vui lòng chọn dòng cần xóa!");
+                return;
+            }
 
-            if (MessageBox.Show("Bạn có chắc muốn xóa danh mục: " + txtTenDM.Text + "?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            DialogResult kq = MessageBox.Show("Bạn có chắc muốn xóa danh mục: " + txtTenDM.Text + "?",
+                                              "Xác nhận xóa",
+                                              MessageBoxButtons.YesNo,
+                                              MessageBoxIcon.Question);
+
+            if (kq == DialogResult.Yes)
             {
                 try
                 {
-                    string sql = "DELETE FROM DanhMuc WHERE MaDM = @Ma";
+                    string sql = "DELETE FROM DanhMuc WHERE MaDM = @MaDM";
                     SqlCommand cmd = new SqlCommand(sql);
-                    cmd.Parameters.Add("@Ma", SqlDbType.Int).Value = int.Parse(txtMaDM.Text);
+                    cmd.Parameters.Add("@MaDM", SqlDbType.Int).Value = Convert.ToInt32(txtMaDM.Text);
 
                     dataTable.Update(cmd);
 
-                    MessageBox.Show("Xóa thành công!");
+                    // Load lại form
                     LayDuLieu();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Không thể xóa (Có thể danh mục này đang chứa Sách). Lỗi: " + ex.Message);
+                    MessageBox.Show("Không thể xóa danh mục này (có thể do đang chứa sách). \nChi tiết: " + ex.Message);
                 }
             }
-        }
-
-        private void btnThoat_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
