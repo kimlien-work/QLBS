@@ -119,7 +119,7 @@
             // 
             dgvKhachHang.AllowUserToAddRows = false;
             dgvKhachHang.AllowUserToDeleteRows = false;
-            dgvKhachHang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgvKhachHang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvKhachHang.ColumnHeadersHeight = 29;
             dgvKhachHang.Columns.AddRange(new DataGridViewColumn[] { MaKH, TenKH, SoDienThoai, Diem, DiaChi, Email });
             dgvKhachHang.Dock = DockStyle.Bottom;
@@ -139,7 +139,6 @@
             MaKH.MinimumWidth = 6;
             MaKH.Name = "MaKH";
             MaKH.ReadOnly = true;
-            MaKH.Width = 83;
             // 
             // TenKH
             // 
@@ -148,7 +147,6 @@
             TenKH.MinimumWidth = 6;
             TenKH.Name = "TenKH";
             TenKH.ReadOnly = true;
-            TenKH.Width = 85;
             // 
             // SoDienThoai
             // 
@@ -157,7 +155,6 @@
             SoDienThoai.MinimumWidth = 6;
             SoDienThoai.Name = "SoDienThoai";
             SoDienThoai.ReadOnly = true;
-            SoDienThoai.Width = 64;
             // 
             // Diem
             // 
@@ -166,7 +163,6 @@
             Diem.MinimumWidth = 6;
             Diem.Name = "Diem";
             Diem.ReadOnly = true;
-            Diem.Width = 151;
             // 
             // DiaChi
             // 
@@ -175,7 +171,6 @@
             DiaChi.MinimumWidth = 6;
             DiaChi.Name = "DiaChi";
             DiaChi.ReadOnly = true;
-            DiaChi.Width = 86;
             // 
             // Email
             // 
@@ -184,7 +179,6 @@
             Email.MinimumWidth = 6;
             Email.Name = "Email";
             Email.ReadOnly = true;
-            Email.Width = 75;
             // 
             // txtTenKH
             // 

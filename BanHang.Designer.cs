@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel3 = new Panel();
             lblThanhTien = new Label();
             label3 = new Label();
@@ -38,11 +38,6 @@
             btnHuy = new Button();
             btnXoa = new Button();
             dgvSach = new DataGridView();
-            MaSach = new DataGridViewTextBoxColumn();
-            TenSach = new DataGridViewTextBoxColumn();
-            TenDanhMuc = new DataGridViewTextBoxColumn();
-            GiaBan = new DataGridViewTextBoxColumn();
-            SoLuongTon = new DataGridViewTextBoxColumn();
             dgvGioHang = new DataGridView();
             idsach = new DataGridViewTextBoxColumn();
             namesach = new DataGridViewTextBoxColumn();
@@ -63,6 +58,11 @@
             btnTimKiem = new Button();
             txtTimKiem = new TextBox();
             label2 = new Label();
+            MaSach = new DataGridViewTextBoxColumn();
+            TenSach = new DataGridViewTextBoxColumn();
+            TenDanhMuc = new DataGridViewTextBoxColumn();
+            GiaBan = new DataGridViewTextBoxColumn();
+            SoLuongTon = new DataGridViewTextBoxColumn();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSach).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvGioHang).BeginInit();
@@ -146,43 +146,6 @@
             dgvSach.Size = new Size(746, 217);
             dgvSach.TabIndex = 0;
             dgvSach.CellClick += dgvSach_CellClick;
-            // 
-            // MaSach
-            // 
-            MaSach.DataPropertyName = "MaSach";
-            MaSach.HeaderText = "Mã Sách";
-            MaSach.MinimumWidth = 6;
-            MaSach.Name = "MaSach";
-            // 
-            // TenSach
-            // 
-            TenSach.DataPropertyName = "TenSach";
-            TenSach.HeaderText = "Tên Sách";
-            TenSach.MinimumWidth = 6;
-            TenSach.Name = "TenSach";
-            // 
-            // TenDanhMuc
-            // 
-            TenDanhMuc.DataPropertyName = "TenDanhMuc";
-            TenDanhMuc.HeaderText = "Danh Mục";
-            TenDanhMuc.MinimumWidth = 6;
-            TenDanhMuc.Name = "TenDanhMuc";
-            // 
-            // GiaBan
-            // 
-            GiaBan.DataPropertyName = "GiaBan";
-            dataGridViewCellStyle1.Format = "N0";
-            GiaBan.DefaultCellStyle = dataGridViewCellStyle1;
-            GiaBan.HeaderText = "Giá Bán";
-            GiaBan.MinimumWidth = 6;
-            GiaBan.Name = "GiaBan";
-            // 
-            // SoLuongTon
-            // 
-            SoLuongTon.DataPropertyName = "SoLuongTon";
-            SoLuongTon.HeaderText = "Tồn Kho";
-            SoLuongTon.MinimumWidth = 6;
-            SoLuongTon.Name = "SoLuongTon";
             // 
             // dgvGioHang
             // 
@@ -367,6 +330,43 @@
             label2.TabIndex = 3;
             label2.Text = "Tìm Kiếm";
             // 
+            // MaSach
+            // 
+            MaSach.DataPropertyName = "MaSach";
+            MaSach.HeaderText = "Mã Sách";
+            MaSach.MinimumWidth = 6;
+            MaSach.Name = "MaSach";
+            // 
+            // TenSach
+            // 
+            TenSach.DataPropertyName = "TenSach";
+            TenSach.HeaderText = "Tên Sách";
+            TenSach.MinimumWidth = 6;
+            TenSach.Name = "TenSach";
+            // 
+            // TenDanhMuc
+            // 
+            TenDanhMuc.DataPropertyName = "TenDanhMuc";
+            TenDanhMuc.HeaderText = "Danh Mục";
+            TenDanhMuc.MinimumWidth = 6;
+            TenDanhMuc.Name = "TenDanhMuc";
+            // 
+            // GiaBan
+            // 
+            GiaBan.DataPropertyName = "GiaBan";
+            dataGridViewCellStyle1.Format = "N0";
+            GiaBan.DefaultCellStyle = dataGridViewCellStyle1;
+            GiaBan.HeaderText = "Giá Bán";
+            GiaBan.MinimumWidth = 6;
+            GiaBan.Name = "GiaBan";
+            // 
+            // SoLuongTon
+            // 
+            SoLuongTon.DataPropertyName = "SoLuongTon";
+            SoLuongTon.HeaderText = "Tồn Kho";
+            SoLuongTon.MinimumWidth = 6;
+            SoLuongTon.Name = "SoLuongTon";
+            // 
             // BanHang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -418,15 +418,15 @@
         private Label lblThanhTien;
         private Label label3;
         private NumericUpDown numSoLuong;
-        private DataGridViewTextBoxColumn MaSach;
-        private DataGridViewTextBoxColumn TenSach;
-        private DataGridViewTextBoxColumn TenDanhMuc;
-        private DataGridViewTextBoxColumn GiaBan;
-        private DataGridViewTextBoxColumn SoLuongTon;
         private DataGridViewTextBoxColumn idsach;
         private DataGridViewTextBoxColumn namesach;
         private DataGridViewTextBoxColumn slsach;
         private DataGridViewTextBoxColumn price;
         private DataGridViewTextBoxColumn thtien;
+        private DataGridViewTextBoxColumn MaSach;
+        private DataGridViewTextBoxColumn TenSach;
+        private DataGridViewTextBoxColumn TenDanhMuc;
+        private DataGridViewTextBoxColumn GiaBan;
+        private DataGridViewTextBoxColumn SoLuongTon;
     }
 }
