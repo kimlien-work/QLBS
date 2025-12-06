@@ -99,7 +99,7 @@
             // 
             // btnTichDiem
             // 
-            btnTichDiem.Location = new Point(547, 26);
+            btnTichDiem.Location = new Point(129, 676);
             btnTichDiem.Name = "btnTichDiem";
             btnTichDiem.Size = new Size(94, 58);
             btnTichDiem.TabIndex = 60;
@@ -154,7 +154,7 @@
             // 
             // btnHuy
             // 
-            btnHuy.Location = new Point(129, 676);
+            btnHuy.Location = new Point(29, 676);
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(94, 58);
             btnHuy.TabIndex = 58;
@@ -237,6 +237,7 @@
             panel2.Controls.Add(txtDiaChi);
             panel2.Controls.Add(txtMaKH);
             panel2.Controls.Add(btnHuy);
+            panel2.Controls.Add(btnTichDiem);
             panel2.Controls.Add(label9);
             panel2.Controls.Add(btnThem);
             panel2.Controls.Add(txtEmail);
@@ -267,7 +268,6 @@
             panel4.Controls.Add(btnXoa);
             panel4.Controls.Add(label3);
             panel4.Controls.Add(lblThanhTien);
-            panel4.Controls.Add(btnTichDiem);
             panel4.Dock = DockStyle.Bottom;
             panel4.Location = new Point(0, 650);
             panel4.Name = "panel4";
