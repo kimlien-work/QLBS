@@ -8,8 +8,8 @@ namespace QLBS
 {
     public partial class DangNhap : Form
     {
-        private const string con = @"Server=.\SQLEXPRESS;Database=QLBS;Integrated Security=True";
         public string LoggedInUsername { get; private set; }
+        public string LoggedInPassword { get; private set; }
         public DangNhap()
         {
             InitializeComponent();
@@ -19,61 +19,11 @@ namespace QLBS
         private void ToggleLoading(bool isLoading)
         {
             pnlLoading.Visible = isLoading;
-            // Đảm bảo Form được cập nhật ngay lập tức
             this.Refresh();
-
             txtTenDangNhap.Enabled = !isLoading;
             txtMatKhau.Enabled = !isLoading;
             btnDangNhap.Enabled = !isLoading;
-            btnHuyBo.Enabled = !isLoading; // Vô hiệu hóa nút Hủy bỏ
-        }
-
-        // Hàm mô phỏng kiểm tra đăng nhập (Thay thế bằng Database/API)
-        private async Task<bool> PerformLoginCheck(string username, string password)
-        {
-            // Loại bỏ dấu cách thừa khỏi Tên đăng nhập và Mật khẩu
-            string trimmedUsername = username.Trim();
-            string trimmedPassword = password.Trim();
-
-            // Chuỗi truy vấn an toàn (Sử dụng tham số để tránh SQL Injection)
-            string query = "SELECT COUNT(1) FROM TaiKhoan WHERE Account = @user AND MatKhau = @pass";
-
-            using (SqlConnection conn = new SqlConnection(con))
-            {
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    // 1. Sử dụng tham số để truyền giá trị
-                    cmd.Parameters.AddWithValue("@user", trimmedUsername);
-                    cmd.Parameters.AddWithValue("@pass", trimmedPassword); 
-
-                    try
-                    {
-                        // Mô phỏng độ trễ MẠNG (nếu cần) + mở kết nối
-                        await Task.Delay(500); // Có thể giữ một độ trễ nhỏ để loading mượt hơn
-                        await conn.OpenAsync();
-
-                        // 2. Thực thi truy vấn và lấy kết quả (số lượng hàng khớp)
-                        int count = (int)await cmd.ExecuteScalarAsync();
-
-                        // Trả về true nếu tìm thấy 1 hàng khớp (đăng nhập thành công)
-                        return count == 1;
-                    }
-                    catch (Exception ex)
-                    {
-                        // Xử lý lỗi kết nối/Database
-                        MessageBox.Show("Lỗi kết nối CSDL: " + ex.Message, "Lỗi Hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
-                    finally
-                    {
-                        // Đảm bảo kết nối được đóng
-                        if (conn.State == ConnectionState.Open)
-                        {
-                            conn.Close();
-                        }
-                    }
-                }
-            }
+            btnHuyBo.Enabled = !isLoading;
         }
 
         private async void btnDangNhap_Click(object sender, EventArgs e)
@@ -87,33 +37,22 @@ namespace QLBS
                 return;
             }
 
-            // 1. Bật Loading
+            // 1. Bật Loading (Mô phỏng)
             ToggleLoading(true);
 
-            // 2. Chờ kết quả kiểm tra
-            bool success = await PerformLoginCheck(username, password);
+            // Tạm dừng 500ms để người dùng thấy trạng thái loading
+            await Task.Delay(500);
+
+            // 2. LƯU Tên đăng nhập và Mật khẩu
+            this.LoggedInUsername = username.Trim();
+            this.LoggedInPassword = password.Trim();
 
             // 3. Tắt Loading
             ToggleLoading(false);
 
-            // 4. Xử lý kết quả
-            if (success)
-            {
-                // ✅ LƯU tên người dùng đã nhập thành công (đã được Trim trong PerformLoginCheck)
-                this.LoggedInUsername = username;
-
-                // ✅ Thiết lập DialogResult để Form main biết thành công
-                this.DialogResult = DialogResult.OK;
-                this.Close(); // Đóng Form Đăng nhập
-            }
-            else
-            {
-                // Thất bại
-                MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng.", "Lỗi Đăng nhập",
-                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtMatKhau.Clear();
-                txtTenDangNhap.Focus();
-            }
+            // 4. Trả về DialogResult.OK cho Form main xử lý
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void btnHuyBo_Click(object sender, EventArgs e)

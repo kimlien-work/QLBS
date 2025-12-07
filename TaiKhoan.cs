@@ -92,6 +92,8 @@ namespace QLBS
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            maTaiKhoan = "";
+
             txtID.Text = "";
             txtAccount.Text = "";
             txtMatKhau.Text = "";
@@ -109,8 +111,13 @@ namespace QLBS
                 MessageBox.Show("Vui lòng chọn nhân viên cần sửa trên danh sách!", "Thông báo");
                 return;
             }
+
+            maTaiKhoan = txtID.Text;
+
             BatTat(true);
             txtAccount.Enabled = false;
+            txtMatKhau.Text = "";
+            lblGhiChuMK.Visible = true;
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
@@ -123,46 +130,80 @@ namespace QLBS
         private void btnLuu_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtAccount.Text)) { MessageBox.Show("Chưa nhập tài khoản!"); txtAccount.Focus(); return; }
-            if (string.IsNullOrWhiteSpace(txtMatKhau.Text)) { MessageBox.Show("Chưa nhập mật khẩu!"); txtMatKhau.Focus(); return; }
             if (string.IsNullOrWhiteSpace(txtTenNhanVien.Text)) { MessageBox.Show("Chưa nhập tên nhân viên!"); txtTenNhanVien.Focus(); return; }
+
+            string matKhauHash = null;
+            if (!string.IsNullOrWhiteSpace(txtMatKhau.Text))
+            {
+                // 1. Mã hóa mật khẩu nếu người dùng có nhập (cho cả Thêm và Sửa)
+                matKhauHash = BC.HashPassword(txtMatKhau.Text);
+            }
 
             try
             {
-                SqlCommand cmd;
-                string sql;
-
-                // --- TRƯỜNG HỢP THÊM MỚI (txtID rỗng) ---
-                if (string.IsNullOrEmpty(txtID.Text))
+                if (string.IsNullOrEmpty(maTaiKhoan)) // THÊM MỚI
                 {
-                    sql = @"INSERT INTO TaiKhoan (Account, MatKhau, TenNhanVien, ChucVu) 
-                            VALUES(@Account, @MatKhau, @TenNhanVien, @ChucVu)";
-                    cmd = new SqlCommand(sql);
+                    if (string.IsNullOrEmpty(matKhauHash))
+                    {
+                        MessageBox.Show("Mật khẩu không được rỗng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    string sql = @" INSERT INTO TaiKhoan (Account, MatKhau, TenNhanVien, ChucVu) 
+                             VALUES(@Account, @MatKhau, @TenNhanVien, @ChucVu)";
+                    SqlCommand cmd = new SqlCommand(sql);
+                    cmd.Parameters.Add("@Account", SqlDbType.NVarChar, 50).Value = txtAccount.Text;
+                    cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 100).Value = matKhauHash;
+                    cmd.Parameters.Add("@TenNhanVien", SqlDbType.NVarChar, 100).Value = txtTenNhanVien.Text;
+
+                    // SỬA LỖI 1: Lấy giá trị số (ValueMember) từ ComboBox
+                    cmd.Parameters.Add("@ChucVu", SqlDbType.Int).Value = (int)cboChucVu.SelectedValue;
+
+                    dataTable.Update(cmd);
                 }
-                // --- TRƯỜNG HỢP SỬA (txtID có số) ---
-                else
+                else // SỬA
                 {
-                    sql = @"UPDATE TaiKhoan 
-                            SET MatKhau = @MatKhau, 
-                                TenNhanVien = @TenNhanVien, 
-                                ChucVu = @ChucVu 
-                            WHERE ID = @ID";
-                    cmd = new SqlCommand(sql);
-                    cmd.Parameters.Add("@ID", SqlDbType.Int).Value = int.Parse(txtID.Text);
+                    string sql;
+                    SqlCommand cmd;
+
+                    if (matKhauHash == null) // SỬA, KHÔNG ĐỔI MẬT KHẨU
+                    {
+                        // KHÔNG CẬP NHẬT cột MatKhau
+                        sql = @" UPDATE TaiKhoan
+                         SET TenNhanVien = @TenNhanVien,
+                             ChucVu = @ChucVu
+                         WHERE ID = @IDCu";
+                        cmd = new SqlCommand(sql);
+                    }
+                    else // SỬA, CÓ ĐỔI MẬT KHẨU (Gán mật khẩu đã mã hóa)
+                    {
+                        // CẬP NHẬT cột MatKhau đã được mã hóa
+                        sql = @" UPDATE TaiKhoan
+                         SET TenNhanVien = @TenNhanVien,
+                             MatKhau = @MatKhau,
+                             ChucVu = @ChucVu
+                         WHERE ID = @IDCu";
+                        cmd = new SqlCommand(sql);
+                        // THÊM: Parameter cho Mật khẩu đã mã hóa (LỖI 2 ĐÃ ĐƯỢC KHẮC PHỤC)
+                        cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 100).Value = matKhauHash;
+                    }
+
+                    // Parameter chung cho cả hai trường hợp Sửa
+                    cmd.Parameters.Add("@IDCu", SqlDbType.Int).Value = int.Parse(maTaiKhoan);
+                    cmd.Parameters.Add("@TenNhanVien", SqlDbType.NVarChar, 100).Value = txtTenNhanVien.Text;
+
+                    // SỬA LỖI 1: Lấy giá trị số (ValueMember) từ ComboBox
+                    cmd.Parameters.Add("@ChucVu", SqlDbType.Int).Value = (int)cboChucVu.SelectedValue;
+
+                    // Cột Account không cần cập nhật vì đã bị khóa ở btnSua_Click
+                    dataTable.Update(cmd);
                 }
 
-                cmd.Parameters.Add("@Account", SqlDbType.NVarChar, 50).Value = txtAccount.Text;
-                cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 100).Value = BC.HashPassword(txtMatKhau.Text);
-                cmd.Parameters.Add("@TenNhanVien", SqlDbType.NVarChar, 100).Value = txtTenNhanVien.Text;
-
-                // Lấy giá trị int từ ComboBox (0 hoặc 1)
-                cmd.Parameters.Add("@ChucVu", SqlDbType.Int).Value = cboChucVu.SelectedValue;
-
-                // Thực thi Update xuống CSDL
-                dataTable.Update(cmd);
-
-                MessageBox.Show("Lưu thành công!", "Thông báo");
+                MessageBox.Show("Lưu dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LayDuLieu();
                 BatTat(false);
+                lblGhiChuMK.Visible = false;
+
             }
             catch (Exception ex)
             {
@@ -199,6 +240,11 @@ namespace QLBS
             {
                 e.Value = "••••••••••";
             }
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

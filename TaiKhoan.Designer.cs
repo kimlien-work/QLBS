@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            lblGhiChuMK = new Label();
             btnXoa = new Button();
             btnLuu = new Button();
             btnThem = new Button();
@@ -54,6 +55,7 @@
             Account = new DataGridViewTextBoxColumn();
             MatKhau = new DataGridViewTextBoxColumn();
             ChucVu = new DataGridViewTextBoxColumn();
+            btnThoat = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvTaiKhoan).BeginInit();
@@ -61,6 +63,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(btnThoat);
+            panel1.Controls.Add(lblGhiChuMK);
             panel1.Controls.Add(btnXoa);
             panel1.Controls.Add(btnLuu);
             panel1.Controls.Add(btnThem);
@@ -82,6 +86,17 @@
             panel1.Size = new Size(294, 429);
             panel1.TabIndex = 0;
             // 
+            // lblGhiChuMK
+            // 
+            lblGhiChuMK.AutoSize = true;
+            lblGhiChuMK.ForeColor = Color.Red;
+            lblGhiChuMK.Location = new Point(14, 325);
+            lblGhiChuMK.Name = "lblGhiChuMK";
+            lblGhiChuMK.Size = new Size(356, 20);
+            lblGhiChuMK.TabIndex = 3;
+            lblGhiChuMK.Text = "* Bỏ trống mật khẩu sẽ giữ nguyên mật khẩu hiện tại";
+            lblGhiChuMK.Visible = false;
+            // 
             // btnXoa
             // 
             btnXoa.Location = new Point(202, 354);
@@ -96,7 +111,7 @@
             // 
             btnLuu.Location = new Point(14, 386);
             btnLuu.Name = "btnLuu";
-            btnLuu.Size = new Size(119, 29);
+            btnLuu.Size = new Size(76, 29);
             btnLuu.TabIndex = 20;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
@@ -114,9 +129,9 @@
             // 
             // btnHuy
             // 
-            btnHuy.Location = new Point(172, 386);
+            btnHuy.Location = new Point(105, 388);
             btnHuy.Name = "btnHuy";
-            btnHuy.Size = new Size(108, 29);
+            btnHuy.Size = new Size(80, 29);
             btnHuy.TabIndex = 21;
             btnHuy.Text = "Hủy";
             btnHuy.UseVisualStyleBackColor = true;
@@ -196,6 +211,7 @@
             // 
             txtMatKhau.Location = new Point(12, 162);
             txtMatKhau.Name = "txtMatKhau";
+            txtMatKhau.PasswordChar = '•';
             txtMatKhau.Size = new Size(268, 27);
             txtMatKhau.TabIndex = 16;
             // 
@@ -309,6 +325,16 @@
             ChucVu.ReadOnly = true;
             ChucVu.Width = 125;
             // 
+            // btnThoat
+            // 
+            btnThoat.Location = new Point(200, 388);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(80, 29);
+            btnThoat.TabIndex = 24;
+            btnThoat.Text = "Thoát";
+            btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
+            // 
             // TaiKhoan
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -357,5 +383,7 @@
         private DataGridViewTextBoxColumn Pass;
         private DataGridViewTextBoxColumn tenNv;
         private DataGridViewTextBoxColumn cv;
+        private Label lblGhiChuMK;
+        private Button btnThoat;
     }
 }
