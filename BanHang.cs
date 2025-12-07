@@ -449,5 +449,10 @@ namespace QLBS
                 }
             }
         }
+
+        private void dgvSach_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

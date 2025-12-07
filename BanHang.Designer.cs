@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             btnTimKiem = new Button();
             btnTichDiem = new Button();
             txtTimKiem = new TextBox();
@@ -88,7 +88,7 @@
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(140, 29);
             btnTimKiem.TabIndex = 56;
-            btnTimKiem.Text = "Tim Kiếm";
+            btnTimKiem.Text = "Tìm Kiếm";
             btnTimKiem.UseVisualStyleBackColor = true;
             btnTimKiem.Click += btnTimKiem_Click;
             // 
@@ -297,9 +297,9 @@
             // DiemTichLuy
             // 
             DiemTichLuy.DataPropertyName = "DiemTichLuy";
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = null;
-            DiemTichLuy.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = null;
+            DiemTichLuy.DefaultCellStyle = dataGridViewCellStyle5;
             DiemTichLuy.HeaderText = "Điểm Tích Lũy";
             DiemTichLuy.MinimumWidth = 6;
             DiemTichLuy.Name = "DiemTichLuy";
@@ -340,7 +340,7 @@
             btnTimSDT.Name = "btnTimSDT";
             btnTimSDT.Size = new Size(67, 29);
             btnTimSDT.TabIndex = 56;
-            btnTimSDT.Text = "Tim";
+            btnTimSDT.Text = "Tìm";
             btnTimSDT.UseVisualStyleBackColor = true;
             btnTimSDT.Click += btnTimSDT_Click;
             // 
@@ -370,6 +370,7 @@
             dgvSach.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvSach.Size = new Size(756, 183);
             dgvSach.TabIndex = 65;
+            dgvSach.CellClick += dgvSach_CellClick;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -388,9 +389,9 @@
             // GiaBan
             // 
             GiaBan.DataPropertyName = "GiaBan";
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            GiaBan.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = null;
+            GiaBan.DefaultCellStyle = dataGridViewCellStyle6;
             GiaBan.HeaderText = "Đơn Giá";
             GiaBan.MinimumWidth = 6;
             GiaBan.Name = "GiaBan";
