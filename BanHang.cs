@@ -11,56 +11,84 @@ namespace QLBS
         MyDataTable dataTable = new MyDataTable();
         DataTable dtGioHang = new DataTable();
         int currentTonKho = 0;
+        KhachHang khachHang = new KhachHang();
+        private int maKhachHangHienTai = 1;
+        DataTable dtSach = new DataTable();
+        DataTable dtKhachHang = new DataTable();
+
+        #region Cập NhậT Tổng Tiền
+        private void CapNhatTongTien()
+        {
+            decimal tong = 0;
+            foreach (DataRow row in dtGioHang.Rows)
+            {
+
+                if (row["ThanhTien"] != DBNull.Value)
+                {
+                    tong += Convert.ToDecimal(row["ThanhTien"]);
+                }
+            }
+
+            lblThanhTien.Text = tong.ToString("N0");
+        }
+        #endregion
 
         public BanHang()
         {
             InitializeComponent();
             dataTable.OpenConnection();
+
+            dgvGioHang.AutoGenerateColumns = false;
+            dgvSach.AutoGenerateColumns = false;
+            dgvKhachHang.AutoGenerateColumns = false;
         }
 
         private void BanHang_Load(object sender, EventArgs e)
         {
-            dgvGioHang.AutoGenerateColumns = false;
-
             LoadDanhSachSach();
             KhoiTaoGioHang();
+
+            txtMaSach.ReadOnly = true;
+            txtTenSach.ReadOnly = true;
+            txtGiaBan.ReadOnly = true;
         }
 
         private void LoadDanhSachSach()
         {
-            string sql = @"SELECT S.MaSach, S.TenSach, D.TenDanhMuc, S.GiaBan, S.SoLuongTon 
-                           FROM Sach S 
-                           LEFT JOIN DanhMuc D ON S.MaDM = D.MaDM 
-                           WHERE S.SoLuongTon > 0";
+            string sql = @"SELECT S.MaSach, S.TenSach, D.TenDanhMuc, S.GiaBan, S.SoLuongTon 
+                           FROM Sach S 
+                           LEFT JOIN DanhMuc D ON S.MaDM = D.MaDM 
+                           WHERE S.SoLuongTon > 0";
 
             SqlCommand cmd = new SqlCommand(sql);
-            DataTable dtSach = new DataTable();
+            dtSach.Clear();
 
             using (SqlConnection conn = new SqlConnection(dataTable.ConnectionString()))
             {
                 conn.Open();
                 cmd.Connection = conn;
-                new SqlDataAdapter(cmd).Fill(dtSach);
+                new SqlDataAdapter(cmd).Fill(dtSach); // Điền vào dtSach (biến cấp lớp)
             }
 
             dgvSach.DataSource = dtSach;
         }
 
-        #region KHỞI TẠO GIỎ HÀNG ẢO
-        private void KhoiTaoGioHang()
+        #region KHỞI TẠO GIỎ HÀNG ẢO
+        private void KhoiTaoGioHang()
         {
-            // 1. Tạo cấu trúc bảng ảo (Giữ nguyên để khớp với DataPropertyName vừa điền)
-            dtGioHang.Columns.Add("MaSach", typeof(string));
+            // 1. Tạo cấu trúc bảng ảo (Giữ nguyên để khớp với DataPropertyName vừa điền)
+            dtGioHang.Columns.Add("MaSach", typeof(string));
             dtGioHang.Columns.Add("TenSach", typeof(string));
             dtGioHang.Columns.Add("SoLuong", typeof(int));
             dtGioHang.Columns.Add("DonGia", typeof(decimal));
             dtGioHang.Columns.Add("ThanhTien", typeof(decimal), "SoLuong * DonGia");
 
-            // 2. Gán vào lưới
-            dgvGioHang.DataSource = dtGioHang;
+            // 2. Gán vào lưới
+            dgvGioHang.DataSource = dtGioHang;
         }
         #endregion
-        private void dgvSach_CellClick(object sender, DataGridViewCellEventArgs e)
+
+        private void dgvGioHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.RowIndex < dgvSach.Rows.Count)
             {
@@ -93,76 +121,70 @@ namespace QLBS
             }
         }
 
-        private void btnThemGiohang_Click(object sender, EventArgs e)
+        private void btnThemGioHang_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtMaSach.Text))
+            // 1. Kiểm tra xem có chọn sách ở bảng trên (dgvSach) chưa
+            if (dgvSach.CurrentRow == null)
             {
-                MessageBox.Show("Vui lòng chọn sách cần mua!");
+                MessageBox.Show("Vui lòng chọn sách cần mua!", "Thông báo");
                 return;
             }
 
+            // 2. Lấy dữ liệu từ dòng đang chọn (Lưu ý dùng đúng Name của dgvSach)
+            string maSach = dgvSach.CurrentRow.Cells["idbook"].Value.ToString();
+            string tenSach = dgvSach.CurrentRow.Cells["namebook"].Value.ToString();
+            decimal donGia = Convert.ToDecimal(dgvSach.CurrentRow.Cells["GiaBan"].Value);
+
+            // Lấy số lượng từ NumericUpDown (ô nhập số lượng bên dưới)
+            // Giả sử tên control là nudSoLuong, nếu bạn dùng TextBox thì ép kiểu int.Parse(txtSoLuong.Text)
             int soLuongMua = (int)numSoLuong.Value;
 
-            if (soLuongMua > currentTonKho || soLuongMua <= 0)
+            if (soLuongMua <= 0)
             {
-                MessageBox.Show($"Số lượng không hợp lệ! Kho chỉ còn {currentTonKho} cuốn.");
+                MessageBox.Show("Số lượng mua phải lớn hơn 0");
                 return;
             }
 
-            string maSach = txtMaSach.Text;
-            string tenSach = txtTenSach.Text;
-            decimal giaBan = 0;
-            try
+            // 3. Kiểm tra sách đã có trong giỏ hàng (dgvGioHang) chưa?
+            bool daCoTrongGio = false;
+            foreach (DataGridViewRow row in dgvGioHang.Rows)
             {
-                giaBan = decimal.Parse(txtGiaBan.Text.Replace(".", "").Replace(",", ""));
-            }
-            catch { giaBan = 0; }
-
-            bool daCo = false;
-            foreach (DataRow row in dtGioHang.Rows)
-            {
-                if (row["MaSach"].ToString() == maSach)
+                if (row.Cells["idsach"].Value != null && row.Cells["idsach"].Value.ToString() == maSach)
                 {
-                    row["SoLuong"] = (int)row["SoLuong"] + soLuongMua;
-                    daCo = true;
+                    // Nếu đã có -> Cộng dồn số lượng
+                    int slCu = Convert.ToInt32(row.Cells["slsach"].Value);
+                    int slMoi = slCu + soLuongMua;
+
+                    row.Cells["slsach"].Value = slMoi;
+                    row.Cells["thtien"].Value = slMoi * donGia; // Cập nhật thành tiền
+
+                    daCoTrongGio = true;
                     break;
                 }
             }
 
-            if (!daCo)
+            // 4. Nếu chưa có -> Thêm dòng mới vào dgvGioHang
+            if (!daCoTrongGio)
             {
-                dtGioHang.Rows.Add(maSach, tenSach, soLuongMua, giaBan);
-            }
+                decimal thanhTien = soLuongMua * donGia;
 
-            CapNhatTongTien();
-        }
+                // Tạo một dòng dữ liệu mới dựa trên cấu trúc của dtGioHang
+                DataRow newRow = dtGioHang.NewRow();
+                newRow["MaSach"] = maSach;       // Map với DataPropertyName
+                newRow["TenSach"] = tenSach;
+                newRow["SoLuong"] = soLuongMua;
+                newRow["DonGia"] = donGia;
+                newRow["ThanhTien"] = thanhTien;
 
+                // Thêm dòng này vào bảng dữ liệu
+                dtGioHang.Rows.Add(newRow);
 
-        private void btnXoa_Click(object sender, EventArgs e)
-        {
-            if (dgvGioHang.CurrentRow != null)
-            {
-                dgvGioHang.Rows.RemoveAt(dgvGioHang.CurrentRow.Index);
+                // 5. Tính tổng tiền hóa đơn (Hàm này viết riêng bên dưới)
                 CapNhatTongTien();
             }
         }
 
-        #region Cập NhậT Tổng Tiền
-        private void CapNhatTongTien()
-        {
-            decimal tong = 0;
-            foreach (DataRow row in dtGioHang.Rows)
-            {
 
-                if (row["ThanhTien"] != DBNull.Value)
-                {
-                    tong += Convert.ToDecimal(row["ThanhTien"]);
-                }
-            }
-
-            lblThanhTien.Text = tong.ToString("N0");
-        }
-        #endregion
 
 
         private void BtnThanhToan_Click(object sender, EventArgs e)
@@ -177,28 +199,28 @@ namespace QLBS
                 try
                 {
 
-                    string sqlHD = @"INSERT INTO HoaDon (NgayTao, NguoiTao, MaKH, TongTien, TrangThai) 
-                                     VALUES (GETDATE(), 'admin', 1, @TongTien, N'Đã thanh toán');
-                                     SELECT SCOPE_IDENTITY();"; // Lấy về Mã HD vừa tạo
+                    string sqlHD = @"INSERT INTO HoaDon (NgayTao, NguoiTao, MaKH, TongTien, TrangThai) 
+                                     VALUES (GETDATE(), 'admin', @MaKH, @TongTien, N'Đã thanh toán');
+                                     SELECT SCOPE_IDENTITY();";
 
                     SqlCommand cmdHD = new SqlCommand(sqlHD, conn, transaction);
-
                     decimal tongTien = decimal.Parse(lblThanhTien.Text.Replace(".", "").Replace(",", ""));
                     cmdHD.Parameters.AddWithValue("@TongTien", tongTien);
+                    cmdHD.Parameters.AddWithValue("@MaKH", maKhachHangHienTai);
 
                     int maHD = Convert.ToInt32(cmdHD.ExecuteScalar());
 
-                    // BƯỚC 2: LƯU CHI TIẾT & TRỪ KHO
-                    foreach (DataRow row in dtGioHang.Rows)
+                    // BƯỚC 2: LƯU CHI TIẾT & TRỪ KHO
+                    foreach (DataRow row in dtGioHang.Rows)
                     {
                         string maSach = row["MaSach"].ToString();
                         int soLuong = (int)row["SoLuong"];
                         decimal donGia = (decimal)row["DonGia"];
                         decimal thanhTien = (decimal)row["ThanhTien"];
 
-                        // a. Lưu Chi tiết hóa đơn
-                        string sqlCT = @"INSERT INTO ChiTietHoaDon (MaHD, MaSach, SoLuong, DonGia, ThanhTien)
-                                         VALUES (@MaHD, @MaSach, @SoLuong, @DonGia, @ThanhTien)";
+                        // a. Lưu Chi tiết hóa đơn
+                        string sqlCT = @"INSERT INTO ChiTietHoaDon (MaHD, MaSach, SoLuong, DonGia, ThanhTien)
+                                         VALUES (@MaHD, @MaSach, @SoLuong, @DonGia, @ThanhTien)";
 
                         SqlCommand cmdCT = new SqlCommand(sqlCT, conn, transaction);
                         cmdCT.Parameters.AddWithValue("@MaHD", maHD);
@@ -208,8 +230,8 @@ namespace QLBS
                         cmdCT.Parameters.AddWithValue("@ThanhTien", thanhTien);
                         cmdCT.ExecuteNonQuery();
 
-                        // b. Trừ Tồn Kho
-                        string sqlKho = "UPDATE Sach SET SoLuongTon = SoLuongTon - @SL WHERE MaSach = @MaSach";
+                        // b. Trừ Tồn Kho
+                        string sqlKho = "UPDATE Sach SET SoLuongTon = SoLuongTon - @SL WHERE MaSach = @MaSach";
                         SqlCommand cmdKho = new SqlCommand(sqlKho, conn, transaction);
                         cmdKho.Parameters.AddWithValue("@SL", soLuong);
                         cmdKho.Parameters.AddWithValue("@MaSach", maSach);
@@ -217,10 +239,32 @@ namespace QLBS
                     }
 
                     transaction.Commit();
+
+                    if (maKhachHangHienTai > 1)
+                    {
+                        // 1. Tính điểm mới: Mỗi 10,000 VND = 1 điểm
+                        // Math.Floor đảm bảo chỉ tính điểm cho các bội số nguyên của 10000
+                        int diemMoi = (int)Math.Floor(tongTien / 10000);
+
+                        if (diemMoi > 0)
+                        {
+                            string sqlUpdateDiem = @"UPDATE KhachHang SET DiemTich = DiemTich + @DiemMoi 
+                                            WHERE MaKH = @MaKH";
+
+                            SqlCommand cmdUpdateDiem = new SqlCommand(sqlUpdateDiem, conn);
+                            cmdUpdateDiem.Parameters.AddWithValue("@DiemMoi", diemMoi);
+                            cmdUpdateDiem.Parameters.AddWithValue("@MaKH", maKhachHangHienTai);
+                            cmdUpdateDiem.ExecuteNonQuery();
+
+                            MessageBox.Show($"Khách hàng tích lũy thêm **{diemMoi}** điểm!");
+                        }
+                    }
                     MessageBox.Show("Thanh toán thành công! Mã HĐ: " + maHD);
 
                     dtGioHang.Clear();
                     lblThanhTien.Text = "0";
+                    // Đặt lại MaKH về mặc định sau khi thanh toán xong
+                    maKhachHangHienTai = 1;
 
                     LoadDanhSachSach();
                 }
@@ -231,59 +275,249 @@ namespace QLBS
                 }
             }
         }
-
-        private void btnThemGiohang_Click_1(object sender, EventArgs e)
+        #region Tìm kiếm
+        private void btnTimSDT_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtMaSach.Text))
+            string tuKhoa = txtTimSDT.Text.Trim();
+
+            if (tuKhoa == "")
             {
-                MessageBox.Show("Vui lòng chọn sách cần mua!");
+                LayDuLieuKhachHang();
                 return;
             }
 
-            int soLuongMua = (int)numSoLuong.Value;
+            // Đã sửa SELECT chỉ lấy các cột cần thiết (MaKH, TenKH, SDT, DiemTich)
+            string sql = @"SELECT MaKH, TenKH, SDT, DiemTichLuy
+                   FROM KhachHang
+                   WHERE SDT LIKE N'%' + @TuKhoa + '%'";
 
-            if (soLuongMua > currentTonKho || soLuongMua <= 0)
+            SqlCommand cmd = new SqlCommand(sql);
+            cmd.Parameters.Add("@TuKhoa", SqlDbType.NVarChar).Value = tuKhoa;
+
+            // *** SỬ DỤNG dtKhachHang ĐỘC LẬP ***
+            dtKhachHang.Clear();
+            using (SqlConnection conn = new SqlConnection(dataTable.ConnectionString()))
             {
-                MessageBox.Show($"Số lượng không hợp lệ! Kho chỉ còn {currentTonKho} cuốn.");
-                return;
+                conn.Open();
+                cmd.Connection = conn;
+                new SqlDataAdapter(cmd).Fill(dtKhachHang); // Điền dữ liệu vào dtKhachHang
             }
+            dgvKhachHang.DataSource = dtKhachHang; // Gán dtKhachHang cho dgvKhachHang
 
-            string maSach = txtMaSach.Text;
-            string tenSach = txtTenSach.Text;
-            decimal giaBan = 0;
-            try
+            // Cập nhật maKhachHangHienTai nếu tìm thấy
+            if (dtKhachHang.Rows.Count > 0)
             {
-                giaBan = decimal.Parse(txtGiaBan.Text.Replace(".", "").Replace(",", ""));
+                maKhachHangHienTai = Convert.ToInt32(dtKhachHang.Rows[0]["MaKH"]);
             }
-            catch { giaBan = 0; }
-
-            bool daCo = false;
-            foreach (DataRow row in dtGioHang.Rows)
+            else
             {
-                if (row["MaSach"].ToString() == maSach)
-                {
-                    row["SoLuong"] = (int)row["SoLuong"] + soLuongMua;
-                    daCo = true;
-                    break;
-                }
+                maKhachHangHienTai = 1; // Khách vãng lai
             }
-
-            if (!daCo)
-            {
-                dtGioHang.Rows.Add(maSach, tenSach, soLuongMua, giaBan);
-            }
-
-            CapNhatTongTien();
         }
 
+        public void LayDuLieuKhachHang()
+        {
+            string sqlKhachHang = @"SELECT MaKH, TenKH, SDT, DiemTichLuy FROM KhachHang";
 
+            SqlCommand cmd = new SqlCommand(sqlKhachHang);
+
+            dtKhachHang.Clear(); // Dọn dẹp dữ liệu cũ trong dtKhachHang
+
+            using (SqlConnection conn = new SqlConnection(dataTable.ConnectionString()))
+            {
+                conn.Open();
+                cmd.Connection = conn;
+                new SqlDataAdapter(cmd).Fill(dtKhachHang); // Điền dữ liệu vào dtKhachHang (biến cấp lớp)
+            }
+
+            dgvKhachHang.DataSource = dtKhachHang; // Gán nguồn dữ liệu độc lập
+
+            // Đặt lại MaKH về khách vãng lai (MaKH = 1)
+            maKhachHangHienTai = 1;
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string tuKhoa = txtTimKiem.Text.Trim();
+
+            if (tuKhoa == "")
+            {
+                //LayDuLieuSach(); // Hoặc LoadDanhSachSach() tùy bạn muốn hiển thị toàn bộ hay chỉ sách > 0 tồn kho
+                LoadDanhSachSach();
+                return;
+            }
+
+            string sql = @"SELECT S.MaSach, S.TenSach, S.TacGia, S.GiaBan, S.SoLuongTon, S.GhiChu, S.MaDM, D.TenDanhMuc
+                   FROM Sach S 
+                   INNER JOIN DanhMuc D ON S.MaDM = D.MaDM
+                   WHERE S.TenSach LIKE N'%' + @TuKhoa + '%' 
+                      OR S.MaSach LIKE '%' + @TuKhoa + '%'
+                      OR S.TacGia LIKE N'%' + @TuKhoa + '%'";
+
+            SqlCommand cmd = new SqlCommand(sql);
+            cmd.Parameters.Add("@TuKhoa", SqlDbType.NVarChar).Value = tuKhoa;
+
+            // *** SỬ DỤNG dtSach ĐỘC LẬP ***
+            dtSach.Clear();
+            using (SqlConnection conn = new SqlConnection(dataTable.ConnectionString()))
+            {
+                conn.Open();
+                cmd.Connection = conn;
+                new SqlDataAdapter(cmd).Fill(dtSach); // Điền dữ liệu vào dtSach
+            }
+            dgvSach.DataSource = dtSach; // Gán dtSach cho dgvSach
+        }
+
+        public void LayDuLieuSach()
+        {
+            string sqlSach = @"SELECT S.MaSach, S.TenSach, S.TacGia, S.GiaBan, S.SoLuongTon, S.GhiChu, S.MaDM, D.TenDanhMuc 
+                       FROM Sach S 
+                       INNER JOIN DanhMuc D ON S.MaDM = D.MaDM";
+
+            SqlCommand cmd = new SqlCommand(sqlSach);
+
+            dtSach.Clear(); // Sử dụng dtSach cấp lớp
+
+            using (SqlConnection conn = new SqlConnection(dataTable.ConnectionString()))
+            {
+                conn.Open();
+                cmd.Connection = conn;
+                new SqlDataAdapter(cmd).Fill(dtSach);
+            }
+
+            dgvSach.DataSource = dtSach; // Gán nguồn dữ liệu độc lập
+        }
+
+        #endregion
+
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            KhachHang formKH = new KhachHang();
+            formKH.ShowDialog();
+        }
 
         private void btnTichDiem_Click(object sender, EventArgs e)
         {
+            // Kiểm tra: Phải là khách hàng thành viên (MaKH > 1)
+            if (maKhachHangHienTai <= 1)
+            {
+                MessageBox.Show("Vui lòng tìm kiếm và chọn Khách hàng thành viên để tích điểm.", "Lỗi tích điểm", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            decimal tongTien = 0;
+            try
+            {
+                // 1. Lấy Tổng Tiền từ lblThanhTien
+                // Cần loại bỏ dấu phân cách (thường là '.' hoặc ',') trước khi chuyển đổi
+                string tienText = lblThanhTien.Text.Replace(".", "").Replace(",", "");
+                tongTien = decimal.Parse(tienText);
+            }
+            catch
+            {
+                MessageBox.Show("Tổng tiền không hợp lệ hoặc không có hàng trong giỏ.", "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Kiểm tra Tổng tiền
+            if (tongTien < 10000)
+            {
+                MessageBox.Show("Tổng tiền phải từ 10,000 VND trở lên để được tích điểm.", "Tích điểm thất bại", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // 2. Tính toán điểm mới: Cứ 10,000 VND được 1 điểm
+            // Math.Floor đảm bảo chỉ tính điểm cho các bội số nguyên của 10000
+            int diemMoi = (int)Math.Floor(tongTien / 10000);
+
+            if (diemMoi > 0)
+            {
+                string sqlUpdateDiem = @"UPDATE KhachHang 
+                                SET DiemTich = DiemTich + @DiemMoi 
+                                WHERE MaKH = @MaKH";
+
+                using (SqlConnection conn = new SqlConnection(dataTable.ConnectionString()))
+                {
+                    try
+                    {
+                        conn.Open();
+                        SqlCommand cmdUpdateDiem = new SqlCommand(sqlUpdateDiem, conn);
+
+                        cmdUpdateDiem.Parameters.AddWithValue("@DiemMoi", diemMoi);
+                        cmdUpdateDiem.Parameters.AddWithValue("@MaKH", maKhachHangHienTai);
+
+                        int rowsAffected = cmdUpdateDiem.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show($"Đã tích lũy thành công **{diemMoi}** điểm cho Khách hàng!.", "Tích điểm thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Cập nhật lại giao diện (dgvKhachHang) nếu cần để hiển thị điểm mới
+                            // Ví dụ: Load lại thông tin Khách hàng
+                            // btnTimSDT_Click(null, null); 
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi cập nhật điểm vào database: " + ex.Message, "Lỗi SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        private void dgvSach_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < dgvSach.Rows.Count)
+            {
+                try
+                {
+                    DataGridViewRow row = dgvSach.Rows[e.RowIndex];
+
+                    // 1. SỬA LẠI TÊN CỘT ĐÚNG VỚI dgvSach (idbook, namebook...)
+                    txtMaSach.Text = row.Cells["idbook"].Value?.ToString();   // Sửa idsach -> idbook
+                    txtTenSach.Text = row.Cells["namebook"].Value?.ToString(); // Sửa namesach -> namebook
+
+                    // 2. Xử lý giá bán
+                    // Sửa price -> GiaBan
+                    if (row.Cells["GiaBan"].Value != DBNull.Value)
+                    {
+                        decimal gia = Convert.ToDecimal(row.Cells["GiaBan"].Value);
+                        txtGiaBan.Text = gia.ToString("N0");
+                    }
+
+                    // 3. Xử lý tồn kho
+                    // Sửa slsach -> SoLuongTon
+                    if (row.Cells["SoLuongTon"].Value != DBNull.Value)
+                    {
+                        currentTonKho = Convert.ToInt32(row.Cells["SoLuongTon"].Value);
+                    }
+                    else
+                    {
+                        currentTonKho = 0;
+                    }
+
+                    // 4. Reset số lượng mua về 1
+                    numSoLuong.Value = 1;
+                    if (currentTonKho > 0)
+                    {
+                        numSoLuong.Maximum = currentTonKho;
+                        numSoLuong.Enabled = true;
+                    }
+                    else
+                    {
+                        numSoLuong.Maximum = 0;
+                        numSoLuong.Enabled = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi chọn sách: " + ex.Message);
+                }
+            }
+        }
+
+        private void dgvGioHang_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
