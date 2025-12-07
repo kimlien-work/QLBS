@@ -65,8 +65,9 @@ namespace QLBS
             // 2. Gán vào lưới
             dgvGioHang.DataSource = dtGioHang;
         }
-        #endregion
-        private void dgvSach_CellClick(object sender, DataGridViewCellEventArgs e)
+        #endregion
+
+        private void dgvGioHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.RowIndex < dgvSach.Rows.Count)
             {
@@ -99,7 +100,7 @@ namespace QLBS
             }
         }
 
-        private void btnThemGiohang_Click(object sender, EventArgs e)
+        private void btnThemGioHang_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtMaSach.Text))
             {
@@ -143,8 +144,7 @@ namespace QLBS
             CapNhatTongTien();
         }
 
-
-        private void btnXoa_Click(object sender, EventArgs e)
+        private void btnXoa_Click_1(object sender, EventArgs e)
         {
             if (dgvGioHang.CurrentRow != null)
             {
@@ -259,51 +259,7 @@ namespace QLBS
                 }
             }
         }
-
-        private void btnThemGioHang_Click_1(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtMaSach.Text))
-            {
-                MessageBox.Show("Vui lòng chọn sách cần mua!");
-                return;
-            }
-
-            int soLuongMua = (int)numSoLuong.Value;
-
-            if (soLuongMua > currentTonKho || soLuongMua <= 0)
-            {
-                MessageBox.Show($"Số lượng không hợp lệ! Kho chỉ còn {currentTonKho} cuốn.");
-                return;
-            }
-
-            string maSach = txtMaSach.Text;
-            string tenSach = txtTenSach.Text;
-            decimal giaBan = 0;
-            try
-            {
-                giaBan = decimal.Parse(txtGiaBan.Text.Replace(".", "").Replace(",", ""));
-            }
-            catch { giaBan = 0; }
-
-            bool daCo = false;
-            foreach (DataRow row in dtGioHang.Rows)
-            {
-                if (row["MaSach"].ToString() == maSach)
-                {
-                    row["SoLuong"] = (int)row["SoLuong"] + soLuongMua;
-                    daCo = true;
-                    break;
-                }
-            }
-
-            if (!daCo)
-            {
-                dtGioHang.Rows.Add(maSach, tenSach, soLuongMua, giaBan);
-            }
-
-            CapNhatTongTien();
-        }
-
+        #region Tìm kiếm
         private void btnTimSDT_Click(object sender, EventArgs e)
         {
             string tuKhoa = txtTimSDT.Text.Trim();
@@ -364,12 +320,6 @@ namespace QLBS
             maKhachHangHienTai = 1;
         }
 
-        private void btnThemKhachHang_Click(object sender, EventArgs e)
-        {
-            KhachHang formKH = new KhachHang();
-            formKH.ShowDialog();
-        }
-
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             string tuKhoa = txtTimKiem.Text.Trim();
@@ -420,6 +370,15 @@ namespace QLBS
             }
 
             dgvSach.DataSource = dtSach; // Gán nguồn dữ liệu độc lập
+        }
+
+        #endregion
+
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            KhachHang formKH = new KhachHang();
+            formKH.ShowDialog();
         }
 
         private void btnTichDiem_Click(object sender, EventArgs e)

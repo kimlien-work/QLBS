@@ -94,12 +94,13 @@
             // 
             // btnTichDiem
             // 
-            btnTichDiem.Location = new Point(547, 26);
+            btnTichDiem.Location = new Point(16, 555);
             btnTichDiem.Name = "btnTichDiem";
             btnTichDiem.Size = new Size(94, 58);
             btnTichDiem.TabIndex = 60;
             btnTichDiem.Text = "Tích Điểm";
             btnTichDiem.UseVisualStyleBackColor = true;
+            btnTichDiem.Click += btnTichDiem_Click;
             // 
             // txtTimKiem
             // 
@@ -146,10 +147,11 @@
             BtnThanhToan.TabIndex = 59;
             BtnThanhToan.Text = "Thanh Toán";
             BtnThanhToan.UseVisualStyleBackColor = true;
+            BtnThanhToan.Click += BtnThanhToan_Click;
             // 
             // btnHuy
             // 
-            btnHuy.Location = new Point(62, 558);
+            btnHuy.Location = new Point(230, 555);
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(94, 58);
             btnHuy.TabIndex = 58;
@@ -164,6 +166,7 @@
             btnXoa.TabIndex = 57;
             btnXoa.Text = "Xóa Khỏi Giỏ Hàng";
             btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click_1;
             // 
             // dgvGioHang
             // 
@@ -179,6 +182,7 @@
             dgvGioHang.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvGioHang.Size = new Size(756, 296);
             dgvGioHang.TabIndex = 43;
+            dgvGioHang.CellClick += dgvGioHang_CellClick;
             // 
             // idsach
             // 
@@ -232,6 +236,7 @@
             panel2.Controls.Add(btnThem);
             panel2.Controls.Add(dgvKhachHang);
             panel2.Controls.Add(panel3);
+            panel2.Controls.Add(btnTichDiem);
             panel2.Dock = DockStyle.Right;
             panel2.Location = new Point(756, 0);
             panel2.Name = "panel2";
@@ -240,12 +245,13 @@
             // 
             // btnThem
             // 
-            btnThem.Location = new Point(186, 558);
+            btnThem.Location = new Point(123, 555);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(94, 58);
             btnThem.TabIndex = 60;
             btnThem.Text = "Thêm Khách Hàng";
             btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click;
             // 
             // dgvKhachHang
             // 
@@ -344,7 +350,6 @@
             panel4.Controls.Add(btnXoa);
             panel4.Controls.Add(label3);
             panel4.Controls.Add(lblThanhTien);
-            panel4.Controls.Add(btnTichDiem);
             panel4.Dock = DockStyle.Bottom;
             panel4.Location = new Point(0, 650);
             panel4.Name = "panel4";
@@ -469,7 +474,7 @@
             btnThemGioHang.TabIndex = 57;
             btnThemGioHang.Text = "Thêm Vào Giỏ Hàng";
             btnThemGioHang.UseVisualStyleBackColor = true;
-            btnThemGioHang.Click += btnThemGioHang_Click_1;
+            btnThemGioHang.Click += btnThemGioHang_Click;
             // 
             // BanHang
             // 
