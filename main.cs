@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BC = BCrypt.Net.BCrypt;
 
 namespace QLBS
 {
@@ -68,6 +69,11 @@ namespace QLBS
 
         public void QuanTriVien()
         {
+            foreach (Form child in MdiChildren)
+            {
+                child.Close();
+            }
+
             btnDangNhap.Enabled = false;
             btnDangXuat.Enabled = true;
             btnDanhMucSach.Enabled = false;
@@ -91,6 +97,11 @@ namespace QLBS
 
         public void NhanVien()
         {
+            foreach (Form child in MdiChildren)
+            {
+                child.Close();
+            }
+
             btnDangNhap.Enabled = false;
             btnDangXuat.Enabled = true;
             btnDanhMucSach.Enabled = true;
@@ -114,58 +125,157 @@ namespace QLBS
 
         private void DangNhap()
         {
-        LamLai:
+            /*LamLai:
+                if (dangNhap == null || dangNhap.IsDisposed)
+                    dangNhap = new DangNhap();
+                if (dangNhap.ShowDialog() == DialogResult.OK)
+                {
+                    string tenDangNhap = dangNhap.LoggedInUsername;
+                    if (dangNhap.txtTenDangNhap.Text.Trim() == "")
+                    {
+                        MessageBox.Show("Tên đăng nhập không được bỏ trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        dangNhap.txtTenDangNhap.Focus();
+                        goto LamLai;
+                    }
+                    else if (dangNhap.txtMatKhau.Text.Trim() == "")
+                    {
+                        MessageBox.Show("Mật khẩu không được bỏ trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        dangNhap.txtTenDangNhap.Focus();
+                        goto LamLai;
+                    }
+                    else
+                    {
+                        MyDataTable dataTable = new MyDataTable();
+                        dataTable.OpenConnection();
+
+                        SqlCommand cmd = new SqlCommand("SELECT * FROM TaiKhoan WHERE Account = @TDN AND MatKhau = @MK");
+                        cmd.Parameters.Add("@TDN", SqlDbType.NVarChar, 50).Value = dangNhap.txtTenDangNhap.Text;
+                        cmd.Parameters.Add("@MK", SqlDbType.NVarChar, 100).Value = dangNhap.txtMatKhau.Text;
+                        dataTable.Fill(cmd);
+                        if (dataTable.Rows.Count > 0)
+                        {
+                            hoVaTen = dataTable.Rows[0]["TenNhanVien"].ToString();
+                            string quyenHan = dataTable.Rows[0]["ChucVu"].ToString();
+
+                            using (WelcomeForm welcomeForm = new WelcomeForm(hoVaTen))
+                            {
+                                welcomeForm.ShowDialog(); // Chặn Form main
+                            }
+
+                            if (quyenHan == "1")
+                                QuanTriVien();
+                            else if (quyenHan == "0")
+                                NhanVien();
+                            else
+                                ChuaDangNhap();
+                            return;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Tên đăng nhập hoặc mật khẩu không chính xác!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            dangNhap.txtTenDangNhap.Focus();
+                            goto LamLai;
+                        }
+                    }
+                }*/
+            // Đảm bảo Form DangNhap luôn được tạo mới hoặc xử lý đúng cách
             if (dangNhap == null || dangNhap.IsDisposed)
-                dangNhap = new DangNhap();
-            if (dangNhap.ShowDialog() == DialogResult.OK)
             {
-                string tenDangNhap = dangNhap.LoggedInUsername;
-                if (dangNhap.txtTenDangNhap.Text.Trim() == "")
+                dangNhap = new DangNhap();
+            }
+
+            // Sử dụng vòng lặp while để thay thế cho goto
+            while (dangNhap.ShowDialog() == DialogResult.OK)
+            {
+                string username = dangNhap.txtTenDangNhap.Text.Trim(); // Trim() để loại bỏ khoảng trắng
+                string password = dangNhap.txtMatKhau.Text;
+
+                // 1. Kiểm tra rỗng
+                if (string.IsNullOrEmpty(username))
                 {
                     MessageBox.Show("Tên đăng nhập không được bỏ trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    dangNhap.txtTenDangNhap.Focus();
-                    goto LamLai;
+                    continue; // Quay lại hiển thị Form DangNhap
                 }
-                else if (dangNhap.txtMatKhau.Text.Trim() == "")
+                if (string.IsNullOrEmpty(password))
                 {
                     MessageBox.Show("Mật khẩu không được bỏ trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    dangNhap.txtTenDangNhap.Focus();
-                    goto LamLai;
+                    continue; // Quay lại hiển thị Form DangNhap
                 }
-                else
+
+                // 2. Truy vấn Database và Xác thực
+                DataTable dtAccount = new DataTable();
+                MyDataTable dataTable = new MyDataTable(); // Giả định MyDataTable có chứa ConnectionString()
+                string connectionString = dataTable.ConnectionString();
+
+                try
                 {
-                    MyDataTable dataTable = new MyDataTable();
-                    dataTable.OpenConnection();
-
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM TaiKhoan WHERE Account = @TDN AND MatKhau = @MK");
-                    cmd.Parameters.Add("@TDN", SqlDbType.NVarChar, 50).Value = dangNhap.txtTenDangNhap.Text;
-                    cmd.Parameters.Add("@MK", SqlDbType.NVarChar, 100).Value = dangNhap.txtMatKhau.Text;
-                    dataTable.Fill(cmd);
-                    if (dataTable.Rows.Count > 0)
+                    using (SqlConnection conn = new SqlConnection(connectionString)) // Đảm bảo kết nối được đóng
                     {
-                        hoVaTen = dataTable.Rows[0]["TenNhanVien"].ToString();
-                        string quyenHan = dataTable.Rows[0]["ChucVu"].ToString();
+                        conn.Open();
+                        // Chỉ cần tìm Account (Tên đăng nhập) để lấy mật khẩu băm
+                        string sql = "SELECT TenNhanVien, ChucVu, MatKhau FROM TaiKhoan WHERE Account = @TDN";
 
+                        using (SqlCommand cmd = new SqlCommand(sql, conn)) // Đảm bảo SqlCommand được giải phóng
+                        {
+                            cmd.Parameters.Add("@TDN", SqlDbType.NVarChar, 50).Value = username;
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            da.Fill(dtAccount);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // Lỗi nghiêm trọng, thoát khỏi hàm
+                }
+
+                // 3. Xử lý kết quả truy vấn
+                if (dtAccount.Rows.Count > 0)
+                {
+                    string matKhauMaHoa = dtAccount.Rows[0]["MatKhau"].ToString();
+
+                    // 4. Xác thực BCrypt
+                    if (BC.Verify(password, matKhauMaHoa))
+                    {
+                        // Đăng nhập thành công
+                        hoVaTen = dtAccount.Rows[0]["TenNhanVien"].ToString();
+                        string quyenHan = dtAccount.Rows[0]["ChucVu"].ToString();
+
+                        // Hiển thị màn hình chào mừng (nếu cần)
                         using (WelcomeForm welcomeForm = new WelcomeForm(hoVaTen))
                         {
-                            welcomeForm.ShowDialog(); // Chặn Form main
+                            welcomeForm.ShowDialog();
                         }
 
+                        // Phân quyền
                         if (quyenHan == "1")
                             QuanTriVien();
                         else if (quyenHan == "0")
                             NhanVien();
                         else
                             ChuaDangNhap();
-                        return;
+
+                        return; // Thoát khỏi vòng lặp và hàm DangNhap khi thành công
                     }
                     else
                     {
-                        MessageBox.Show("Tên đăng nhập hoặc mật khẩu không chính xác!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        dangNhap.txtTenDangNhap.Focus();
-                        goto LamLai;
+                        MessageBox.Show("Mật khẩu không chính xác!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        // Vòng lặp tiếp tục, hiển thị lại form đăng nhập
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Tên đăng nhập không chính xác!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Vòng lặp tiếp tục, hiển thị lại form đăng nhập
+                }
+
+                // Tái tạo form Đăng nhập để đảm bảo Form State sạch sẽ
+                // (Tùy chọn, nếu bạn muốn form cũ đóng hẳn)
+                if (dangNhap != null && !dangNhap.IsDisposed)
+                {
+                    dangNhap.Dispose();
+                }
+                dangNhap = new DangNhap();
             }
         }
         #endregion

@@ -46,14 +46,14 @@
             txtAccount = new TextBox();
             panel2 = new Panel();
             dgvTaiKhoan = new DataGridView();
-            MaID = new DataGridViewTextBoxColumn();
-            Account = new DataGridViewTextBoxColumn();
-            MatKhau = new DataGridViewTextBoxColumn();
-            ChucVu = new DataGridViewTextBoxColumn();
             acc = new DataGridViewTextBoxColumn();
             Pass = new DataGridViewTextBoxColumn();
             tenNv = new DataGridViewTextBoxColumn();
             cv = new DataGridViewTextBoxColumn();
+            MaID = new DataGridViewTextBoxColumn();
+            Account = new DataGridViewTextBoxColumn();
+            MatKhau = new DataGridViewTextBoxColumn();
+            ChucVu = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvTaiKhoan).BeginInit();
@@ -240,6 +240,39 @@
             dgvTaiKhoan.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvTaiKhoan.Size = new Size(506, 429);
             dgvTaiKhoan.TabIndex = 2;
+            dgvTaiKhoan.CellFormatting += dgvTaiKhoan_CellFormatting;
+            // 
+            // acc
+            // 
+            acc.DataPropertyName = "Account";
+            acc.HeaderText = "Account";
+            acc.MinimumWidth = 6;
+            acc.Name = "acc";
+            acc.ReadOnly = true;
+            // 
+            // Pass
+            // 
+            Pass.DataPropertyName = "MatKhau";
+            Pass.HeaderText = "Mật Khẩu";
+            Pass.MinimumWidth = 6;
+            Pass.Name = "Pass";
+            Pass.ReadOnly = true;
+            // 
+            // tenNv
+            // 
+            tenNv.DataPropertyName = "TenNhanVien";
+            tenNv.HeaderText = "Tên Nhân Viên";
+            tenNv.MinimumWidth = 6;
+            tenNv.Name = "tenNv";
+            tenNv.ReadOnly = true;
+            // 
+            // cv
+            // 
+            cv.DataPropertyName = "ChucVu";
+            cv.HeaderText = "Chức Vụ";
+            cv.MinimumWidth = 6;
+            cv.Name = "cv";
+            cv.ReadOnly = true;
             // 
             // MaID
             // 
@@ -275,38 +308,6 @@
             ChucVu.Name = "ChucVu";
             ChucVu.ReadOnly = true;
             ChucVu.Width = 125;
-            // 
-            // acc
-            // 
-            acc.DataPropertyName = "Account";
-            acc.HeaderText = "Account";
-            acc.MinimumWidth = 6;
-            acc.Name = "acc";
-            acc.ReadOnly = true;
-            // 
-            // Pass
-            // 
-            Pass.DataPropertyName = "MatKhau";
-            Pass.HeaderText = "Mật Khẩu";
-            Pass.MinimumWidth = 6;
-            Pass.Name = "Pass";
-            Pass.ReadOnly = true;
-            // 
-            // tenNv
-            // 
-            tenNv.DataPropertyName = "TenNhanVien";
-            tenNv.HeaderText = "Tên Nhân Viên";
-            tenNv.MinimumWidth = 6;
-            tenNv.Name = "tenNv";
-            tenNv.ReadOnly = true;
-            // 
-            // cv
-            // 
-            cv.DataPropertyName = "ChucVu";
-            cv.HeaderText = "Chức Vụ";
-            cv.MinimumWidth = 6;
-            cv.Name = "cv";
-            cv.ReadOnly = true;
             // 
             // TaiKhoan
             // 

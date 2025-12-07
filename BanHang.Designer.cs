@@ -166,7 +166,6 @@
             btnXoa.TabIndex = 57;
             btnXoa.Text = "Xóa Khỏi Giỏ Hàng";
             btnXoa.UseVisualStyleBackColor = true;
-            btnXoa.Click += btnXoa_Click_1;
             // 
             // dgvGioHang
             // 
@@ -233,7 +232,6 @@
             // panel2
             // 
             panel2.Controls.Add(btnHuy);
-            panel2.Controls.Add(label9);
             panel2.Controls.Add(btnThem);
             panel2.Controls.Add(dgvKhachHang);
             panel2.Controls.Add(panel3);
@@ -371,7 +369,6 @@
             dgvSach.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvSach.Size = new Size(756, 183);
             dgvSach.TabIndex = 65;
-            dgvSach.CellClick += dgvSach_CellClick;
             // 
             // dataGridViewTextBoxColumn1
             // 

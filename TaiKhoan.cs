@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BC = BCrypt.Net.BCrypt;
 
 namespace QLBS
 {
@@ -15,11 +16,13 @@ namespace QLBS
     {
         MyDataTable dataTable = new MyDataTable();
         BindingSource binding = new BindingSource();
+        string maTaiKhoan = "";
 
         public TaiKhoan()
         {
             InitializeComponent();
             dataTable.OpenConnection();
+            dgvTaiKhoan.AutoGenerateColumns = false;
         }
 
         private void TaiKhoan_Load(object sender, EventArgs e)
@@ -45,8 +48,6 @@ namespace QLBS
 
         private void LayDuLieu()
         {
-            dgvTaiKhoan.AutoGenerateColumns = false;
-
             SqlCommand cmd = new SqlCommand("SELECT * FROM TaiKhoan");
             dataTable.Fill(cmd);
 
@@ -57,14 +58,14 @@ namespace QLBS
             // --- XÓA BINDING CŨ TRƯỚC KHI ADD MỚI (Tránh lỗi trùng lặp) ---
             txtID.DataBindings.Clear();
             txtAccount.DataBindings.Clear();
-            txtMatKhau.DataBindings.Clear();
+            //txtMatKhau.DataBindings.Clear();
             txtTenNhanVien.DataBindings.Clear();
             cboChucVu.DataBindings.Clear();
 
             // --- THIẾT LẬP BINDING MỚI ---
             txtID.DataBindings.Add("Text", binding, "ID", true, DataSourceUpdateMode.Never);
             txtAccount.DataBindings.Add("Text", binding, "Account", true, DataSourceUpdateMode.Never);
-            txtMatKhau.DataBindings.Add("Text", binding, "MatKhau", true, DataSourceUpdateMode.Never);
+            //txtMatKhau.DataBindings.Add("Text", binding, "MatKhau", true, DataSourceUpdateMode.Never);
             txtTenNhanVien.DataBindings.Add("Text", binding, "TenNhanVien", true, DataSourceUpdateMode.Never);
 
             // Binding cho ComboBox
@@ -150,7 +151,7 @@ namespace QLBS
                 }
 
                 cmd.Parameters.Add("@Account", SqlDbType.NVarChar, 50).Value = txtAccount.Text;
-                cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 100).Value = txtMatKhau.Text;
+                cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 100).Value = BC.HashPassword(txtMatKhau.Text);
                 cmd.Parameters.Add("@TenNhanVien", SqlDbType.NVarChar, 100).Value = txtTenNhanVien.Text;
 
                 // Lấy giá trị int từ ComboBox (0 hoặc 1)
@@ -189,6 +190,14 @@ namespace QLBS
                 {
                     MessageBox.Show("Lỗi khi xóa (Có thể tài khoản này đã tạo hóa đơn): " + ex.Message);
                 }
+            }
+        }
+
+        private void dgvTaiKhoan_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvTaiKhoan.Columns[e.ColumnIndex].Name == "MatKhau")
+            {
+                e.Value = "••••••••••";
             }
         }
     }
