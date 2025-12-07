@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             btnTimKiem = new Button();
             btnTichDiem = new Button();
             txtTimKiem = new TextBox();
@@ -94,7 +94,7 @@
             // 
             // btnTichDiem
             // 
-            btnTichDiem.Location = new Point(129, 676);
+            btnTichDiem.Location = new Point(125, 547);
             btnTichDiem.Name = "btnTichDiem";
             btnTichDiem.Size = new Size(94, 58);
             btnTichDiem.TabIndex = 60;
@@ -151,7 +151,7 @@
             // 
             // btnHuy
             // 
-            btnHuy.Location = new Point(129, 676);
+            btnHuy.Location = new Point(230, 547);
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(94, 58);
             btnHuy.TabIndex = 58;
@@ -244,7 +244,7 @@
             // 
             // btnThem
             // 
-            btnThem.Location = new Point(123, 555);
+            btnThem.Location = new Point(20, 547);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(94, 58);
             btnThem.TabIndex = 60;
@@ -296,9 +296,9 @@
             // DiemTichLuy
             // 
             DiemTichLuy.DataPropertyName = "DiemTichLuy";
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = null;
-            DiemTichLuy.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
+            DiemTichLuy.DefaultCellStyle = dataGridViewCellStyle1;
             DiemTichLuy.HeaderText = "Điểm Tích Lũy";
             DiemTichLuy.MinimumWidth = 6;
             DiemTichLuy.Name = "DiemTichLuy";
@@ -387,9 +387,9 @@
             // GiaBan
             // 
             GiaBan.DataPropertyName = "GiaBan";
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = null;
-            GiaBan.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            GiaBan.DefaultCellStyle = dataGridViewCellStyle2;
             GiaBan.HeaderText = "Đơn Giá";
             GiaBan.MinimumWidth = 6;
             GiaBan.Name = "GiaBan";

@@ -59,10 +59,10 @@
             label1 = new Label();
             txtTenSach = new TextBox();
             panel1 = new Panel();
-            cboDanhMuc = new ComboBox();
-            label7 = new Label();
             label4 = new Label();
             txtTacGia = new TextBox();
+            cboDanhMuc = new ComboBox();
+            label7 = new Label();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSach).BeginInit();
@@ -360,6 +360,22 @@
             panel1.Size = new Size(287, 525);
             panel1.TabIndex = 2;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(13, 187);
+            label4.Name = "label4";
+            label4.Size = new Size(56, 20);
+            label4.TabIndex = 17;
+            label4.Text = "Tác Giả";
+            // 
+            // txtTacGia
+            // 
+            txtTacGia.Location = new Point(13, 210);
+            txtTacGia.Name = "txtTacGia";
+            txtTacGia.Size = new Size(268, 27);
+            txtTacGia.TabIndex = 18;
+            // 
             // cboDanhMuc
             // 
             cboDanhMuc.FormattingEnabled = true;
@@ -378,22 +394,6 @@
             label7.Tag = "";
             label7.Text = "Danh Mục";
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(13, 187);
-            label4.Name = "label4";
-            label4.Size = new Size(56, 20);
-            label4.TabIndex = 17;
-            label4.Text = "Tác Giả";
-            // 
-            // txtTacGia
-            // 
-            txtTacGia.Location = new Point(13, 210);
-            txtTacGia.Name = "txtTacGia";
-            txtTacGia.Size = new Size(268, 27);
-            txtTacGia.TabIndex = 18;
-            // 
             // KhoSach
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -405,7 +405,7 @@
             MinimizeBox = false;
             Name = "KhoSach";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "KhoSach";
+            Text = "Kho Sách";
             Load += KhoSach_Load;
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
