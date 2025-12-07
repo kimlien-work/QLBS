@@ -80,6 +80,7 @@ namespace QLBS
             dgvDoanhThu.AutoGenerateColumns = false;
             btnXemBC_Click(sender, e);
         }
+        #endregion
 
         private void btnXemBC_Click(object sender, EventArgs e)
         {
