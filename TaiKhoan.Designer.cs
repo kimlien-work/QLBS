@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnThoat = new Button();
             lblGhiChuMK = new Label();
             btnXoa = new Button();
             btnLuu = new Button();
@@ -55,7 +56,6 @@
             Account = new DataGridViewTextBoxColumn();
             MatKhau = new DataGridViewTextBoxColumn();
             ChucVu = new DataGridViewTextBoxColumn();
-            btnThoat = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvTaiKhoan).BeginInit();
@@ -85,6 +85,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(294, 429);
             panel1.TabIndex = 0;
+            // 
+            // btnThoat
+            // 
+            btnThoat.Location = new Point(200, 388);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(80, 29);
+            btnThoat.TabIndex = 24;
+            btnThoat.Text = "Thoát";
+            btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
             // 
             // lblGhiChuMK
             // 
@@ -324,16 +334,6 @@
             ChucVu.Name = "ChucVu";
             ChucVu.ReadOnly = true;
             ChucVu.Width = 125;
-            // 
-            // btnThoat
-            // 
-            btnThoat.Location = new Point(200, 388);
-            btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(80, 29);
-            btnThoat.TabIndex = 24;
-            btnThoat.Text = "Thoát";
-            btnThoat.UseVisualStyleBackColor = true;
-            btnThoat.Click += btnThoat_Click;
             // 
             // TaiKhoan
             // 

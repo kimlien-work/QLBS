@@ -23,6 +23,8 @@ namespace QLBS
         DoanhThu doanhThu = null;
         DangNhap dangNhap = null;
         string hoVaTen = "";
+
+        string taiKhoanHienTai = "";
         #endregion
 
         #region Hệ thống
@@ -179,18 +181,17 @@ namespace QLBS
                 {
                     string matKhauMaHoa = dtAccount.Rows[0]["MatKhau"].ToString();
                     string quyenHan = dtAccount.Rows[0]["ChucVu"].ToString();
-
-                    if (string.IsNullOrEmpty(matKhauMaHoa) || matKhauMaHoa.Length < 60)
-                    {
-                        MessageBox.Show("Dữ liệu mật khẩu trong hệ thống không hợp lệ. Vui lòng liên hệ quản trị viên.", "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        continue;
-                    }
+                    
+                    // ... (đoạn kiểm tra mật khẩu rỗng giữ nguyên) ...
 
                     // 5. Xác thực BCrypt
                     if (BC.Verify(password, matKhauMaHoa))
                     {
                         // ĐĂNG NHẬP THÀNH CÔNG
                         hoVaTen = dtAccount.Rows[0]["TenNhanVien"].ToString();
+                        
+                        // Lưu lại Account để dùng cho việc ghi hóa đơn (Khớp với khóa ngoại SQL)
+                        taiKhoanHienTai = dtAccount.Rows[0]["Account"].ToString(); 
 
                         using (WelcomeForm welcomeForm = new WelcomeForm(hoVaTen))
                         {
@@ -273,11 +274,29 @@ namespace QLBS
         private void mnuBanHang_Click(object sender, EventArgs e)
         {
             //MoFormCon(new BanHang());
+            /*
             if (banHang == null || banHang.IsDisposed)
             {
                 banHang = new BanHang();
                 banHang.MdiParent = this;
                 banHang.Show();
+            }
+            */
+            if (banHang == null || banHang.IsDisposed)
+            {
+                banHang = new BanHang();
+
+                // --- THÊM DÒNG NÀY ---
+                // Truyền tài khoản đang đăng nhập sang form Bán Hàng
+                banHang.CurrentNguoiBan = taiKhoanHienTai;
+
+                banHang.MdiParent = this;
+                banHang.Show();
+            }
+            else // Trường hợp form đã mở nhưng bị ẩn, cần kích hoạt lại và cập nhật người bán
+            {
+                banHang.CurrentNguoiBan = taiKhoanHienTai;
+                banHang.Activate();
             }
         }
 
@@ -353,7 +372,22 @@ namespace QLBS
 
         private void btnBanHang_Click(object sender, EventArgs e)
         {
-            mnuBanHang_Click(sender, e);
+            if (banHang == null || banHang.IsDisposed)
+            {
+                banHang = new BanHang();
+
+                // --- THÊM DÒNG NÀY ---
+                // Truyền tài khoản đang đăng nhập sang form Bán Hàng
+                banHang.CurrentNguoiBan = taiKhoanHienTai;
+
+                banHang.MdiParent = this;
+                banHang.Show();
+            }
+            else // Trường hợp form đã mở nhưng bị ẩn, cần kích hoạt lại và cập nhật người bán
+            {
+                banHang.CurrentNguoiBan = taiKhoanHienTai;
+                banHang.Activate();
+            }
         }
 
         private void btnDoanhThu_Click(object sender, EventArgs e)

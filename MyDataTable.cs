@@ -11,10 +11,11 @@ namespace QLBS
         SqlDataAdapter adapter;
         SqlCommand command;
         // Lấy chuỗi kết nối
+
         public string ConnectionString()
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder["Server"] = @".";
+            builder["Server"] = @"./SQLEXPRESS";
             builder["Database"] = "QLBS";
             builder["Integrated Security"] = "True";
             return builder.ConnectionString;
