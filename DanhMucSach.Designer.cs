@@ -59,19 +59,20 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(351, 81);
             panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(56, 15);
+            label6.Location = new Point(32, 9);
             label6.Name = "label6";
-            label6.Size = new Size(65, 20);
+            label6.Size = new Size(104, 20);
             label6.TabIndex = 6;
-            label6.Text = "Mã Sách";
+            label6.Text = "Mã Danh Mục:";
             // 
             // txtMaDM
             // 
-            txtMaDM.Location = new Point(127, 12);
+            txtMaDM.Location = new Point(144, 6);
             txtMaDM.Name = "txtMaDM";
             txtMaDM.Size = new Size(185, 27);
             txtMaDM.TabIndex = 0;
@@ -79,15 +80,16 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(56, 48);
+            label1.Location = new Point(32, 42);
             label1.Name = "label1";
-            label1.Size = new Size(67, 20);
+            label1.Size = new Size(106, 20);
             label1.TabIndex = 7;
-            label1.Text = "Tên Sách";
+            label1.Text = "Tên Danh Mục:";
+            label1.Click += label1_Click;
             // 
             // txtTenDM
             // 
-            txtTenDM.Location = new Point(127, 45);
+            txtTenDM.Location = new Point(144, 39);
             txtTenDM.Name = "txtTenDM";
             txtTenDM.Size = new Size(185, 27);
             txtTenDM.TabIndex = 1;
