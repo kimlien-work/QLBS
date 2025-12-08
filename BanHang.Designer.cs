@@ -458,7 +458,7 @@
             // 
             // donGia
             // 
-            donGia.DataPropertyName = "GiaBan";
+            donGia.DataPropertyName = "DonGia";
             dataGridViewCellStyle2.Format = "N0";
             donGia.DefaultCellStyle = dataGridViewCellStyle2;
             donGia.HeaderText = "Giá bán";

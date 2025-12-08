@@ -50,7 +50,7 @@ namespace QLBS
             txtMaSach.ReadOnly = true;
             txtTenSach.ReadOnly = true;
             txtGiaBan.ReadOnly = true;
-            lblThanhTien.Text = "0"; // Nên đặt giá trị ban đầu là 0
+            lblThanhTien.Text = "0"; // đặt giá trị ban đầu là 0
 
             numSoLuong.Minimum = 1;
         }
@@ -78,14 +78,11 @@ namespace QLBS
         #region KHỞI TẠO GIỎ HÀNG ẢO
         private void KhoiTaoGioHang()
         {
-            // 1. Tạo cấu trúc bảng ảo (Giữ nguyên để khớp với DataPropertyName vừa điền)
-            dtGioHang.Columns.Add("MaSach", typeof(string));
+            dtGioHang.Columns.Add("MaSach", typeof(string));
             dtGioHang.Columns.Add("TenSach", typeof(string));
             dtGioHang.Columns.Add("SoLuong", typeof(int));
-            dtGioHang.Columns.Add("GiaBan", typeof(decimal));
-            dtGioHang.Columns.Add("ThanhTien", typeof(decimal), "SoLuong * GiaBan");
-
-            // 2. Gán vào lưới
+            dtGioHang.Columns.Add("DonGia", typeof(decimal));
+            dtGioHang.Columns.Add("ThanhTien", typeof(decimal), "SoLuong * DonGia");
             dgvGioHang.DataSource = dtGioHang;
         }
         #endregion
@@ -117,7 +114,7 @@ namespace QLBS
             // 2. Lấy dữ liệu sách đang chọn (Sử dụng CurrentRow là đúng)
             string maSach = dgvSach.CurrentRow.Cells["MaSach"].Value.ToString();
             string tenSach = dgvSach.CurrentRow.Cells["TenSach"].Value.ToString();
-            decimal giaBan = Convert.ToDecimal(dgvSach.CurrentRow.Cells["GiaBan"].Value);
+            decimal donGia = Convert.ToDecimal(dgvSach.CurrentRow.Cells["GiaBan"].Value);
             // Lấy Tồn Kho thực tế từ dtSach (đã load)
             int tonKho = Convert.ToInt32(dgvSach.CurrentRow.Cells["SoLuongTon"].Value);
 
@@ -154,7 +151,7 @@ namespace QLBS
                 newRow["MaSach"] = maSach;
                 newRow["TenSach"] = tenSach;
                 newRow["SoLuong"] = soLuongMua;
-                newRow["GiaBan"] = giaBan;
+                newRow["DonGia"] = donGia;
 
                 dtGioHang.Rows.Add(newRow);
             }
@@ -210,18 +207,18 @@ namespace QLBS
                     {
                         string maSach = row["MaSach"].ToString();
                         int soLuong = (int)row["SoLuong"];
-                        decimal giaBan = (decimal)row["GiaBan"];
+                        decimal donGia = (decimal)row["DonGia"];
                         decimal thanhTienCT = (decimal)row["ThanhTien"];
 
                         // a. Lưu Chi tiết hóa đơn
-                        string sqlCT = @"INSERT INTO ChiTietHoaDon (MaHD, MaSach, SoLuong, GiaBan, ThanhTien)
-                                 VALUES (@MaHD, @MaSach, @SoLuong, @GiaBan, @ThanhTien)";
+                        string sqlCT = @"INSERT INTO ChiTietHoaDon (MaHD, MaSach, SoLuong, DonGia, ThanhTien)
+                                 VALUES (@MaHD, @MaSach, @SoLuong, @DonGia, @ThanhTien)";
 
                         SqlCommand cmdCT = new SqlCommand(sqlCT, conn, transaction);
                         cmdCT.Parameters.AddWithValue("@MaHD", maHD);
                         cmdCT.Parameters.AddWithValue("@MaSach", maSach);
                         cmdCT.Parameters.AddWithValue("@SoLuong", soLuong);
-                        cmdCT.Parameters.AddWithValue("@GiaBan", giaBan);
+                        cmdCT.Parameters.AddWithValue("@DonGia", donGia);
                         cmdCT.Parameters.AddWithValue("@ThanhTien", thanhTienCT);
                         cmdCT.ExecuteNonQuery();
 
@@ -269,13 +266,14 @@ namespace QLBS
 
                     // BƯỚC 4: RESET GIAO DIỆN SAU THANH TOÁN
                     dtGioHang.Clear();
-                    lblThanhTien.Text = "0";
+                    lblThanhTien.Text = "0"; // Đặt lại đơn vị
 
                     // Reset thông tin khách hàng về vãng lai (MaKH=1)
                     maKhachHangHienTai = 1;
                     txtTimSDT.Text = string.Empty;
                     dgvKhachHang.DataSource = null; // Xóa kết quả tìm kiếm KH
                     txtTimKiem.Text = string.Empty;
+                    dgvGioHang.DataSource = null;
 
                     // Load lại danh sách sách để cập nhật tồn kho mới
                     LoadDanhSachSach();
