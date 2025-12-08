@@ -100,7 +100,6 @@
             // 
             txtSoLuongTon.Location = new Point(12, 321);
             txtSoLuongTon.Name = "txtSoLuongTon";
-            txtSoLuongTon.ReadOnly = true;
             txtSoLuongTon.Size = new Size(268, 27);
             txtSoLuongTon.TabIndex = 8;
             // 
