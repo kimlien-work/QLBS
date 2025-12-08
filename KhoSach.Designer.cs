@@ -48,13 +48,6 @@
             label2 = new Label();
             txtTimKiem = new TextBox();
             dgvSach = new DataGridView();
-            label1 = new Label();
-            txtTenSach = new TextBox();
-            panel1 = new Panel();
-            label4 = new Label();
-            txtTacGia = new TextBox();
-            cboDanhMuc = new ComboBox();
-            label7 = new Label();
             MSach = new DataGridViewTextBoxColumn();
             TenSach = new DataGridViewTextBoxColumn();
             TenDanhMuc = new DataGridViewTextBoxColumn();
@@ -62,6 +55,14 @@
             SoLuongTon = new DataGridViewTextBoxColumn();
             TacGia = new DataGridViewTextBoxColumn();
             GhiChu = new DataGridViewTextBoxColumn();
+            label1 = new Label();
+            txtTenSach = new TextBox();
+            panel1 = new Panel();
+            label4 = new Label();
+            txtTacGia = new TextBox();
+            cboDanhMuc = new ComboBox();
+            label7 = new Label();
+            btnThoat = new Button();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSach).BeginInit();
@@ -118,7 +119,7 @@
             // 
             // btnXoa
             // 
-            btnXoa.Location = new Point(150, 451);
+            btnXoa.Location = new Point(150, 416);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(125, 29);
             btnXoa.TabIndex = 12;
@@ -140,7 +141,7 @@
             // 
             btnThem.Location = new Point(12, 416);
             btnThem.Name = "btnThem";
-            btnThem.Size = new Size(263, 29);
+            btnThem.Size = new Size(132, 29);
             btnThem.TabIndex = 3;
             btnThem.Text = "Thêm Sách";
             btnThem.UseVisualStyleBackColor = true;
@@ -148,7 +149,7 @@
             // 
             // btnHuy
             // 
-            btnHuy.Location = new Point(150, 486);
+            btnHuy.Location = new Point(150, 451);
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(125, 29);
             btnHuy.TabIndex = 11;
@@ -248,83 +249,6 @@
             dgvSach.Size = new Size(770, 485);
             dgvSach.TabIndex = 0;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 68);
-            label1.Name = "label1";
-            label1.Size = new Size(67, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Tên Sách";
-            // 
-            // txtTenSach
-            // 
-            txtTenSach.Location = new Point(12, 91);
-            txtTenSach.Name = "txtTenSach";
-            txtTenSach.Size = new Size(268, 27);
-            txtTenSach.TabIndex = 5;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(txtTacGia);
-            panel1.Controls.Add(cboDanhMuc);
-            panel1.Controls.Add(label7);
-            panel1.Controls.Add(label);
-            panel1.Controls.Add(label6);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(txtSoLuongTon);
-            panel1.Controls.Add(txtGiaBan);
-            panel1.Controls.Add(txtMaSach);
-            panel1.Controls.Add(btnXoa);
-            panel1.Controls.Add(btnLuu);
-            panel1.Controls.Add(btnThem);
-            panel1.Controls.Add(btnHuy);
-            panel1.Controls.Add(btnSua);
-            panel1.Controls.Add(label5);
-            panel1.Controls.Add(txtGhiChu);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(txtTenSach);
-            panel1.Dock = DockStyle.Left;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(287, 525);
-            panel1.TabIndex = 2;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(13, 187);
-            label4.Name = "label4";
-            label4.Size = new Size(56, 20);
-            label4.TabIndex = 17;
-            label4.Text = "Tác Giả";
-            // 
-            // txtTacGia
-            // 
-            txtTacGia.Location = new Point(13, 210);
-            txtTacGia.Name = "txtTacGia";
-            txtTacGia.Size = new Size(268, 27);
-            txtTacGia.TabIndex = 18;
-            // 
-            // cboDanhMuc
-            // 
-            cboDanhMuc.FormattingEnabled = true;
-            cboDanhMuc.Location = new Point(12, 149);
-            cboDanhMuc.Name = "cboDanhMuc";
-            cboDanhMuc.Size = new Size(263, 28);
-            cboDanhMuc.TabIndex = 16;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(12, 126);
-            label7.Name = "label7";
-            label7.Size = new Size(76, 20);
-            label7.TabIndex = 15;
-            label7.Tag = "";
-            label7.Text = "Danh Mục";
-            // 
             // MSach
             // 
             MSach.DataPropertyName = "MaSach";
@@ -384,6 +308,94 @@
             GhiChu.Name = "GhiChu";
             GhiChu.ReadOnly = true;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 68);
+            label1.Name = "label1";
+            label1.Size = new Size(67, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Tên Sách";
+            // 
+            // txtTenSach
+            // 
+            txtTenSach.Location = new Point(12, 91);
+            txtTenSach.Name = "txtTenSach";
+            txtTenSach.Size = new Size(268, 27);
+            txtTenSach.TabIndex = 5;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(btnThoat);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(txtTacGia);
+            panel1.Controls.Add(cboDanhMuc);
+            panel1.Controls.Add(label7);
+            panel1.Controls.Add(label);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(txtSoLuongTon);
+            panel1.Controls.Add(txtGiaBan);
+            panel1.Controls.Add(txtMaSach);
+            panel1.Controls.Add(btnXoa);
+            panel1.Controls.Add(btnLuu);
+            panel1.Controls.Add(btnThem);
+            panel1.Controls.Add(btnHuy);
+            panel1.Controls.Add(btnSua);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(txtGhiChu);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(txtTenSach);
+            panel1.Dock = DockStyle.Left;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(287, 525);
+            panel1.TabIndex = 2;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(13, 187);
+            label4.Name = "label4";
+            label4.Size = new Size(56, 20);
+            label4.TabIndex = 17;
+            label4.Text = "Tác Giả";
+            // 
+            // txtTacGia
+            // 
+            txtTacGia.Location = new Point(13, 210);
+            txtTacGia.Name = "txtTacGia";
+            txtTacGia.Size = new Size(268, 27);
+            txtTacGia.TabIndex = 18;
+            // 
+            // cboDanhMuc
+            // 
+            cboDanhMuc.FormattingEnabled = true;
+            cboDanhMuc.Location = new Point(12, 149);
+            cboDanhMuc.Name = "cboDanhMuc";
+            cboDanhMuc.Size = new Size(263, 28);
+            cboDanhMuc.TabIndex = 16;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(12, 126);
+            label7.Name = "label7";
+            label7.Size = new Size(76, 20);
+            label7.TabIndex = 15;
+            label7.Tag = "";
+            label7.Text = "Danh Mục";
+            // 
+            // btnThoat
+            // 
+            btnThoat.Location = new Point(150, 484);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(125, 29);
+            btnThoat.TabIndex = 19;
+            btnThoat.Text = "Thoát";
+            btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
+            // 
             // KhoSach
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -441,5 +453,6 @@
         private DataGridViewTextBoxColumn SoLuongTon;
         private DataGridViewTextBoxColumn TacGia;
         private DataGridViewTextBoxColumn GhiChu;
+        private Button btnThoat;
     }
 }

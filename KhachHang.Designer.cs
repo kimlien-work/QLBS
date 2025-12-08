@@ -58,6 +58,7 @@
             txtEmail = new TextBox();
             label4 = new Label();
             txtSDT = new TextBox();
+            btnThoat = new Button();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvKhachHang).BeginInit();
@@ -197,6 +198,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(btnThoat);
             panel1.Controls.Add(label);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(label3);
@@ -283,7 +285,7 @@
             // 
             btnLuu.Location = new Point(14, 436);
             btnLuu.Name = "btnLuu";
-            btnLuu.Size = new Size(119, 29);
+            btnLuu.Size = new Size(74, 29);
             btnLuu.TabIndex = 10;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
@@ -301,9 +303,9 @@
             // 
             // btnHuy
             // 
-            btnHuy.Location = new Point(172, 436);
+            btnHuy.Location = new Point(105, 439);
             btnHuy.Name = "btnHuy";
-            btnHuy.Size = new Size(108, 29);
+            btnHuy.Size = new Size(80, 29);
             btnHuy.TabIndex = 11;
             btnHuy.Text = "Hủy";
             btnHuy.UseVisualStyleBackColor = true;
@@ -351,6 +353,16 @@
             txtSDT.Name = "txtSDT";
             txtSDT.Size = new Size(268, 27);
             txtSDT.TabIndex = 6;
+            // 
+            // btnThoat
+            // 
+            btnThoat.Location = new Point(202, 441);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(79, 29);
+            btnThoat.TabIndex = 6;
+            btnThoat.Text = "Thoát";
+            btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
             // 
             // KhachHang
             // 
@@ -407,5 +419,6 @@
         public TextBox txtTenKH;
         public TextBox txtDiemTichLuy;
         public TextBox txtMaKH;
+        private Button btnThoat;
     }
 }

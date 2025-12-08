@@ -37,6 +37,12 @@
             btnXemBC = new Button();
             panel2 = new Panel();
             dgvDoanhThu = new DataGridView();
+            MaHD = new DataGridViewTextBoxColumn();
+            NgayTao = new DataGridViewTextBoxColumn();
+            TenKH = new DataGridViewTextBoxColumn();
+            TenNhanVien = new DataGridViewTextBoxColumn();
+            TongTien = new DataGridViewTextBoxColumn();
+            TrangThai = new DataGridViewTextBoxColumn();
             panel3 = new Panel();
             label = new Label();
             label3 = new Label();
@@ -44,12 +50,7 @@
             txtTongDonHang = new TextBox();
             label4 = new Label();
             txtTongDoanhThu = new TextBox();
-            MaHD = new DataGridViewTextBoxColumn();
-            NgayTao = new DataGridViewTextBoxColumn();
-            TenKH = new DataGridViewTextBoxColumn();
-            TenNhanVien = new DataGridViewTextBoxColumn();
-            TongTien = new DataGridViewTextBoxColumn();
-            TrangThai = new DataGridViewTextBoxColumn();
+            btnThoat = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDoanhThu).BeginInit();
@@ -137,71 +138,6 @@
             dgvDoanhThu.Size = new Size(842, 422);
             dgvDoanhThu.TabIndex = 3;
             // 
-            // panel3
-            // 
-            panel3.Controls.Add(label);
-            panel3.Controls.Add(label3);
-            panel3.Controls.Add(txtSlSachBan);
-            panel3.Controls.Add(txtTongDonHang);
-            panel3.Controls.Add(label4);
-            panel3.Controls.Add(txtTongDoanhThu);
-            panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 393);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(842, 81);
-            panel3.TabIndex = 2;
-            // 
-            // label
-            // 
-            label.AutoSize = true;
-            label.Location = new Point(23, 12);
-            label.Name = "label";
-            label.Size = new Size(115, 20);
-            label.TabIndex = 9;
-            label.Text = "Tổng Đơn Hàng";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(289, 12);
-            label3.Name = "label3";
-            label3.Size = new Size(88, 20);
-            label3.TabIndex = 10;
-            label3.Text = "SL Sách Bán";
-            // 
-            // txtSlSachBan
-            // 
-            txtSlSachBan.Location = new Point(289, 35);
-            txtSlSachBan.Name = "txtSlSachBan";
-            txtSlSachBan.ReadOnly = true;
-            txtSlSachBan.Size = new Size(260, 27);
-            txtSlSachBan.TabIndex = 14;
-            // 
-            // txtTongDonHang
-            // 
-            txtTongDonHang.Location = new Point(23, 35);
-            txtTongDonHang.Name = "txtTongDonHang";
-            txtTongDonHang.ReadOnly = true;
-            txtTongDonHang.Size = new Size(260, 27);
-            txtTongDonHang.TabIndex = 13;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(562, 12);
-            label4.Name = "label4";
-            label4.Size = new Size(119, 20);
-            label4.TabIndex = 11;
-            label4.Tag = "";
-            label4.Text = "Tổng Doanh Thu";
-            // 
-            // txtTongDoanhThu
-            // 
-            txtTongDoanhThu.Location = new Point(562, 35);
-            txtTongDoanhThu.Name = "txtTongDoanhThu";
-            txtTongDoanhThu.Size = new Size(260, 27);
-            txtTongDoanhThu.TabIndex = 12;
-            // 
             // MaHD
             // 
             MaHD.DataPropertyName = "MaHD";
@@ -252,6 +188,82 @@
             TrangThai.Name = "TrangThai";
             TrangThai.ReadOnly = true;
             // 
+            // panel3
+            // 
+            panel3.Controls.Add(btnThoat);
+            panel3.Controls.Add(label);
+            panel3.Controls.Add(label3);
+            panel3.Controls.Add(txtSlSachBan);
+            panel3.Controls.Add(txtTongDonHang);
+            panel3.Controls.Add(label4);
+            panel3.Controls.Add(txtTongDoanhThu);
+            panel3.Dock = DockStyle.Bottom;
+            panel3.Location = new Point(0, 393);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(842, 81);
+            panel3.TabIndex = 2;
+            // 
+            // label
+            // 
+            label.AutoSize = true;
+            label.Location = new Point(23, 12);
+            label.Name = "label";
+            label.Size = new Size(115, 20);
+            label.TabIndex = 9;
+            label.Text = "Tổng Đơn Hàng";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(241, 12);
+            label3.Name = "label3";
+            label3.Size = new Size(88, 20);
+            label3.TabIndex = 10;
+            label3.Text = "SL Sách Bán";
+            // 
+            // txtSlSachBan
+            // 
+            txtSlSachBan.Location = new Point(241, 35);
+            txtSlSachBan.Name = "txtSlSachBan";
+            txtSlSachBan.ReadOnly = true;
+            txtSlSachBan.Size = new Size(185, 27);
+            txtSlSachBan.TabIndex = 14;
+            // 
+            // txtTongDonHang
+            // 
+            txtTongDonHang.Location = new Point(23, 35);
+            txtTongDonHang.Name = "txtTongDonHang";
+            txtTongDonHang.ReadOnly = true;
+            txtTongDonHang.Size = new Size(185, 27);
+            txtTongDonHang.TabIndex = 13;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(459, 12);
+            label4.Name = "label4";
+            label4.Size = new Size(119, 20);
+            label4.TabIndex = 11;
+            label4.Tag = "";
+            label4.Text = "Tổng Doanh Thu";
+            // 
+            // txtTongDoanhThu
+            // 
+            txtTongDoanhThu.Location = new Point(459, 35);
+            txtTongDoanhThu.Name = "txtTongDoanhThu";
+            txtTongDoanhThu.Size = new Size(185, 27);
+            txtTongDoanhThu.TabIndex = 12;
+            // 
+            // btnThoat
+            // 
+            btnThoat.Location = new Point(670, 33);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(151, 29);
+            btnThoat.TabIndex = 6;
+            btnThoat.Text = "Thoát";
+            btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
+            // 
             // DoanhThu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -298,5 +310,6 @@
         private DataGridViewTextBoxColumn TenNhanVien;
         private DataGridViewTextBoxColumn TongTien;
         private DataGridViewTextBoxColumn TrangThai;
+        private Button btnThoat;
     }
 }
