@@ -112,7 +112,6 @@
             txtTimKiem.Size = new Size(494, 27);
             txtTimKiem.TabIndex = 1;
             txtTimKiem.Text = "Nhập Tên Khách Hàng Cần Tìm";
-            txtTimKiem.TextChanged += txtTimKiem_TextChanged;
             txtTimKiem.KeyDown += txtTimKiem_KeyDown;
             // 
             // dgvKhachHang
@@ -288,6 +287,7 @@
             btnLuu.TabIndex = 10;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
+            btnLuu.Click += btnLuu_Click;
             // 
             // btnThem
             // 

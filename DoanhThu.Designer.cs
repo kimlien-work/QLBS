@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
             label2 = new Label();
             label1 = new Label();
@@ -36,12 +37,6 @@
             btnXemBC = new Button();
             panel2 = new Panel();
             dgvDoanhThu = new DataGridView();
-            MaHD = new DataGridViewTextBoxColumn();
-            NgayTao = new DataGridViewTextBoxColumn();
-            TenKH = new DataGridViewTextBoxColumn();
-            TenNhanVien = new DataGridViewTextBoxColumn();
-            TongTien = new DataGridViewTextBoxColumn();
-            TrangThai = new DataGridViewTextBoxColumn();
             panel3 = new Panel();
             label = new Label();
             label3 = new Label();
@@ -49,6 +44,12 @@
             txtTongDonHang = new TextBox();
             label4 = new Label();
             txtTongDoanhThu = new TextBox();
+            MaHD = new DataGridViewTextBoxColumn();
+            NgayTao = new DataGridViewTextBoxColumn();
+            TenKH = new DataGridViewTextBoxColumn();
+            TenNhanVien = new DataGridViewTextBoxColumn();
+            TongTien = new DataGridViewTextBoxColumn();
+            TrangThai = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDoanhThu).BeginInit();
@@ -132,56 +133,9 @@
             dgvDoanhThu.Name = "dgvDoanhThu";
             dgvDoanhThu.ReadOnly = true;
             dgvDoanhThu.RowHeadersWidth = 51;
+            dgvDoanhThu.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDoanhThu.Size = new Size(842, 422);
             dgvDoanhThu.TabIndex = 3;
-            // 
-            // MaHD
-            // 
-            MaHD.DataPropertyName = "MaHD";
-            MaHD.HeaderText = "Mã Hóa Đơn";
-            MaHD.MinimumWidth = 6;
-            MaHD.Name = "MaHD";
-            MaHD.ReadOnly = true;
-            // 
-            // NgayTao
-            // 
-            NgayTao.DataPropertyName = "NgayTao";
-            NgayTao.HeaderText = "Ngày Bán";
-            NgayTao.MinimumWidth = 6;
-            NgayTao.Name = "NgayTao";
-            NgayTao.ReadOnly = true;
-            // 
-            // TenKH
-            // 
-            TenKH.DataPropertyName = "TenKH";
-            TenKH.HeaderText = "Khách Hàng";
-            TenKH.MinimumWidth = 6;
-            TenKH.Name = "TenKH";
-            TenKH.ReadOnly = true;
-            // 
-            // TenNhanVien
-            // 
-            TenNhanVien.DataPropertyName = "TenNhanVien";
-            TenNhanVien.HeaderText = "Nhân Viên";
-            TenNhanVien.MinimumWidth = 6;
-            TenNhanVien.Name = "TenNhanVien";
-            TenNhanVien.ReadOnly = true;
-            // 
-            // TongTien
-            // 
-            TongTien.DataPropertyName = "TongTien";
-            TongTien.HeaderText = "Tổng Tiền";
-            TongTien.MinimumWidth = 6;
-            TongTien.Name = "TongTien";
-            TongTien.ReadOnly = true;
-            // 
-            // TrangThai
-            // 
-            TrangThai.DataPropertyName = "TrangThai";
-            TrangThai.HeaderText = "Trạng Thái";
-            TrangThai.MinimumWidth = 6;
-            TrangThai.Name = "TrangThai";
-            TrangThai.ReadOnly = true;
             // 
             // panel3
             // 
@@ -247,6 +201,56 @@
             txtTongDoanhThu.Name = "txtTongDoanhThu";
             txtTongDoanhThu.Size = new Size(260, 27);
             txtTongDoanhThu.TabIndex = 12;
+            // 
+            // MaHD
+            // 
+            MaHD.DataPropertyName = "MaHD";
+            MaHD.HeaderText = "Mã Hóa Đơn";
+            MaHD.MinimumWidth = 6;
+            MaHD.Name = "MaHD";
+            MaHD.ReadOnly = true;
+            // 
+            // NgayTao
+            // 
+            NgayTao.DataPropertyName = "NgayTao";
+            NgayTao.HeaderText = "Ngày Bán";
+            NgayTao.MinimumWidth = 6;
+            NgayTao.Name = "NgayTao";
+            NgayTao.ReadOnly = true;
+            // 
+            // TenKH
+            // 
+            TenKH.DataPropertyName = "TenKH";
+            TenKH.HeaderText = "Khách Hàng";
+            TenKH.MinimumWidth = 6;
+            TenKH.Name = "TenKH";
+            TenKH.ReadOnly = true;
+            // 
+            // TenNhanVien
+            // 
+            TenNhanVien.DataPropertyName = "TenNhanVien";
+            TenNhanVien.HeaderText = "Nhân Viên";
+            TenNhanVien.MinimumWidth = 6;
+            TenNhanVien.Name = "TenNhanVien";
+            TenNhanVien.ReadOnly = true;
+            // 
+            // TongTien
+            // 
+            TongTien.DataPropertyName = "TongTien";
+            dataGridViewCellStyle1.Format = "N0";
+            TongTien.DefaultCellStyle = dataGridViewCellStyle1;
+            TongTien.HeaderText = "Tổng Tiền";
+            TongTien.MinimumWidth = 6;
+            TongTien.Name = "TongTien";
+            TongTien.ReadOnly = true;
+            // 
+            // TrangThai
+            // 
+            TrangThai.DataPropertyName = "TrangThai";
+            TrangThai.HeaderText = "Trạng Thái";
+            TrangThai.MinimumWidth = 6;
+            TrangThai.Name = "TrangThai";
+            TrangThai.ReadOnly = true;
             // 
             // DoanhThu
             // 

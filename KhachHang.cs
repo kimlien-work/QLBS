@@ -23,59 +23,59 @@ namespace QLBS
         }
         #region Lấy Dữ Liệu
         private void LayDuLieu()
-                {
-                    dgvKhachHang.AutoGenerateColumns = false;
+        {
+            dgvKhachHang.AutoGenerateColumns = false;
 
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM KhachHang");
+            SqlCommand cmd = new SqlCommand("SELECT * FROM KhachHang");
 
-                    dataTable.Fill(cmd);
-                    BindingSource binding = new BindingSource();
-                    binding.DataSource = dataTable;
+            dataTable.Fill(cmd);
+            BindingSource binding = new BindingSource();
+            binding.DataSource = dataTable;
 
-                    dgvKhachHang.DataSource = binding;
+            dgvKhachHang.DataSource = binding;
 
-                    txtMaKH.DataBindings.Clear();
-                    txtTenKH.DataBindings.Clear();
-                    txtSDT.DataBindings.Clear();
-                    txtEmail.DataBindings.Clear();
-                    txtDiaChi.DataBindings.Clear();
-                    txtDiemTichLuy.DataBindings.Clear();
+            txtMaKH.DataBindings.Clear();
+            txtTenKH.DataBindings.Clear();
+            txtSDT.DataBindings.Clear();
+            txtEmail.DataBindings.Clear();
+            txtDiaChi.DataBindings.Clear();
+            txtDiemTichLuy.DataBindings.Clear();
 
-                    txtMaKH.DataBindings.Add("Text", binding, "MaKH");
+            txtMaKH.DataBindings.Add("Text", binding, "MaKH");
 
-                    txtTenKH.DataBindings.Add("Text", binding, "TenKH");
+            txtTenKH.DataBindings.Add("Text", binding, "TenKH");
 
-                    txtSDT.DataBindings.Add("Text", binding, "SDT");
+            txtSDT.DataBindings.Add("Text", binding, "SDT");
 
-                    txtEmail.DataBindings.Add("Text", binding, "Email");
+            txtEmail.DataBindings.Add("Text", binding, "Email");
 
-                    txtDiaChi.DataBindings.Add("Text", binding, "DiaChi");
+            txtDiaChi.DataBindings.Add("Text", binding, "DiaChi");
 
-                    txtDiemTichLuy.DataBindings.Add("Text", binding, "DiemTichLuy");
-                }
+            txtDiemTichLuy.DataBindings.Add("Text", binding, "DiemTichLuy");
+        }
         #endregion
 
         #region Bật Tắt
         private void BatTat(bool giaTri)
-                {
-                    txtTenKH.Enabled = giaTri;
-                    txtSDT.Enabled = giaTri;
-                    txtDiaChi.Enabled = giaTri;
-                    txtEmail.Enabled = giaTri;
+        {
+            txtTenKH.Enabled = giaTri;
+            txtSDT.Enabled = giaTri;
+            txtDiaChi.Enabled = giaTri;
+            txtEmail.Enabled = giaTri;
 
 
-                    btnLuu.Enabled = giaTri;
-                    btnHuy.Enabled = giaTri;
+            btnLuu.Enabled = giaTri;
+            btnHuy.Enabled = giaTri;
 
-                    btnThem.Enabled = !giaTri;
-                    btnSua.Enabled = !giaTri;
-                    btnXoa.Enabled = !giaTri;
+            btnThem.Enabled = !giaTri;
+            btnSua.Enabled = !giaTri;
+            btnXoa.Enabled = !giaTri;
 
-                    txtMaKH.Enabled = false;
-                    txtDiemTichLuy.Enabled = false;
-                }
+            txtMaKH.Enabled = false;
+            txtDiemTichLuy.Enabled = false;
+        }
         #endregion
-        
+
 
         private void KhachHang_Load(object sender, EventArgs e)
         {
@@ -131,72 +131,6 @@ namespace QLBS
             }
         }
 
-        private void btnLuu_Click(object sender, EventArgs e)
-        {
-            if (txtTenKH.Text.Trim() == "")
-            {
-                MessageBox.Show("Tên khách hàng không được bỏ trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtTenKH.Focus();
-                return;
-            }
-            if (txtSDT.Text.Trim() == "")
-            {
-                MessageBox.Show("Số điện thoại không được bỏ trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtSDT.Focus();
-                return;
-            }
-
-            try
-            {
-                if (maKhachHang == "")
-                {
-                    string sql = @"INSERT INTO KhachHang (TenKH, SDT, Email, DiaChi, DiemTichLuy) 
-                           VALUES(@TenKH, @SDT, @Email, @DiaChi, 0)";
-
-                    SqlCommand cmd = new SqlCommand(sql);
-                    cmd.Parameters.Add("@TenKH", SqlDbType.NVarChar, 100).Value = txtTenKH.Text;
-                    cmd.Parameters.Add("@SDT", SqlDbType.NVarChar, 20).Value = txtSDT.Text;
-                    cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 100).Value = txtEmail.Text;
-                    cmd.Parameters.Add("@DiaChi", SqlDbType.NVarChar, 200).Value = txtDiaChi.Text;
-
-                    dataTable.Update(cmd);
-                }
-                else 
-                
-                {
-                    #region Trường hợp: SỬA
-                    string sql = @"UPDATE KhachHang
-                                   SET TenKH = @TenKH,
-                                       SDT = @SDT,
-                                       Email = @Email,
-                                       DiaChi = @DiaChi
-                                   WHERE MaKH = @MaKH";
-
-                    SqlCommand cmd = new SqlCommand(sql);
-
-                    cmd.Parameters.Add("@MaKH", SqlDbType.Int).Value = int.Parse(maKhachHang);
-                    cmd.Parameters.Add("@TenKH", SqlDbType.NVarChar, 100).Value = txtTenKH.Text;
-                    cmd.Parameters.Add("@SDT", SqlDbType.NVarChar, 20).Value = txtSDT.Text;
-                    cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 100).Value = txtEmail.Text;
-                    cmd.Parameters.Add("@DiaChi", SqlDbType.NVarChar, 200).Value = txtDiaChi.Text;
-
-                    dataTable.Update(cmd);
-                    #endregion
-                }
-                
-                MessageBox.Show("Lưu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        LayDuLieu();
-                        BatTat(false);
-                    }
-                
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Lỗi: " + ex.Message);
-                    }
-               
-                
-        }
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
@@ -243,16 +177,76 @@ namespace QLBS
             txtDiemTichLuy.DataBindings.Add("Text", binding, "DiemTichLuy");
         }
 
-        private void txtTimKiem_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtTimKiem_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 btnTimKiem.PerformClick();
+            }
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            if (txtTenKH.Text.Trim() == "")
+            {
+                MessageBox.Show("Tên khách hàng không được bỏ trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtTenKH.Focus();
+                return;
+            }
+            if (txtSDT.Text.Trim() == "")
+            {
+                MessageBox.Show("Số điện thoại không được bỏ trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtSDT.Focus();
+                return;
+            }
+
+            try
+            {
+                if (maKhachHang == "")
+                {
+                    string sql = @"INSERT INTO KhachHang (TenKH, SDT, Email, DiaChi, DiemTichLuy) 
+                           VALUES(@TenKH, @SDT, @Email, @DiaChi, 0)";
+
+                    SqlCommand cmd = new SqlCommand(sql);
+                    cmd.Parameters.Add("@TenKH", SqlDbType.NVarChar, 100).Value = txtTenKH.Text;
+                    cmd.Parameters.Add("@SDT", SqlDbType.NVarChar, 20).Value = txtSDT.Text;
+                    cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 100).Value = txtEmail.Text;
+                    cmd.Parameters.Add("@DiaChi", SqlDbType.NVarChar, 200).Value = txtDiaChi.Text;
+
+                    dataTable.Update(cmd);
+                }
+                else
+
+                {
+                    #region Trường hợp: SỬA
+                    string sql = @"UPDATE KhachHang
+                                   SET TenKH = @TenKH,
+                                       SDT = @SDT,
+                                       Email = @Email,
+                                       DiaChi = @DiaChi
+                                   WHERE MaKH = @MaKH";
+
+                    SqlCommand cmd = new SqlCommand(sql);
+
+                    cmd.Parameters.Add("@MaKH", SqlDbType.Int).Value = int.Parse(maKhachHang);
+                    cmd.Parameters.Add("@TenKH", SqlDbType.NVarChar, 100).Value = txtTenKH.Text;
+                    cmd.Parameters.Add("@SDT", SqlDbType.NVarChar, 20).Value = txtSDT.Text;
+                    cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 100).Value = txtEmail.Text;
+                    cmd.Parameters.Add("@DiaChi", SqlDbType.NVarChar, 200).Value = txtDiaChi.Text;
+
+                    dataTable.Update(cmd);
+                    #endregion
+                }
+
+                MessageBox.Show("Lưu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                LayDuLieu();
+                BatTat(false);
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
     }
