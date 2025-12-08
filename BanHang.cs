@@ -186,7 +186,7 @@ namespace QLBS
                 try
                 {
                     // Lấy tổng tiền (đã loại bỏ dấu phân cách)
-                    string cleanedTongTienText = lblThanhTien.Text.Replace(".", "").Replace(",", "").Replace(" ", "");
+                    string cleanedTongTienText = System.Text.RegularExpressions.Regex.Replace(lblThanhTien.Text, "[^0-9]", "");
                     if (!decimal.TryParse(cleanedTongTienText, NumberStyles.Number, CultureInfo.InvariantCulture, out decimal tongTien))
                     {
                         // Xử lý trường hợp không parse được (ví dụ: "VND")
@@ -269,12 +269,14 @@ namespace QLBS
 
                     // BƯỚC 4: RESET GIAO DIỆN SAU THANH TOÁN
                     dtGioHang.Clear();
-                    lblThanhTien.Text = "0 VND"; // Đặt lại đơn vị
+                    lblThanhTien.Text = "0"; // Đặt lại đơn vị
 
                     // Reset thông tin khách hàng về vãng lai (MaKH=1)
                     maKhachHangHienTai = 1;
                     txtTimSDT.Text = string.Empty;
                     dgvKhachHang.DataSource = null; // Xóa kết quả tìm kiếm KH
+                    txtTimKiem.Text = string.Empty;
+                    dgvGioHang.DataSource= null;
 
                     // Load lại danh sách sách để cập nhật tồn kho mới
                     LoadDanhSachSach();
