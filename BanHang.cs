@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace QLBS
 {
@@ -16,7 +17,8 @@ namespace QLBS
         DataTable dtSach = new DataTable();
         DataTable dtKhachHang = new DataTable();
 
-        public string CurrentNguoiBan { get; set; } = "admin";
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        internal string CurrentNguoiBan { get; set; } = "admin";
 
         #region Cập NhậT Tổng Tiền
         private void CapNhatTongTien()
@@ -195,11 +197,13 @@ namespace QLBS
 
                     // BƯỚC 1: TẠO HÓA ĐƠN
                     string sqlHD = @"INSERT INTO HoaDon (NgayTao, NguoiTao, MaKH, TongTien, TrangThai) 
-                             VALUES (GETDATE(), @NguoiTao, @MaKH, @TongTien, N'Đã thanh toán');
-                             SELECT SCOPE_IDENTITY();";
-                    
+                 VALUES (GETDATE(), @NguoiTao, @MaKH, @TongTien, N'Đã thanh toán');
+                 SELECT SCOPE_IDENTITY();";
 
                     SqlCommand cmdHD = new SqlCommand(sqlHD, conn, transaction);
+
+                    cmdHD.Parameters.AddWithValue("@NguoiTao", this.CurrentNguoiBan);
+
                     cmdHD.Parameters.AddWithValue("@TongTien", tongTien);
                     cmdHD.Parameters.AddWithValue("@MaKH", maKhachHangHienTai);
 
