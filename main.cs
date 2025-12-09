@@ -78,20 +78,20 @@ namespace QLBS
 
             btnDangNhap.Enabled = false;
             btnDangXuat.Enabled = true;
-            btnDanhMucSach.Enabled = false;
-            btnKhoSach.Enabled = false;
-            btnKhachHang.Enabled = false;
+            btnDanhMucSach.Enabled = true;
+            btnKhoSach.Enabled = true;
+            btnKhachHang.Enabled = true;
             btnTaiKhoan.Enabled = true;
-            btnBanHang.Enabled = false;
+            btnBanHang.Enabled = true;
             btnDoanhThu.Enabled = true;
 
             mnuDangNhap.Enabled = false;
             mnuDangXuat.Enabled = true;
-            mnuDanhMucSach.Enabled = false;
-            mnuKhoSach.Enabled = false;
-            mnuKhachHang.Enabled = false;
+            mnuDanhMucSach.Enabled = true;
+            mnuKhoSach.Enabled = true;
+            mnuKhachHang.Enabled = true;
             mnuTaiKhoan.Enabled = true;
-            mnuBanHang.Enabled = false;
+            mnuBanHang.Enabled = true;
             mnuDoanhThu.Enabled = true;
 
             lblTrangThai.Text = "Quản trị viên " + hoVaTen;

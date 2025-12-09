@@ -44,13 +44,13 @@
             TongTien = new DataGridViewTextBoxColumn();
             TrangThai = new DataGridViewTextBoxColumn();
             panel3 = new Panel();
+            btnThoat = new Button();
             label = new Label();
             label3 = new Label();
             txtSlSachBan = new TextBox();
             txtTongDonHang = new TextBox();
             label4 = new Label();
             txtTongDoanhThu = new TextBox();
-            btnThoat = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDoanhThu).BeginInit();
@@ -125,7 +125,6 @@
             // 
             dgvDoanhThu.AllowUserToAddRows = false;
             dgvDoanhThu.AllowUserToDeleteRows = false;
-            dgvDoanhThu.AllowUserToResizeColumns = false;
             dgvDoanhThu.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDoanhThu.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDoanhThu.Columns.AddRange(new DataGridViewColumn[] { MaHD, NgayTao, TenKH, TenNhanVien, TongTien, TrangThai });
@@ -203,6 +202,16 @@
             panel3.Size = new Size(842, 81);
             panel3.TabIndex = 2;
             // 
+            // btnThoat
+            // 
+            btnThoat.Location = new Point(670, 33);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(151, 29);
+            btnThoat.TabIndex = 6;
+            btnThoat.Text = "Thoát";
+            btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
+            // 
             // label
             // 
             label.AutoSize = true;
@@ -253,16 +262,6 @@
             txtTongDoanhThu.Name = "txtTongDoanhThu";
             txtTongDoanhThu.Size = new Size(185, 27);
             txtTongDoanhThu.TabIndex = 12;
-            // 
-            // btnThoat
-            // 
-            btnThoat.Location = new Point(670, 33);
-            btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(151, 29);
-            btnThoat.TabIndex = 6;
-            btnThoat.Text = "Thoát";
-            btnThoat.UseVisualStyleBackColor = true;
-            btnThoat.Click += btnThoat_Click;
             // 
             // DoanhThu
             // 

@@ -34,15 +34,10 @@
             label2 = new Label();
             txtTimKiem = new TextBox();
             dgvKhachHang = new DataGridView();
-            MaKH = new DataGridViewTextBoxColumn();
-            TenKH = new DataGridViewTextBoxColumn();
-            SoDienThoai = new DataGridViewTextBoxColumn();
-            Diem = new DataGridViewTextBoxColumn();
-            DiaChi = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
             txtTenKH = new TextBox();
             label1 = new Label();
             panel1 = new Panel();
+            btnThoat = new Button();
             label = new Label();
             label6 = new Label();
             label3 = new Label();
@@ -58,7 +53,12 @@
             txtEmail = new TextBox();
             label4 = new Label();
             txtSDT = new TextBox();
-            btnThoat = new Button();
+            MaKH = new DataGridViewTextBoxColumn();
+            TenKH = new DataGridViewTextBoxColumn();
+            SoDienThoai = new DataGridViewTextBoxColumn();
+            Diem = new DataGridViewTextBoxColumn();
+            DiaChi = new DataGridViewTextBoxColumn();
+            Email = new DataGridViewTextBoxColumn();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvKhachHang).BeginInit();
@@ -132,54 +132,6 @@
             dgvKhachHang.Size = new Size(802, 437);
             dgvKhachHang.TabIndex = 0;
             // 
-            // MaKH
-            // 
-            MaKH.DataPropertyName = "MaKH";
-            MaKH.HeaderText = "Mã KH";
-            MaKH.MinimumWidth = 6;
-            MaKH.Name = "MaKH";
-            MaKH.ReadOnly = true;
-            // 
-            // TenKH
-            // 
-            TenKH.DataPropertyName = "TenKH";
-            TenKH.HeaderText = "Tên KH";
-            TenKH.MinimumWidth = 6;
-            TenKH.Name = "TenKH";
-            TenKH.ReadOnly = true;
-            // 
-            // SoDienThoai
-            // 
-            SoDienThoai.DataPropertyName = "SDT";
-            SoDienThoai.HeaderText = "SDT";
-            SoDienThoai.MinimumWidth = 6;
-            SoDienThoai.Name = "SoDienThoai";
-            SoDienThoai.ReadOnly = true;
-            // 
-            // Diem
-            // 
-            Diem.DataPropertyName = "DiemTichLuy";
-            Diem.HeaderText = "Điểm Thành Viên";
-            Diem.MinimumWidth = 6;
-            Diem.Name = "Diem";
-            Diem.ReadOnly = true;
-            // 
-            // DiaChi
-            // 
-            DiaChi.DataPropertyName = "DiaChi";
-            DiaChi.HeaderText = "Địa Chỉ";
-            DiaChi.MinimumWidth = 6;
-            DiaChi.Name = "DiaChi";
-            DiaChi.ReadOnly = true;
-            // 
-            // Email
-            // 
-            Email.DataPropertyName = "Email";
-            Email.HeaderText = "Email";
-            Email.MinimumWidth = 6;
-            Email.Name = "Email";
-            Email.ReadOnly = true;
-            // 
             // txtTenKH
             // 
             txtTenKH.Location = new Point(12, 98);
@@ -221,6 +173,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(287, 477);
             panel1.TabIndex = 0;
+            // 
+            // btnThoat
+            // 
+            btnThoat.Location = new Point(202, 441);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(79, 29);
+            btnThoat.TabIndex = 6;
+            btnThoat.Text = "Thoát";
+            btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
             // 
             // label
             // 
@@ -354,15 +316,53 @@
             txtSDT.Size = new Size(268, 27);
             txtSDT.TabIndex = 6;
             // 
-            // btnThoat
+            // MaKH
             // 
-            btnThoat.Location = new Point(202, 441);
-            btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(79, 29);
-            btnThoat.TabIndex = 6;
-            btnThoat.Text = "Thoát";
-            btnThoat.UseVisualStyleBackColor = true;
-            btnThoat.Click += btnThoat_Click;
+            MaKH.DataPropertyName = "MaKH";
+            MaKH.HeaderText = "Mã Khách Hàng";
+            MaKH.MinimumWidth = 6;
+            MaKH.Name = "MaKH";
+            MaKH.ReadOnly = true;
+            // 
+            // TenKH
+            // 
+            TenKH.DataPropertyName = "TenKH";
+            TenKH.HeaderText = "Tên Khách Hàng";
+            TenKH.MinimumWidth = 6;
+            TenKH.Name = "TenKH";
+            TenKH.ReadOnly = true;
+            // 
+            // SoDienThoai
+            // 
+            SoDienThoai.DataPropertyName = "SDT";
+            SoDienThoai.HeaderText = "Số Điện Thoại";
+            SoDienThoai.MinimumWidth = 6;
+            SoDienThoai.Name = "SoDienThoai";
+            SoDienThoai.ReadOnly = true;
+            // 
+            // Diem
+            // 
+            Diem.DataPropertyName = "DiemTichLuy";
+            Diem.HeaderText = "Điểm Tích Lũy";
+            Diem.MinimumWidth = 6;
+            Diem.Name = "Diem";
+            Diem.ReadOnly = true;
+            // 
+            // DiaChi
+            // 
+            DiaChi.DataPropertyName = "DiaChi";
+            DiaChi.HeaderText = "Địa Chỉ";
+            DiaChi.MinimumWidth = 6;
+            DiaChi.Name = "DiaChi";
+            DiaChi.ReadOnly = true;
+            // 
+            // Email
+            // 
+            Email.DataPropertyName = "Email";
+            Email.HeaderText = "Email";
+            Email.MinimumWidth = 6;
+            Email.Name = "Email";
+            Email.ReadOnly = true;
             // 
             // KhachHang
             // 
@@ -408,17 +408,17 @@
         private Button btnTimKiem;
         private Label label;
         private Label label6;
-        private DataGridViewTextBoxColumn MaKH;
-        private DataGridViewTextBoxColumn TenKH;
-        private DataGridViewTextBoxColumn SoDienThoai;
-        private DataGridViewTextBoxColumn Diem;
-        private DataGridViewTextBoxColumn DiaChi;
-        private DataGridViewTextBoxColumn Email;
         public DataGridView dgvKhachHang;
         public TextBox txtSDT;
         public TextBox txtTenKH;
         public TextBox txtDiemTichLuy;
         public TextBox txtMaKH;
         private Button btnThoat;
+        private DataGridViewTextBoxColumn MaKH;
+        private DataGridViewTextBoxColumn TenKH;
+        private DataGridViewTextBoxColumn SoDienThoai;
+        private DataGridViewTextBoxColumn Diem;
+        private DataGridViewTextBoxColumn DiaChi;
+        private DataGridViewTextBoxColumn Email;
     }
 }

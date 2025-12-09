@@ -58,11 +58,11 @@
             label1 = new Label();
             txtTenSach = new TextBox();
             panel1 = new Panel();
+            btnThoat = new Button();
             label4 = new Label();
             txtTacGia = new TextBox();
             cboDanhMuc = new ComboBox();
             label7 = new Label();
-            btnThoat = new Button();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSach).BeginInit();
@@ -190,7 +190,7 @@
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(287, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(770, 525);
+            panel2.Size = new Size(952, 525);
             panel2.TabIndex = 3;
             // 
             // panel3
@@ -201,12 +201,12 @@
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(770, 40);
+            panel3.Size = new Size(952, 40);
             panel3.TabIndex = 1;
             // 
             // btnTimKiem
             // 
-            btnTimKiem.Location = new Point(616, 5);
+            btnTimKiem.Location = new Point(728, 8);
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(140, 29);
             btnTimKiem.TabIndex = 2;
@@ -217,7 +217,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(8, 8);
+            label2.Location = new Point(120, 11);
             label2.Name = "label2";
             label2.Size = new Size(72, 20);
             label2.TabIndex = 0;
@@ -226,7 +226,7 @@
             // txtTimKiem
             // 
             txtTimKiem.ForeColor = SystemColors.ControlDark;
-            txtTimKiem.Location = new Point(116, 5);
+            txtTimKiem.Location = new Point(213, 8);
             txtTimKiem.Name = "txtTimKiem";
             txtTimKiem.Size = new Size(494, 27);
             txtTimKiem.TabIndex = 1;
@@ -246,7 +246,7 @@
             dgvSach.ReadOnly = true;
             dgvSach.RowHeadersWidth = 51;
             dgvSach.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSach.Size = new Size(770, 485);
+            dgvSach.Size = new Size(952, 485);
             dgvSach.TabIndex = 0;
             // 
             // MSach
@@ -352,6 +352,16 @@
             panel1.Size = new Size(287, 525);
             panel1.TabIndex = 2;
             // 
+            // btnThoat
+            // 
+            btnThoat.Location = new Point(150, 484);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(125, 29);
+            btnThoat.TabIndex = 19;
+            btnThoat.Text = "Thoát";
+            btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
+            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -386,21 +396,11 @@
             label7.Tag = "";
             label7.Text = "Danh Mục";
             // 
-            // btnThoat
-            // 
-            btnThoat.Location = new Point(150, 484);
-            btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(125, 29);
-            btnThoat.TabIndex = 19;
-            btnThoat.Text = "Thoát";
-            btnThoat.UseVisualStyleBackColor = true;
-            btnThoat.Click += btnThoat_Click;
-            // 
             // KhoSach
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1057, 525);
+            ClientSize = new Size(1239, 525);
             Controls.Add(panel2);
             Controls.Add(panel1);
             MaximizeBox = false;
