@@ -29,7 +29,7 @@ namespace QLBS
                                            "Sinh viên thực hiện:\r\n" +
                                            "1. Lê Thị Kim Liên - MSSV: DPM235441\r\n" +
                                            "2. Cao Yến Khoa - MSSV: DPM235434\r\n\r\n" +
-                                           "Giảng viên hướng dẫn: [Tên Thầy/Cô]\r\n\r\n" +
+                                           "Giảng viên hướng dẫn: Nguyễn Hoàng Tùng\r\n\r\n" +
                                            "Mô tả chức năng:\r\n" +
                                            "- Quản lý kho sách, nhập xuất tồn.\r\n" +
                                            "- Bán hàng, tính tiền và in hóa đơn.\r\n" +
