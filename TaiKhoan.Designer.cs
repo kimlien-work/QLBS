@@ -132,7 +132,6 @@
             // 
             // btnThoat
             // 
-            btnThoat.Anchor = AnchorStyles.None;
             btnThoat.Location = new Point(244, 399);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(110, 29);
@@ -142,7 +141,6 @@
             // 
             // txtTenNhanVien
             // 
-            txtTenNhanVien.Anchor = AnchorStyles.None;
             txtTenNhanVien.Location = new Point(6, 236);
             txtTenNhanVien.Name = "txtTenNhanVien";
             txtTenNhanVien.Size = new Size(349, 27);
@@ -150,7 +148,6 @@
             // 
             // lblGhiChuMK
             // 
-            lblGhiChuMK.Anchor = AnchorStyles.None;
             lblGhiChuMK.AutoSize = true;
             lblGhiChuMK.ForeColor = Color.Red;
             lblGhiChuMK.Location = new Point(6, 333);
@@ -162,7 +159,6 @@
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Location = new Point(6, 14);
             label1.Name = "label1";
@@ -172,7 +168,6 @@
             // 
             // btnXoa
             // 
-            btnXoa.Anchor = AnchorStyles.None;
             btnXoa.Location = new Point(246, 365);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(108, 29);
@@ -182,7 +177,6 @@
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
             label2.Location = new Point(6, 279);
             label2.Name = "label2";
@@ -192,7 +186,6 @@
             // 
             // txtAccount
             // 
-            txtAccount.Anchor = AnchorStyles.None;
             txtAccount.Location = new Point(6, 104);
             txtAccount.Name = "txtAccount";
             txtAccount.Size = new Size(349, 27);
@@ -200,7 +193,6 @@
             // 
             // label3
             // 
-            label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
             label3.Location = new Point(6, 213);
             label3.Name = "label3";
@@ -210,7 +202,6 @@
             // 
             // btnLuu
             // 
-            btnLuu.Anchor = AnchorStyles.None;
             btnLuu.Location = new Point(6, 397);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(106, 29);
@@ -220,7 +211,6 @@
             // 
             // cboChucVu
             // 
-            cboChucVu.Anchor = AnchorStyles.None;
             cboChucVu.FormattingEnabled = true;
             cboChucVu.Items.AddRange(new object[] { "Admin", "Nhân Viên" });
             cboChucVu.Location = new Point(6, 302);
@@ -230,7 +220,6 @@
             // 
             // label5
             // 
-            label5.Anchor = AnchorStyles.None;
             label5.AutoSize = true;
             label5.Location = new Point(6, 81);
             label5.Name = "label5";
@@ -240,7 +229,6 @@
             // 
             // txtID
             // 
-            txtID.Anchor = AnchorStyles.None;
             txtID.Location = new Point(6, 38);
             txtID.Name = "txtID";
             txtID.Size = new Size(349, 27);
@@ -248,7 +236,6 @@
             // 
             // btnThem
             // 
-            btnThem.Anchor = AnchorStyles.None;
             btnThem.Location = new Point(6, 365);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(106, 29);
@@ -258,7 +245,6 @@
             // 
             // btnSua
             // 
-            btnSua.Anchor = AnchorStyles.None;
             btnSua.Location = new Point(124, 365);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(110, 29);
@@ -268,7 +254,6 @@
             // 
             // txtMatKhau
             // 
-            txtMatKhau.Anchor = AnchorStyles.None;
             txtMatKhau.Location = new Point(6, 170);
             txtMatKhau.Name = "txtMatKhau";
             txtMatKhau.PasswordChar = '•';
@@ -277,7 +262,6 @@
             // 
             // label4
             // 
-            label4.Anchor = AnchorStyles.None;
             label4.AutoSize = true;
             label4.Location = new Point(6, 147);
             label4.Name = "label4";
@@ -288,7 +272,6 @@
             // 
             // btnHuy
             // 
-            btnHuy.Anchor = AnchorStyles.None;
             btnHuy.Location = new Point(123, 399);
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(110, 29);

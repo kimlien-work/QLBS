@@ -185,6 +185,7 @@
             dgvDanhMuc.ReadOnly = true;
             dgvDanhMuc.RowHeadersWidth = 51;
             dgvDanhMuc.ScrollBars = ScrollBars.Vertical;
+            dgvDanhMuc.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDanhMuc.Size = new Size(351, 265);
             dgvDanhMuc.TabIndex = 13;
             // 

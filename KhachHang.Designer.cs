@@ -103,7 +103,6 @@
             // 
             // txtTenKH
             // 
-            txtTenKH.Anchor = AnchorStyles.None;
             txtTenKH.Location = new Point(19, 95);
             txtTenKH.Name = "txtTenKH";
             txtTenKH.Size = new Size(268, 27);
@@ -111,7 +110,6 @@
             // 
             // btnThoat
             // 
-            btnThoat.Anchor = AnchorStyles.None;
             btnThoat.Location = new Point(207, 433);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(79, 29);
@@ -121,7 +119,6 @@
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Location = new Point(19, 72);
             label1.Name = "label1";
@@ -131,7 +128,6 @@
             // 
             // txtSDT
             // 
-            txtSDT.Anchor = AnchorStyles.None;
             txtSDT.Location = new Point(19, 161);
             txtSDT.Name = "txtSDT";
             txtSDT.Size = new Size(268, 27);
@@ -139,7 +135,6 @@
             // 
             // label
             // 
-            label.Anchor = AnchorStyles.None;
             label.AutoSize = true;
             label.Location = new Point(19, 204);
             label.Name = "label";
@@ -149,7 +144,6 @@
             // 
             // label4
             // 
-            label4.Anchor = AnchorStyles.None;
             label4.AutoSize = true;
             label4.Location = new Point(19, 138);
             label4.Name = "label4";
@@ -160,7 +154,6 @@
             // 
             // txtEmail
             // 
-            txtEmail.Anchor = AnchorStyles.None;
             txtEmail.Location = new Point(19, 354);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(268, 27);
@@ -168,7 +161,6 @@
             // 
             // label6
             // 
-            label6.Anchor = AnchorStyles.None;
             label6.AutoSize = true;
             label6.Location = new Point(19, 5);
             label6.Name = "label6";
@@ -178,7 +170,6 @@
             // 
             // label5
             // 
-            label5.Anchor = AnchorStyles.None;
             label5.AutoSize = true;
             label5.Location = new Point(20, 331);
             label5.Name = "label5";
@@ -188,7 +179,6 @@
             // 
             // label3
             // 
-            label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
             label3.Location = new Point(19, 270);
             label3.Name = "label3";
@@ -198,7 +188,6 @@
             // 
             // btnSua
             // 
-            btnSua.Anchor = AnchorStyles.None;
             btnSua.Location = new Point(112, 401);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(80, 29);
@@ -208,7 +197,6 @@
             // 
             // txtDiaChi
             // 
-            txtDiaChi.Anchor = AnchorStyles.None;
             txtDiaChi.Location = new Point(19, 293);
             txtDiaChi.Name = "txtDiaChi";
             txtDiaChi.Size = new Size(268, 27);
@@ -216,7 +204,6 @@
             // 
             // btnHuy
             // 
-            btnHuy.Anchor = AnchorStyles.None;
             btnHuy.Location = new Point(112, 433);
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(80, 29);
@@ -226,7 +213,6 @@
             // 
             // txtDiemTichLuy
             // 
-            txtDiemTichLuy.Anchor = AnchorStyles.None;
             txtDiemTichLuy.Location = new Point(19, 227);
             txtDiemTichLuy.Name = "txtDiemTichLuy";
             txtDiemTichLuy.ReadOnly = true;
@@ -235,7 +221,6 @@
             // 
             // btnThem
             // 
-            btnThem.Anchor = AnchorStyles.None;
             btnThem.Location = new Point(19, 401);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(76, 29);
@@ -245,7 +230,6 @@
             // 
             // txtMaKH
             // 
-            txtMaKH.Anchor = AnchorStyles.None;
             txtMaKH.Location = new Point(19, 29);
             txtMaKH.Name = "txtMaKH";
             txtMaKH.Size = new Size(268, 27);
@@ -253,7 +237,6 @@
             // 
             // btnLuu
             // 
-            btnLuu.Anchor = AnchorStyles.None;
             btnLuu.Location = new Point(19, 433);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(74, 29);
@@ -263,7 +246,6 @@
             // 
             // btnXoa
             // 
-            btnXoa.Anchor = AnchorStyles.None;
             btnXoa.Location = new Point(209, 401);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(78, 29);
