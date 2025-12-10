@@ -15,7 +15,7 @@ namespace QLBS
         public string ConnectionString()
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder["Server"] = @".";
+            builder["Server"] = @".\SQLEXPRESS";
             builder["Database"] = "QLBS";
             builder["Integrated Security"] = "True";
             return builder.ConnectionString;
