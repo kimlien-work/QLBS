@@ -355,8 +355,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(865, 442);
             Controls.Add(splitContainer1);
-            MaximizeBox = false;
-            MinimizeBox = false;
             MinimumSize = new Size(883, 489);
             Name = "TaiKhoan";
             StartPosition = FormStartPosition.CenterScreen;

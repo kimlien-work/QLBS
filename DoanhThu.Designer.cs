@@ -30,8 +30,12 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            label2 = new Label();
+            label1 = new Label();
+            dtpDenNgay = new DateTimePicker();
+            btnXemBC = new Button();
+            dtpTuNgay = new DateTimePicker();
             panel2 = new Panel();
-            dgvDoanhThu = new DataGridView();
             btnThoat = new Button();
             label = new Label();
             label3 = new Label();
@@ -39,11 +43,7 @@
             txtTongDonHang = new TextBox();
             label4 = new Label();
             txtTongDoanhThu = new TextBox();
-            label2 = new Label();
-            label1 = new Label();
-            dtpDenNgay = new DateTimePicker();
-            btnXemBC = new Button();
-            dtpTuNgay = new DateTimePicker();
+            dgvDoanhThu = new DataGridView();
             MaHD = new DataGridViewTextBoxColumn();
             NgayTao = new DataGridViewTextBoxColumn();
             TenKH = new DataGridViewTextBoxColumn();
@@ -68,6 +68,52 @@
             panel1.Size = new Size(842, 60);
             panel1.TabIndex = 0;
             // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.None;
+            label2.AutoSize = true;
+            label2.Location = new Point(10, 19);
+            label2.Name = "label2";
+            label2.Size = new Size(68, 20);
+            label2.TabIndex = 36;
+            label2.Text = "Từ Ngày:";
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.None;
+            label1.AutoSize = true;
+            label1.Location = new Point(344, 19);
+            label1.Name = "label1";
+            label1.Size = new Size(78, 20);
+            label1.TabIndex = 37;
+            label1.Text = "Đến Ngày:";
+            // 
+            // dtpDenNgay
+            // 
+            dtpDenNgay.Anchor = AnchorStyles.None;
+            dtpDenNgay.Location = new Point(430, 16);
+            dtpDenNgay.Name = "dtpDenNgay";
+            dtpDenNgay.Size = new Size(250, 27);
+            dtpDenNgay.TabIndex = 34;
+            // 
+            // btnXemBC
+            // 
+            btnXemBC.Anchor = AnchorStyles.None;
+            btnXemBC.Location = new Point(688, 16);
+            btnXemBC.Name = "btnXemBC";
+            btnXemBC.Size = new Size(143, 29);
+            btnXemBC.TabIndex = 38;
+            btnXemBC.Text = "Xem Báo Cáo";
+            btnXemBC.UseVisualStyleBackColor = true;
+            // 
+            // dtpTuNgay
+            // 
+            dtpTuNgay.Anchor = AnchorStyles.None;
+            dtpTuNgay.Location = new Point(86, 16);
+            dtpTuNgay.Name = "dtpTuNgay";
+            dtpTuNgay.Size = new Size(250, 27);
+            dtpTuNgay.TabIndex = 35;
+            // 
             // panel2
             // 
             panel2.Controls.Add(btnThoat);
@@ -82,23 +128,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(842, 83);
             panel2.TabIndex = 1;
-            // 
-            // dgvDoanhThu
-            // 
-            dgvDoanhThu.AllowUserToAddRows = false;
-            dgvDoanhThu.AllowUserToDeleteRows = false;
-            dgvDoanhThu.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvDoanhThu.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDoanhThu.Columns.AddRange(new DataGridViewColumn[] { MaHD, NgayTao, TenKH, TenNhanVien, TongTien, TrangThai });
-            dgvDoanhThu.Dock = DockStyle.Fill;
-            dgvDoanhThu.Location = new Point(0, 60);
-            dgvDoanhThu.Name = "dgvDoanhThu";
-            dgvDoanhThu.ReadOnly = true;
-            dgvDoanhThu.RowHeadersWidth = 51;
-            dgvDoanhThu.ScrollBars = ScrollBars.Vertical;
-            dgvDoanhThu.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvDoanhThu.Size = new Size(842, 331);
-            dgvDoanhThu.TabIndex = 32;
             // 
             // btnThoat
             // 
@@ -167,51 +196,22 @@
             txtTongDoanhThu.Size = new Size(185, 27);
             txtTongDoanhThu.TabIndex = 45;
             // 
-            // label2
+            // dgvDoanhThu
             // 
-            label2.Anchor = AnchorStyles.None;
-            label2.AutoSize = true;
-            label2.Location = new Point(10, 19);
-            label2.Name = "label2";
-            label2.Size = new Size(68, 20);
-            label2.TabIndex = 36;
-            label2.Text = "Từ Ngày:";
-            // 
-            // label1
-            // 
-            label1.Anchor = AnchorStyles.None;
-            label1.AutoSize = true;
-            label1.Location = new Point(344, 19);
-            label1.Name = "label1";
-            label1.Size = new Size(78, 20);
-            label1.TabIndex = 37;
-            label1.Text = "Đến Ngày:";
-            // 
-            // dtpDenNgay
-            // 
-            dtpDenNgay.Anchor = AnchorStyles.None;
-            dtpDenNgay.Location = new Point(430, 16);
-            dtpDenNgay.Name = "dtpDenNgay";
-            dtpDenNgay.Size = new Size(250, 27);
-            dtpDenNgay.TabIndex = 34;
-            // 
-            // btnXemBC
-            // 
-            btnXemBC.Anchor = AnchorStyles.None;
-            btnXemBC.Location = new Point(688, 16);
-            btnXemBC.Name = "btnXemBC";
-            btnXemBC.Size = new Size(143, 29);
-            btnXemBC.TabIndex = 38;
-            btnXemBC.Text = "Xem Báo Cáo";
-            btnXemBC.UseVisualStyleBackColor = true;
-            // 
-            // dtpTuNgay
-            // 
-            dtpTuNgay.Anchor = AnchorStyles.None;
-            dtpTuNgay.Location = new Point(86, 16);
-            dtpTuNgay.Name = "dtpTuNgay";
-            dtpTuNgay.Size = new Size(250, 27);
-            dtpTuNgay.TabIndex = 35;
+            dgvDoanhThu.AllowUserToAddRows = false;
+            dgvDoanhThu.AllowUserToDeleteRows = false;
+            dgvDoanhThu.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDoanhThu.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDoanhThu.Columns.AddRange(new DataGridViewColumn[] { MaHD, NgayTao, TenKH, TenNhanVien, TongTien, TrangThai });
+            dgvDoanhThu.Dock = DockStyle.Fill;
+            dgvDoanhThu.Location = new Point(0, 60);
+            dgvDoanhThu.Name = "dgvDoanhThu";
+            dgvDoanhThu.ReadOnly = true;
+            dgvDoanhThu.RowHeadersWidth = 51;
+            dgvDoanhThu.ScrollBars = ScrollBars.Vertical;
+            dgvDoanhThu.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvDoanhThu.Size = new Size(842, 331);
+            dgvDoanhThu.TabIndex = 32;
             // 
             // MaHD
             // 
@@ -274,8 +274,6 @@
             Controls.Add(dgvDoanhThu);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            MaximizeBox = false;
-            MinimizeBox = false;
             MinimumSize = new Size(860, 521);
             Name = "DoanhThu";
             StartPosition = FormStartPosition.CenterScreen;

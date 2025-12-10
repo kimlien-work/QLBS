@@ -211,8 +211,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(351, 475);
             Controls.Add(splitContainer1);
-            MaximizeBox = false;
-            MinimizeBox = false;
             MinimumSize = new Size(369, 522);
             Name = "DanhMucSach";
             StartPosition = FormStartPosition.CenterScreen;
