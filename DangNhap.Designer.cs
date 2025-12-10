@@ -38,8 +38,8 @@
             btnHuyBo = new Button();
             btnDangNhap = new Button();
             pnlLoading = new Panel();
-            label4 = new Label();
             pictureBox2 = new PictureBox();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlLoading.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -134,15 +134,6 @@
             pnlLoading.TabIndex = 4;
             pnlLoading.Visible = false;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(302, 126);
-            label4.Name = "label4";
-            label4.Size = new Size(112, 20);
-            label4.TabIndex = 1;
-            label4.Text = "Đang kiểm tra...";
-            // 
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
@@ -152,6 +143,15 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 2;
             pictureBox2.TabStop = false;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(302, 126);
+            label4.Name = "label4";
+            label4.Size = new Size(112, 20);
+            label4.TabIndex = 1;
+            label4.Text = "Đang kiểm tra...";
             // 
             // DangNhap
             // 
@@ -172,6 +172,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
+            MinimumSize = new Size(625, 339);
             Name = "DangNhap";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Đăng nhập";

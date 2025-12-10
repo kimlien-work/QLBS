@@ -28,71 +28,149 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
-            label6 = new Label();
-            txtMaDM = new TextBox();
+            splitContainer1 = new SplitContainer();
             label1 = new Label();
+            btnThoat = new Button();
+            btnXoa = new Button();
+            btnLuu = new Button();
+            btnSua = new Button();
+            label6 = new Label();
+            btnThem = new Button();
+            btnHuy = new Button();
             txtTenDM = new TextBox();
+            txtMaDM = new TextBox();
             dgvDanhMuc = new DataGridView();
             MDM = new DataGridViewTextBoxColumn();
             TenDanhMuc = new DataGridViewTextBoxColumn();
-            panel2 = new Panel();
-            btnXoa = new Button();
-            btnLuu = new Button();
-            btnThem = new Button();
-            btnThoat = new Button();
-            btnHuy = new Button();
-            btnSua = new Button();
-            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDanhMuc).BeginInit();
-            panel2.SuspendLayout();
             SuspendLayout();
             // 
-            // panel1
+            // splitContainer1
             // 
-            panel1.Controls.Add(label6);
-            panel1.Controls.Add(txtMaDM);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(txtTenDM);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(351, 81);
-            panel1.TabIndex = 0;
-            panel1.Paint += panel1_Paint;
+            splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.Location = new Point(0, 0);
+            splitContainer1.Name = "splitContainer1";
+            splitContainer1.Orientation = Orientation.Horizontal;
             // 
-            // label6
+            // splitContainer1.Panel1
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(32, 9);
-            label6.Name = "label6";
-            label6.Size = new Size(104, 20);
-            label6.TabIndex = 6;
-            label6.Text = "Mã Danh Mục:";
+            splitContainer1.Panel1.Controls.Add(label1);
+            splitContainer1.Panel1.Controls.Add(btnThoat);
+            splitContainer1.Panel1.Controls.Add(btnXoa);
+            splitContainer1.Panel1.Controls.Add(btnLuu);
+            splitContainer1.Panel1.Controls.Add(btnSua);
+            splitContainer1.Panel1.Controls.Add(label6);
+            splitContainer1.Panel1.Controls.Add(btnThem);
+            splitContainer1.Panel1.Controls.Add(btnHuy);
+            splitContainer1.Panel1.Controls.Add(txtTenDM);
+            splitContainer1.Panel1.Controls.Add(txtMaDM);
             // 
-            // txtMaDM
+            // splitContainer1.Panel2
             // 
-            txtMaDM.Location = new Point(144, 6);
-            txtMaDM.Name = "txtMaDM";
-            txtMaDM.Size = new Size(185, 27);
-            txtMaDM.TabIndex = 0;
+            splitContainer1.Panel2.Controls.Add(dgvDanhMuc);
+            splitContainer1.Size = new Size(351, 475);
+            splitContainer1.SplitterDistance = 206;
+            splitContainer1.TabIndex = 0;
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
-            label1.Location = new Point(32, 42);
+            label1.Location = new Point(27, 45);
             label1.Name = "label1";
             label1.Size = new Size(106, 20);
-            label1.TabIndex = 7;
+            label1.TabIndex = 18;
             label1.Text = "Tên Danh Mục:";
-            label1.Click += label1_Click;
+            // 
+            // btnThoat
+            // 
+            btnThoat.Anchor = AnchorStyles.None;
+            btnThoat.Location = new Point(27, 163);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(297, 29);
+            btnThoat.TabIndex = 16;
+            btnThoat.Text = "Thoát";
+            btnThoat.UseVisualStyleBackColor = true;
+            // 
+            // btnXoa
+            // 
+            btnXoa.Anchor = AnchorStyles.None;
+            btnXoa.Location = new Point(227, 93);
+            btnXoa.Name = "btnXoa";
+            btnXoa.Size = new Size(97, 29);
+            btnXoa.TabIndex = 13;
+            btnXoa.Text = "Xóa";
+            btnXoa.UseVisualStyleBackColor = true;
+            // 
+            // btnLuu
+            // 
+            btnLuu.Anchor = AnchorStyles.None;
+            btnLuu.Location = new Point(27, 128);
+            btnLuu.Name = "btnLuu";
+            btnLuu.Size = new Size(128, 29);
+            btnLuu.TabIndex = 14;
+            btnLuu.Text = "Lưu";
+            btnLuu.UseVisualStyleBackColor = true;
+            // 
+            // btnSua
+            // 
+            btnSua.Anchor = AnchorStyles.None;
+            btnSua.Location = new Point(129, 93);
+            btnSua.Name = "btnSua";
+            btnSua.Size = new Size(94, 29);
+            btnSua.TabIndex = 10;
+            btnSua.Text = "Sửa";
+            btnSua.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            label6.Anchor = AnchorStyles.None;
+            label6.AutoSize = true;
+            label6.Location = new Point(27, 14);
+            label6.Name = "label6";
+            label6.Size = new Size(104, 20);
+            label6.TabIndex = 17;
+            label6.Text = "Mã Danh Mục:";
+            // 
+            // btnThem
+            // 
+            btnThem.Anchor = AnchorStyles.None;
+            btnThem.Location = new Point(27, 93);
+            btnThem.Name = "btnThem";
+            btnThem.Size = new Size(98, 29);
+            btnThem.TabIndex = 8;
+            btnThem.Text = "Thêm";
+            btnThem.UseVisualStyleBackColor = true;
+            // 
+            // btnHuy
+            // 
+            btnHuy.Anchor = AnchorStyles.None;
+            btnHuy.Location = new Point(196, 128);
+            btnHuy.Name = "btnHuy";
+            btnHuy.Size = new Size(128, 29);
+            btnHuy.TabIndex = 15;
+            btnHuy.Text = "Hủy";
+            btnHuy.UseVisualStyleBackColor = true;
             // 
             // txtTenDM
             // 
-            txtTenDM.Location = new Point(144, 39);
+            txtTenDM.Anchor = AnchorStyles.None;
+            txtTenDM.Location = new Point(139, 45);
             txtTenDM.Name = "txtTenDM";
             txtTenDM.Size = new Size(185, 27);
-            txtTenDM.TabIndex = 1;
+            txtTenDM.TabIndex = 11;
+            // 
+            // txtMaDM
+            // 
+            txtMaDM.Anchor = AnchorStyles.None;
+            txtMaDM.Location = new Point(139, 14);
+            txtMaDM.Name = "txtMaDM";
+            txtMaDM.Size = new Size(185, 27);
+            txtMaDM.TabIndex = 9;
             // 
             // dgvDanhMuc
             // 
@@ -101,17 +179,19 @@
             dgvDanhMuc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDanhMuc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDanhMuc.Columns.AddRange(new DataGridViewColumn[] { MDM, TenDanhMuc });
-            dgvDanhMuc.Dock = DockStyle.Bottom;
-            dgvDanhMuc.Location = new Point(0, 189);
+            dgvDanhMuc.Dock = DockStyle.Fill;
+            dgvDanhMuc.Location = new Point(0, 0);
             dgvDanhMuc.Name = "dgvDanhMuc";
             dgvDanhMuc.ReadOnly = true;
             dgvDanhMuc.RowHeadersWidth = 51;
-            dgvDanhMuc.Size = new Size(351, 286);
-            dgvDanhMuc.TabIndex = 2;
+            dgvDanhMuc.ScrollBars = ScrollBars.Vertical;
+            dgvDanhMuc.Size = new Size(351, 265);
+            dgvDanhMuc.TabIndex = 13;
             // 
             // MDM
             // 
             MDM.DataPropertyName = "MaDM";
+            MDM.FillWeight = 80F;
             MDM.HeaderText = "Mã Danh Mục";
             MDM.MinimumWidth = 6;
             MDM.Name = "MDM";
@@ -125,117 +205,43 @@
             TenDanhMuc.Name = "TenDanhMuc";
             TenDanhMuc.ReadOnly = true;
             // 
-            // panel2
-            // 
-            panel2.Controls.Add(btnXoa);
-            panel2.Controls.Add(btnLuu);
-            panel2.Controls.Add(btnThem);
-            panel2.Controls.Add(btnThoat);
-            panel2.Controls.Add(btnHuy);
-            panel2.Controls.Add(btnSua);
-            panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 81);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(351, 108);
-            panel2.TabIndex = 1;
-            // 
-            // btnXoa
-            // 
-            btnXoa.Location = new Point(234, 6);
-            btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(78, 29);
-            btnXoa.TabIndex = 2;
-            btnXoa.Text = "Xóa";
-            btnXoa.UseVisualStyleBackColor = true;
-            btnXoa.Click += btnXoa_Click;
-            // 
-            // btnLuu
-            // 
-            btnLuu.Location = new Point(46, 38);
-            btnLuu.Name = "btnLuu";
-            btnLuu.Size = new Size(119, 29);
-            btnLuu.TabIndex = 3;
-            btnLuu.Text = "Lưu";
-            btnLuu.UseVisualStyleBackColor = true;
-            btnLuu.Click += btnLuu_Click;
-            // 
-            // btnThem
-            // 
-            btnThem.Location = new Point(46, 6);
-            btnThem.Name = "btnThem";
-            btnThem.Size = new Size(76, 29);
-            btnThem.TabIndex = 0;
-            btnThem.Text = "Thêm";
-            btnThem.UseVisualStyleBackColor = true;
-            btnThem.Click += btnThem_Click;
-            // 
-            // btnThoat
-            // 
-            btnThoat.Location = new Point(46, 73);
-            btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(266, 29);
-            btnThoat.TabIndex = 5;
-            btnThoat.Text = "Thoát";
-            btnThoat.UseVisualStyleBackColor = true;
-            btnThoat.Click += btnThoat_Click;
-            // 
-            // btnHuy
-            // 
-            btnHuy.Location = new Point(204, 38);
-            btnHuy.Name = "btnHuy";
-            btnHuy.Size = new Size(108, 29);
-            btnHuy.TabIndex = 4;
-            btnHuy.Text = "Hủy";
-            btnHuy.UseVisualStyleBackColor = true;
-            btnHuy.Click += btnHuy_Click;
-            // 
-            // btnSua
-            // 
-            btnSua.Location = new Point(137, 6);
-            btnSua.Name = "btnSua";
-            btnSua.Size = new Size(80, 29);
-            btnSua.TabIndex = 1;
-            btnSua.Text = "Sửa";
-            btnSua.UseVisualStyleBackColor = true;
-            btnSua.Click += btnSua_Click;
-            // 
             // DanhMucSach
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(351, 475);
-            Controls.Add(panel2);
-            Controls.Add(dgvDanhMuc);
-            Controls.Add(panel1);
+            Controls.Add(splitContainer1);
             MaximizeBox = false;
             MinimizeBox = false;
+            MinimumSize = new Size(369, 522);
             Name = "DanhMucSach";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Danh Mục Sách";
             Load += DanhMucSach_Load;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel1.PerformLayout();
+            splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvDanhMuc).EndInit();
-            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-        private Panel panel1;
-        private DataGridView dgvDanhMuc;
         private DataGridViewTextBoxColumn TenDM;
-        private DataGridViewTextBoxColumn MDM;
-        private DataGridViewTextBoxColumn TenDanhMuc;
-        private Panel panel2;
+        private SplitContainer splitContainer1;
+        private Label label1;
+        private Button btnThoat;
         private Button btnXoa;
         private Button btnLuu;
-        private Button btnThem;
-        private Button btnThoat;
-        private Button btnHuy;
         private Button btnSua;
         private Label label6;
-        private TextBox txtMaDM;
-        private Label label1;
+        private Button btnThem;
+        private Button btnHuy;
         private TextBox txtTenDM;
+        private TextBox txtMaDM;
+        private DataGridView dgvDanhMuc;
+        private DataGridViewTextBoxColumn MDM;
+        private DataGridViewTextBoxColumn TenDanhMuc;
     }
 }
