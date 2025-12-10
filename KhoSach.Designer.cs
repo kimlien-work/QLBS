@@ -423,8 +423,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1321, 564);
             Controls.Add(splitContainer1);
-            MaximizeBox = false;
-            MinimizeBox = false;
             MinimumSize = new Size(1339, 611);
             Name = "KhoSach";
             StartPosition = FormStartPosition.CenterScreen;

@@ -585,8 +585,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1193, 777);
             Controls.Add(splitContainer1);
-            MaximizeBox = false;
-            MinimizeBox = false;
             MinimumSize = new Size(1211, 824);
             Name = "BanHang";
             StartPosition = FormStartPosition.CenterScreen;

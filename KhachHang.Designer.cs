@@ -389,8 +389,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1088, 473);
             Controls.Add(splitContainer1);
-            MaximizeBox = false;
-            MinimizeBox = false;
             MinimumSize = new Size(1106, 520);
             Name = "KhachHang";
             StartPosition = FormStartPosition.CenterScreen;
