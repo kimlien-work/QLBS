@@ -77,7 +77,7 @@ namespace QLBS
             txtTacGia.Enabled = giaTri;
             cboDanhMuc.Enabled = giaTri;
             txtGiaBan.Enabled = giaTri;
-            txtSoLuongTon.Enabled = giaTri; // Đã sửa dòng này
+            txtSoLuongTon.Enabled = giaTri; 
             txtGhiChu.Enabled = giaTri;
 
             btnLuu.Enabled = giaTri;
@@ -246,7 +246,7 @@ namespace QLBS
             if (txtTimKiem.Text == placeholderText)
             {
                 txtTimKiem.Text = "";
-                txtTimKiem.ForeColor = Color.Black; // Đổi màu chữ thành đen để nhập liệu
+                txtTimKiem.ForeColor = Color.Black; 
             }
         }
 
@@ -254,8 +254,8 @@ namespace QLBS
         {
             if (string.IsNullOrWhiteSpace(txtTimKiem.Text))
             {
-                txtTimKiem.Text = placeholderText; // Gán lại chuỗi gợi ý
-                txtTimKiem.ForeColor = Color.Gray; // Đặt lại màu chữ xám
+                txtTimKiem.Text = placeholderText; 
+                txtTimKiem.ForeColor = Color.Gray; 
             }
         }
     }

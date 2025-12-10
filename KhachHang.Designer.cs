@@ -116,6 +116,7 @@
             btnThoat.TabIndex = 46;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
             // 
             // label1
             // 
@@ -194,6 +195,7 @@
             btnSua.TabIndex = 53;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
+            btnSua.Click += btnSua_Click;
             // 
             // txtDiaChi
             // 
@@ -210,6 +212,7 @@
             btnHuy.TabIndex = 51;
             btnHuy.Text = "Hủy";
             btnHuy.UseVisualStyleBackColor = true;
+            btnHuy.Click += btnHuy_Click;
             // 
             // txtDiemTichLuy
             // 
@@ -227,6 +230,7 @@
             btnThem.TabIndex = 42;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click;
             // 
             // txtMaKH
             // 
@@ -243,6 +247,7 @@
             btnLuu.TabIndex = 50;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
+            btnLuu.Click += BtnLuu_Click;
             // 
             // btnXoa
             // 
@@ -252,6 +257,7 @@
             btnXoa.TabIndex = 52;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click;
             // 
             // dgvKhachHang
             // 
@@ -344,6 +350,7 @@
             btnTimKiem.TabIndex = 35;
             btnTimKiem.Text = "Tim Kiếm";
             btnTimKiem.UseVisualStyleBackColor = true;
+            btnTimKiem.Click += btnTimKiem_Click;
             // 
             // txtTimKiem
             // 
@@ -386,6 +393,11 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
+        }
+
+        private void BtnLuu_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

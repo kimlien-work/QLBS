@@ -37,20 +37,20 @@ namespace QLBS
                 return;
             }
 
-            // 1. Bật Loading (Mô phỏng)
+            // Bật Loading
             ToggleLoading(true);
 
             // Tạm dừng 500ms để người dùng thấy trạng thái loading
             await Task.Delay(500);
 
-            // 2. LƯU Tên đăng nhập và Mật khẩu
+            // LƯU Tên đăng nhập và Mật khẩu
             this.LoggedInUsername = username.Trim();
             this.LoggedInPassword = password.Trim();
 
-            // 3. Tắt Loading
+            // Tắt Loading
             ToggleLoading(false);
 
-            // 4. Trả về DialogResult.OK cho Form main xử lý
+            // Trả về DialogResult.OK cho Form main xử lý
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

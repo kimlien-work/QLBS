@@ -55,20 +55,17 @@ namespace QLBS
 
             dgvTaiKhoan.DataSource = binding;
 
-            // --- XÓA BINDING CŨ TRƯỚC KHI ADD MỚI (Tránh lỗi trùng lặp) ---
             txtID.DataBindings.Clear();
             txtAccount.DataBindings.Clear();
             //txtMatKhau.DataBindings.Clear();
             txtTenNhanVien.DataBindings.Clear();
             cboChucVu.DataBindings.Clear();
 
-            // --- THIẾT LẬP BINDING MỚI ---
             txtID.DataBindings.Add("Text", binding, "ID", true, DataSourceUpdateMode.Never);
             txtAccount.DataBindings.Add("Text", binding, "Account", true, DataSourceUpdateMode.Never);
             //txtMatKhau.DataBindings.Add("Text", binding, "MatKhau", true, DataSourceUpdateMode.Never);
             txtTenNhanVien.DataBindings.Add("Text", binding, "TenNhanVien", true, DataSourceUpdateMode.Never);
 
-            // Binding cho ComboBox
             cboChucVu.DataBindings.Add("SelectedValue", binding, "ChucVu", true, DataSourceUpdateMode.Never);
         }
 
@@ -135,7 +132,7 @@ namespace QLBS
             string matKhauHash = null;
             if (!string.IsNullOrWhiteSpace(txtMatKhau.Text))
             {
-                // 1. Mã hóa mật khẩu nếu người dùng có nhập (cho cả Thêm và Sửa)
+                // Mã hóa mật khẩu nếu người dùng có nhập (cho cả Thêm và Sửa)
                 matKhauHash = BC.HashPassword(txtMatKhau.Text);
             }
 
@@ -155,10 +152,7 @@ namespace QLBS
                     cmd.Parameters.Add("@Account", SqlDbType.NVarChar, 50).Value = txtAccount.Text;
                     cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 100).Value = matKhauHash;
                     cmd.Parameters.Add("@TenNhanVien", SqlDbType.NVarChar, 100).Value = txtTenNhanVien.Text;
-
-                    // SỬA LỖI 1: Lấy giá trị số (ValueMember) từ ComboBox
                     cmd.Parameters.Add("@ChucVu", SqlDbType.Int).Value = (int)cboChucVu.SelectedValue;
-
                     dataTable.Update(cmd);
                 }
                 else // SỬA
@@ -170,31 +164,27 @@ namespace QLBS
                     {
                         // KHÔNG CẬP NHẬT cột MatKhau
                         sql = @" UPDATE TaiKhoan
-                         SET TenNhanVien = @TenNhanVien,
-                             ChucVu = @ChucVu
-                         WHERE ID = @IDCu";
+                                 SET TenNhanVien = @TenNhanVien,
+                                     ChucVu = @ChucVu
+                                 WHERE ID = @IDCu";
                         cmd = new SqlCommand(sql);
                     }
                     else // SỬA, CÓ ĐỔI MẬT KHẨU (Gán mật khẩu đã mã hóa)
                     {
                         // CẬP NHẬT cột MatKhau đã được mã hóa
                         sql = @" UPDATE TaiKhoan
-                         SET TenNhanVien = @TenNhanVien,
-                             MatKhau = @MatKhau,
-                             ChucVu = @ChucVu
-                         WHERE ID = @IDCu";
+                                 SET TenNhanVien = @TenNhanVien,
+                                     MatKhau = @MatKhau,
+                                     ChucVu = @ChucVu
+                                 WHERE ID = @IDCu";
                         cmd = new SqlCommand(sql);
-                        // THÊM: Parameter cho Mật khẩu đã mã hóa (LỖI 2 ĐÃ ĐƯỢC KHẮC PHỤC)
                         cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 100).Value = matKhauHash;
                     }
 
                     // Parameter chung cho cả hai trường hợp Sửa
                     cmd.Parameters.Add("@IDCu", SqlDbType.Int).Value = int.Parse(maTaiKhoan);
                     cmd.Parameters.Add("@TenNhanVien", SqlDbType.NVarChar, 100).Value = txtTenNhanVien.Text;
-
-                    // SỬA LỖI 1: Lấy giá trị số (ValueMember) từ ComboBox
                     cmd.Parameters.Add("@ChucVu", SqlDbType.Int).Value = (int)cboChucVu.SelectedValue;
-
                     // Cột Account không cần cập nhật vì đã bị khóa ở btnSua_Click
                     dataTable.Update(cmd);
                 }

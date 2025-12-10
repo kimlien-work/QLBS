@@ -102,7 +102,7 @@ namespace QLBS
 
         private void btnThemGioHang_Click(object sender, EventArgs e)
         {
-            // >>> SỬA ĐIỀU KIỆN 1: Kiểm tra TextBox Mã Sách (đã được đổ dữ liệu khi click sách)
+            // 1: Kiểm tra TextBox Mã Sách (đã được đổ dữ liệu khi click sách)
             if (string.IsNullOrEmpty(txtMaSach.Text))
             {
                 MessageBox.Show("Vui lòng chọn sách cần mua trước khi thêm vào giỏ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -131,8 +131,7 @@ namespace QLBS
             int tonKho = Convert.ToInt32(dgvSach.CurrentRow.Cells["SoLuongTon"].Value);
 
             // 3. Kiểm tra và CỘNG DỒN số lượng trong giỏ hàng
-            DataRow existingRow = dtGioHang.AsEnumerable()
-                                             .FirstOrDefault(row => row.Field<string>("MaSach") == maSach);
+            DataRow existingRow = dtGioHang.AsEnumerable().FirstOrDefault(row => row.Field<string>("MaSach") == maSach);
 
             if (existingRow != null)
             {
@@ -198,7 +197,7 @@ namespace QLBS
                     string cleanedTongTienText = System.Text.RegularExpressions.Regex.Replace(lblThanhTien.Text, "[^0-9]", "");
                     if (!decimal.TryParse(cleanedTongTienText, NumberStyles.Number, CultureInfo.InvariantCulture, out decimal tongTien))
                     {
-                        // Xử lý trường hợp không parse được (ví dụ: "VND")
+                        // Xử lý trường hợp không parse được
                         MessageBox.Show("Tổng tiền không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
@@ -248,9 +247,7 @@ namespace QLBS
                     // Hoàn tất giao dịch hóa đơn và cập nhật kho
                     transaction.Commit();
 
-                    // ----------------------------------------------------------------------------------
                     // BƯỚC 3: TÍCH ĐIỂM TỰ ĐỘNG (THỰC THI NGOÀI TRANSACTION CHÍNH)
-                    // ----------------------------------------------------------------------------------
                     if (maKhachHangHienTai > 1) // Chỉ tích điểm cho khách hàng có đăng ký
                     {
                         // Công thức tích điểm: 1 điểm cho mỗi 10,000 VND
@@ -312,7 +309,6 @@ namespace QLBS
                 return;
             }
 
-            // Đã sửa SELECT chỉ lấy các cột cần thiết (MaKH, TenKH, SDT, DiemTichLuy)
             string sql = @"SELECT MaKH, TenKH, SDT, DiemTichLuy
                    FROM KhachHang
                    WHERE SDT LIKE N'%' + @TuKhoa + '%'";
@@ -368,7 +364,6 @@ namespace QLBS
 
             if (tuKhoa == "")
             {
-                //LayDuLieuSach(); // Hoặc LoadDanhSachSach() tùy bạn muốn hiển thị toàn bộ hay chỉ sách > 0 tồn kho
                 LoadDanhSachSach();
                 return;
             }
@@ -494,10 +489,8 @@ namespace QLBS
                 DataRowView drv = (DataRowView)dgvGioHang.CurrentRow.DataBoundItem;
                 drv.Row.Delete();
 
-                // Áp dụng thay đổi vào DataTable
                 dtGioHang.AcceptChanges();
 
-                // Cập nhật lại tổng tiền
                 CapNhatTongTien();
             }
         }
@@ -542,7 +535,7 @@ namespace QLBS
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            this.Close();   
+            this.Close();
         }
     }
 }

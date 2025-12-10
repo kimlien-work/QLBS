@@ -105,6 +105,7 @@
             btnXemBC.TabIndex = 38;
             btnXemBC.Text = "Xem Báo Cáo";
             btnXemBC.UseVisualStyleBackColor = true;
+            btnXemBC.Click += btnXemBC_Click;
             // 
             // dtpTuNgay
             // 
@@ -138,6 +139,7 @@
             btnThoat.TabIndex = 41;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
             // 
             // label
             // 

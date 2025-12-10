@@ -19,7 +19,7 @@ namespace QLBS
             InitializeComponent();
         }
 
-        // Constructor MỚI: Nhận tên người dùng khi Form được tạo
+        // Nhận tên người dùng khi Form được tạo
         public WelcomeForm(string username)
         {
             InitializeComponent();

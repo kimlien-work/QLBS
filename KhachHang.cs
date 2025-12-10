@@ -46,15 +46,10 @@ namespace QLBS
             txtDiemTichLuy.DataBindings.Clear();
 
             txtMaKH.DataBindings.Add("Text", binding, "MaKH");
-
             txtTenKH.DataBindings.Add("Text", binding, "TenKH");
-
             txtSDT.DataBindings.Add("Text", binding, "SDT");
-
             txtEmail.DataBindings.Add("Text", binding, "Email");
-
             txtDiaChi.DataBindings.Add("Text", binding, "DiaChi");
-
             txtDiemTichLuy.DataBindings.Add("Text", binding, "DiemTichLuy");
         }
         #endregion
@@ -77,6 +72,7 @@ namespace QLBS
 
             txtMaKH.Enabled = false;
             txtDiemTichLuy.Enabled = false;
+            txtSDT.Enabled = false;
         }
         #endregion
 
@@ -234,7 +230,7 @@ namespace QLBS
 
                     cmd.Parameters.Add("@MaKH", SqlDbType.Int).Value = int.Parse(maKhachHang);
                     cmd.Parameters.Add("@TenKH", SqlDbType.NVarChar, 100).Value = txtTenKH.Text;
-                    cmd.Parameters.Add("@SDT", SqlDbType.NVarChar, 20).Value = txtSDT.Text;
+                    //cmd.Parameters.Add("@SDT", SqlDbType.NVarChar, 20).Value = txtSDT.Text;
                     cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 100).Value = txtEmail.Text;
                     cmd.Parameters.Add("@DiaChi", SqlDbType.NVarChar, 200).Value = txtDiaChi.Text;
 
@@ -275,11 +271,6 @@ namespace QLBS
                 txtTimKiem.Text = placeholderText; // Gán lại chuỗi gợi ý
                 txtTimKiem.ForeColor = Color.Gray; // Đặt lại màu chữ xám
             }
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

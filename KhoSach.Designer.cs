@@ -115,6 +115,7 @@
             btnThoat.TabIndex = 64;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
             // 
             // txtMaSach
             // 
@@ -197,6 +198,7 @@
             btnSua.TabIndex = 59;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
+            btnSua.Click += btnSua_Click;
             // 
             // label
             // 
@@ -215,6 +217,7 @@
             btnHuy.TabIndex = 57;
             btnHuy.Text = "Hủy";
             btnHuy.UseVisualStyleBackColor = true;
+            btnHuy.Click += btnHuy_Click;
             // 
             // label6
             // 
@@ -231,8 +234,9 @@
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(132, 29);
             btnThem.TabIndex = 50;
-            btnThem.Text = "Thêm Sách";
+            btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click;
             // 
             // label3
             // 
@@ -251,6 +255,7 @@
             btnLuu.TabIndex = 56;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
+            btnLuu.Click += btnLuu_Click;
             // 
             // txtSoLuongTon
             // 
@@ -267,6 +272,7 @@
             btnXoa.TabIndex = 58;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click;
             // 
             // txtGiaBan
             // 
@@ -376,6 +382,7 @@
             btnTimKiem.TabIndex = 46;
             btnTimKiem.Text = "Tim Kiếm";
             btnTimKiem.UseVisualStyleBackColor = true;
+            btnTimKiem.Click += btnTimKiem_Click;
             // 
             // txtTimKiem
             // 
@@ -385,7 +392,6 @@
             txtTimKiem.Name = "txtTimKiem";
             txtTimKiem.Size = new Size(387, 27);
             txtTimKiem.TabIndex = 45;
-            txtTimKiem.Text = "Nhập Tên Sách Cần Tìm";
             // 
             // label2
             // 

@@ -76,7 +76,6 @@
             btnTimSDT = new Button();
             txtTimSDT = new TextBox();
             panel3 = new Panel();
-            btnHuy = new Button();
             btnThem = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -294,6 +293,7 @@
             btnThemGioHang.TabIndex = 122;
             btnThemGioHang.Text = "Thêm Vào Giỏ Hàng";
             btnThemGioHang.UseVisualStyleBackColor = true;
+            btnThemGioHang.Click += btnThemGioHang_Click;
             // 
             // label2
             // 
@@ -367,22 +367,24 @@
             // btnThoat
             // 
             btnThoat.Anchor = AnchorStyles.None;
-            btnThoat.Location = new Point(627, 64);
+            btnThoat.Location = new Point(707, 64);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(94, 29);
             btnThoat.TabIndex = 120;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
             // 
             // BtnThanhToan
             // 
             BtnThanhToan.Anchor = AnchorStyles.None;
-            BtnThanhToan.Location = new Point(512, 64);
+            BtnThanhToan.Location = new Point(592, 64);
             BtnThanhToan.Name = "BtnThanhToan";
             BtnThanhToan.Size = new Size(94, 29);
             BtnThanhToan.TabIndex = 119;
             BtnThanhToan.Text = "Thanh Toán";
             BtnThanhToan.UseVisualStyleBackColor = true;
+            BtnThanhToan.Click += BtnThanhToan_Click;
             // 
             // btnXoa
             // 
@@ -393,6 +395,7 @@
             btnXoa.TabIndex = 57;
             btnXoa.Text = "Xóa Khỏi Giỏ Hàng";
             btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click;
             // 
             // lblThanhTien
             // 
@@ -454,6 +457,7 @@
             btnTimKiem.TabIndex = 56;
             btnTimKiem.Text = "Tìm Kiếm";
             btnTimKiem.UseVisualStyleBackColor = true;
+            btnTimKiem.Click += btnTimKiem_Click;
             // 
             // dgvKhachHang
             // 
@@ -538,6 +542,7 @@
             btnTimSDT.TabIndex = 59;
             btnTimSDT.Text = "Tìm";
             btnTimSDT.UseVisualStyleBackColor = true;
+            btnTimSDT.Click += btnTimSDT_Click;
             // 
             // txtTimSDT
             // 
@@ -551,7 +556,6 @@
             // 
             // panel3
             // 
-            panel3.Controls.Add(btnHuy);
             panel3.Controls.Add(btnThem);
             panel3.Dock = DockStyle.Bottom;
             panel3.Location = new Point(0, 671);
@@ -559,25 +563,16 @@
             panel3.Size = new Size(363, 106);
             panel3.TabIndex = 109;
             // 
-            // btnHuy
-            // 
-            btnHuy.Anchor = AnchorStyles.None;
-            btnHuy.Location = new Point(225, 39);
-            btnHuy.Name = "btnHuy";
-            btnHuy.Size = new Size(79, 29);
-            btnHuy.TabIndex = 58;
-            btnHuy.Text = "Hủy";
-            btnHuy.UseVisualStyleBackColor = true;
-            // 
             // btnThem
             // 
             btnThem.Anchor = AnchorStyles.None;
-            btnThem.Location = new Point(58, 39);
+            btnThem.Location = new Point(110, 17);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(148, 29);
             btnThem.TabIndex = 60;
             btnThem.Text = "Thêm Khách Hàng";
             btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click;
             // 
             // BanHang
             // 
@@ -621,7 +616,6 @@
         private Label label7;
         private TextBox txtTimKiem;
         private Button btnTimKiem;
-        private Button btnHuy;
         private Button btnThem;
         private Button btnXoa;
         private Label label3;
