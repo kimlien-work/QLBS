@@ -34,6 +34,12 @@
             label2 = new Label();
             txtTimKiem = new TextBox();
             dgvKhachHang = new DataGridView();
+            MaKH = new DataGridViewTextBoxColumn();
+            TenKH = new DataGridViewTextBoxColumn();
+            SoDienThoai = new DataGridViewTextBoxColumn();
+            Diem = new DataGridViewTextBoxColumn();
+            DiaChi = new DataGridViewTextBoxColumn();
+            Email = new DataGridViewTextBoxColumn();
             txtTenKH = new TextBox();
             label1 = new Label();
             panel1 = new Panel();
@@ -53,12 +59,6 @@
             txtEmail = new TextBox();
             label4 = new Label();
             txtSDT = new TextBox();
-            MaKH = new DataGridViewTextBoxColumn();
-            TenKH = new DataGridViewTextBoxColumn();
-            SoDienThoai = new DataGridViewTextBoxColumn();
-            Diem = new DataGridViewTextBoxColumn();
-            DiaChi = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvKhachHang).BeginInit();
@@ -113,7 +113,9 @@
             txtTimKiem.Size = new Size(494, 27);
             txtTimKiem.TabIndex = 1;
             txtTimKiem.Text = "Nhập Tên Khách Hàng Cần Tìm";
+            txtTimKiem.Enter += txtTimKiem_Enter;
             txtTimKiem.KeyDown += txtTimKiem_KeyDown;
+            txtTimKiem.Leave += txtTimKiem_Leave;
             // 
             // dgvKhachHang
             // 
@@ -131,6 +133,54 @@
             dgvKhachHang.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvKhachHang.Size = new Size(802, 437);
             dgvKhachHang.TabIndex = 0;
+            // 
+            // MaKH
+            // 
+            MaKH.DataPropertyName = "MaKH";
+            MaKH.HeaderText = "Mã Khách Hàng";
+            MaKH.MinimumWidth = 6;
+            MaKH.Name = "MaKH";
+            MaKH.ReadOnly = true;
+            // 
+            // TenKH
+            // 
+            TenKH.DataPropertyName = "TenKH";
+            TenKH.HeaderText = "Tên Khách Hàng";
+            TenKH.MinimumWidth = 6;
+            TenKH.Name = "TenKH";
+            TenKH.ReadOnly = true;
+            // 
+            // SoDienThoai
+            // 
+            SoDienThoai.DataPropertyName = "SDT";
+            SoDienThoai.HeaderText = "Số Điện Thoại";
+            SoDienThoai.MinimumWidth = 6;
+            SoDienThoai.Name = "SoDienThoai";
+            SoDienThoai.ReadOnly = true;
+            // 
+            // Diem
+            // 
+            Diem.DataPropertyName = "DiemTichLuy";
+            Diem.HeaderText = "Điểm Tích Lũy";
+            Diem.MinimumWidth = 6;
+            Diem.Name = "Diem";
+            Diem.ReadOnly = true;
+            // 
+            // DiaChi
+            // 
+            DiaChi.DataPropertyName = "DiaChi";
+            DiaChi.HeaderText = "Địa Chỉ";
+            DiaChi.MinimumWidth = 6;
+            DiaChi.Name = "DiaChi";
+            DiaChi.ReadOnly = true;
+            // 
+            // Email
+            // 
+            Email.DataPropertyName = "Email";
+            Email.HeaderText = "Email";
+            Email.MinimumWidth = 6;
+            Email.Name = "Email";
+            Email.ReadOnly = true;
             // 
             // txtTenKH
             // 
@@ -315,54 +365,6 @@
             txtSDT.Name = "txtSDT";
             txtSDT.Size = new Size(268, 27);
             txtSDT.TabIndex = 6;
-            // 
-            // MaKH
-            // 
-            MaKH.DataPropertyName = "MaKH";
-            MaKH.HeaderText = "Mã Khách Hàng";
-            MaKH.MinimumWidth = 6;
-            MaKH.Name = "MaKH";
-            MaKH.ReadOnly = true;
-            // 
-            // TenKH
-            // 
-            TenKH.DataPropertyName = "TenKH";
-            TenKH.HeaderText = "Tên Khách Hàng";
-            TenKH.MinimumWidth = 6;
-            TenKH.Name = "TenKH";
-            TenKH.ReadOnly = true;
-            // 
-            // SoDienThoai
-            // 
-            SoDienThoai.DataPropertyName = "SDT";
-            SoDienThoai.HeaderText = "Số Điện Thoại";
-            SoDienThoai.MinimumWidth = 6;
-            SoDienThoai.Name = "SoDienThoai";
-            SoDienThoai.ReadOnly = true;
-            // 
-            // Diem
-            // 
-            Diem.DataPropertyName = "DiemTichLuy";
-            Diem.HeaderText = "Điểm Tích Lũy";
-            Diem.MinimumWidth = 6;
-            Diem.Name = "Diem";
-            Diem.ReadOnly = true;
-            // 
-            // DiaChi
-            // 
-            DiaChi.DataPropertyName = "DiaChi";
-            DiaChi.HeaderText = "Địa Chỉ";
-            DiaChi.MinimumWidth = 6;
-            DiaChi.Name = "DiaChi";
-            DiaChi.ReadOnly = true;
-            // 
-            // Email
-            // 
-            Email.DataPropertyName = "Email";
-            Email.HeaderText = "Email";
-            Email.MinimumWidth = 6;
-            Email.Name = "Email";
-            Email.ReadOnly = true;
             // 
             // KhachHang
             // 

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             label = new Label();
             label6 = new Label();
             label3 = new Label();
@@ -231,7 +231,9 @@
             txtTimKiem.Size = new Size(494, 27);
             txtTimKiem.TabIndex = 1;
             txtTimKiem.Text = "Nhập Tên Sách Cần Tìm";
+            txtTimKiem.Enter += txtTimKiem_Enter;
             txtTimKiem.KeyDown += txtTimKiem_KeyDown;
+            txtTimKiem.Leave += txtTimKiem_Leave;
             // 
             // dgvSach
             // 
@@ -276,9 +278,9 @@
             // GiaBan
             // 
             GiaBan.DataPropertyName = "GiaBan";
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = null;
-            GiaBan.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            GiaBan.DefaultCellStyle = dataGridViewCellStyle2;
             GiaBan.HeaderText = "Giá ";
             GiaBan.MinimumWidth = 6;
             GiaBan.Name = "GiaBan";

@@ -16,6 +16,8 @@ namespace QLBS
         private int maKhachHangHienTai = 1; // MaKH=1 là khách vãng lai
         DataTable dtSach = new DataTable();
         DataTable dtKhachHang = new DataTable();
+        private string placeholderText1 = "Nhập tên sách cần tìm...";
+        private string placeholderText2 = "Nhập số điện thoại khách cần tìm...";
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal string CurrentNguoiBan { get; set; } = "admin";
@@ -44,6 +46,12 @@ namespace QLBS
             dgvGioHang.AutoGenerateColumns = false;
             dgvSach.AutoGenerateColumns = false;
             dgvKhachHang.AutoGenerateColumns = false;
+
+            txtTimKiem.Text = placeholderText1;
+            txtTimKiem.ForeColor = Color.Gray;
+
+            txtTimSDT.Text = placeholderText2;
+            txtTimSDT.ForeColor = Color.Gray;
         }
 
         private void BanHang_Load(object sender, EventArgs e)
@@ -87,7 +95,7 @@ namespace QLBS
             dtGioHang.Columns.Add("SoLuong", typeof(int));
             dtGioHang.Columns.Add("DonGia", typeof(decimal));
             dtGioHang.Columns.Add("ThanhTien", typeof(decimal), "SoLuong * DonGia");
-            dgvGioHang.DataSource = dtGioHang;
+            dgvGioHang.DataSource = dtGioHang;
         }
         #endregion
 
@@ -492,6 +500,49 @@ namespace QLBS
                 // Cập nhật lại tổng tiền
                 CapNhatTongTien();
             }
+        }
+
+        private void txtTimKiem_Enter(object sender, EventArgs e)
+        {
+            // Nếu nội dung hiện tại là chuỗi gợi ý, thì xóa nó
+            if (txtTimKiem.Text == placeholderText1)
+            {
+                txtTimKiem.Text = "";
+                txtTimKiem.ForeColor = Color.Black; // Đổi màu chữ thành đen để nhập liệu
+            }
+        }
+
+        private void txtTimKiem_Leave(object sender, EventArgs e)
+        {
+            // Nếu nội dung rỗng (không có gì được nhập)
+            if (string.IsNullOrWhiteSpace(txtTimKiem.Text))
+            {
+                txtTimKiem.Text = placeholderText1; // Gán lại chuỗi gợi ý
+                txtTimKiem.ForeColor = Color.Gray; // Đặt lại màu chữ xám
+            }
+        }
+
+        private void txtTimSDT_Enter(object sender, EventArgs e)
+        {
+            if (txtTimSDT.Text == placeholderText2)
+            {
+                txtTimSDT.Text = "";
+                txtTimSDT.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtTimSDT_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtTimSDT.Text))
+            {
+                txtTimSDT.Text = placeholderText2;
+                txtTimSDT.ForeColor = Color.Gray;
+            }
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();   
         }
     }
 }

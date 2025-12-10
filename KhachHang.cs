@@ -16,10 +16,14 @@ namespace QLBS
     {
         MyDataTable dataTable = new MyDataTable();
         string maKhachHang = "";
+        private string placeholderText = "Nhập tên khách cần tìm...";
         public KhachHang()
         {
             InitializeComponent();
             dataTable.OpenConnection();
+
+            txtTimKiem.Text = placeholderText;
+            txtTimKiem.ForeColor = Color.Gray;
         }
         #region Lấy Dữ Liệu
         private void LayDuLieu()
@@ -253,6 +257,24 @@ namespace QLBS
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtTimKiem_Enter(object sender, EventArgs e)
+        {
+            if (txtTimKiem.Text == placeholderText)
+            {
+                txtTimKiem.Text = "";
+                txtTimKiem.ForeColor = Color.Black; // Đổi màu chữ thành đen để nhập liệu
+            }
+        }
+
+        private void txtTimKiem_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtTimKiem.Text))
+            {
+                txtTimKiem.Text = placeholderText; // Gán lại chuỗi gợi ý
+                txtTimKiem.ForeColor = Color.Gray; // Đặt lại màu chữ xám
+            }
         }
     }
 }
