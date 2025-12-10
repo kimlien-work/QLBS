@@ -247,7 +247,7 @@
             btnLuu.TabIndex = 50;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
-            btnLuu.Click += BtnLuu_Click;
+            btnLuu.Click += btnLuu_Click;
             // 
             // btnXoa
             // 
@@ -360,7 +360,8 @@
             txtTimKiem.Name = "txtTimKiem";
             txtTimKiem.Size = new Size(506, 27);
             txtTimKiem.TabIndex = 34;
-            txtTimKiem.Text = "Nhập Tên Khách Hàng Cần Tìm";
+            txtTimKiem.Enter += txtTimKiem_Enter;
+            txtTimKiem.Leave += txtTimKiem_Leave;
             // 
             // label2
             // 
@@ -393,11 +394,6 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
-        }
-
-        private void BtnLuu_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion

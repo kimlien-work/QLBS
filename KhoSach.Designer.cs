@@ -392,6 +392,8 @@
             txtTimKiem.Name = "txtTimKiem";
             txtTimKiem.Size = new Size(387, 27);
             txtTimKiem.TabIndex = 45;
+            txtTimKiem.Leave += txtTimKiem_Leave;
+            txtTimKiem.Enter += txtTimKiem_Enter;
             // 
             // label2
             // 

@@ -70,9 +70,9 @@ namespace QLBS
             btnSua.Enabled = !giaTri;
             btnXoa.Enabled = !giaTri;
 
-            txtMaKH.Enabled = false;
-            txtDiemTichLuy.Enabled = false;
-            txtSDT.Enabled = false;
+            txtMaKH.Enabled = giaTri;
+            txtDiemTichLuy.Enabled = giaTri;
+            txtSDT.Enabled = giaTri;
         }
         #endregion
 
@@ -221,7 +221,6 @@ namespace QLBS
                     #region Trường hợp: SỬA
                     string sql = @"UPDATE KhachHang
                                    SET TenKH = @TenKH,
-                                       SDT = @SDT,
                                        Email = @Email,
                                        DiaChi = @DiaChi
                                    WHERE MaKH = @MaKH";
@@ -230,7 +229,6 @@ namespace QLBS
 
                     cmd.Parameters.Add("@MaKH", SqlDbType.Int).Value = int.Parse(maKhachHang);
                     cmd.Parameters.Add("@TenKH", SqlDbType.NVarChar, 100).Value = txtTenKH.Text;
-                    //cmd.Parameters.Add("@SDT", SqlDbType.NVarChar, 20).Value = txtSDT.Text;
                     cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 100).Value = txtEmail.Text;
                     cmd.Parameters.Add("@DiaChi", SqlDbType.NVarChar, 200).Value = txtDiaChi.Text;
 

@@ -64,7 +64,7 @@ namespace QLBS
             txtMaSach.DataBindings.Add("Text", binding, "MaSach", true, DataSourceUpdateMode.Never);
             txtTenSach.DataBindings.Add("Text", binding, "TenSach", true, DataSourceUpdateMode.Never);
             txtTacGia.DataBindings.Add("Text", binding, "TacGia", true, DataSourceUpdateMode.Never);
-            txtGiaBan.DataBindings.Add("Text", binding, "GiaBan", true, DataSourceUpdateMode.Never);
+            txtGiaBan.DataBindings.Add("Text", binding, "GiaBan", true, DataSourceUpdateMode.Never, string.Empty, "0");
             txtSoLuongTon.DataBindings.Add("Text", binding, "SoLuongTon", true, DataSourceUpdateMode.Never);
             txtGhiChu.DataBindings.Add("Text", binding, "GhiChu", true, DataSourceUpdateMode.Never);
             cboDanhMuc.DataBindings.Add("SelectedValue", binding, "MaDM", true, DataSourceUpdateMode.Never);
@@ -77,7 +77,7 @@ namespace QLBS
             txtTacGia.Enabled = giaTri;
             cboDanhMuc.Enabled = giaTri;
             txtGiaBan.Enabled = giaTri;
-            txtSoLuongTon.Enabled = giaTri; 
+            txtSoLuongTon.Enabled = giaTri;
             txtGhiChu.Enabled = giaTri;
 
             btnLuu.Enabled = giaTri;
@@ -144,10 +144,34 @@ namespace QLBS
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            if (txtMaSach.Text.Trim() == "") { txtMaSach.Focus(); return; }
-            if (txtTenSach.Text.Trim() == "") { txtTenSach.Focus(); return; }
-            if (txtTacGia.Text.Trim() == "") { txtTacGia.Focus(); return; }
-            if (txtGiaBan.Text.Trim() == "") { txtGiaBan.Focus(); return; }
+            if (txtMaSach.Text.Trim() == "")
+            {
+                MessageBox.Show("Mã Sách không được để trống.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtMaSach.Focus();
+                return;
+            }
+
+            if (txtTenSach.Text.Trim() == "")
+            {
+                MessageBox.Show("Tên Sách không được để trống.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTenSach.Focus();
+                return;
+            }
+
+            if (txtTacGia.Text.Trim() == "")
+            {
+                MessageBox.Show("Tác Giả không được để trống.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTacGia.Focus();
+                return;
+            }
+
+            if (txtGiaBan.Text.Trim() == "")
+            {
+                MessageBox.Show("Giá Bán không được để trống.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtGiaBan.Focus();
+                return;
+            }
+
             if (txtSoLuongTon.Text.Trim() == "") { txtSoLuongTon.Text = "0"; }
 
             try
@@ -246,7 +270,7 @@ namespace QLBS
             if (txtTimKiem.Text == placeholderText)
             {
                 txtTimKiem.Text = "";
-                txtTimKiem.ForeColor = Color.Black; 
+                txtTimKiem.ForeColor = Color.Black;
             }
         }
 
@@ -254,8 +278,8 @@ namespace QLBS
         {
             if (string.IsNullOrWhiteSpace(txtTimKiem.Text))
             {
-                txtTimKiem.Text = placeholderText; 
-                txtTimKiem.ForeColor = Color.Gray; 
+                txtTimKiem.Text = placeholderText;
+                txtTimKiem.ForeColor = Color.Gray;
             }
         }
     }

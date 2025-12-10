@@ -17,7 +17,7 @@ namespace QLBS
         DataTable dtSach = new DataTable();
         DataTable dtKhachHang = new DataTable();
         private string placeholderText1 = "Nhập tên sách cần tìm...";
-        private string placeholderText2 = "Nhập số điện thoại khách cần tìm...";
+        private string placeholderText2 = "Nhập số điện thoại khách...";
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal string CurrentNguoiBan { get; set; } = "admin";

@@ -113,8 +113,8 @@
             splitContainer1.Panel2.Controls.Add(dgvKhachHang);
             splitContainer1.Panel2.Controls.Add(panel2);
             splitContainer1.Panel2.Controls.Add(panel3);
-            splitContainer1.Size = new Size(1193, 777);
-            splitContainer1.SplitterDistance = 826;
+            splitContainer1.Size = new Size(1243, 777);
+            splitContainer1.SplitterDistance = 860;
             splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
@@ -132,7 +132,7 @@
             // 
             splitContainer2.Panel2.Controls.Add(dgvGioHang);
             splitContainer2.Panel2.Controls.Add(panel5);
-            splitContainer2.Size = new Size(826, 619);
+            splitContainer2.Size = new Size(860, 619);
             splitContainer2.SplitterDistance = 261;
             splitContainer2.TabIndex = 120;
             // 
@@ -149,8 +149,9 @@
             dgvSach.RowHeadersWidth = 51;
             dgvSach.ScrollBars = ScrollBars.Vertical;
             dgvSach.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSach.Size = new Size(826, 261);
+            dgvSach.Size = new Size(860, 261);
             dgvSach.TabIndex = 123;
+            dgvSach.CellClick += dgvSach_CellClick;
             // 
             // MaSach
             // 
@@ -201,7 +202,7 @@
             dgvGioHang.RowHeadersWidth = 51;
             dgvGioHang.ScrollBars = ScrollBars.Vertical;
             dgvGioHang.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvGioHang.Size = new Size(826, 231);
+            dgvGioHang.Size = new Size(860, 231);
             dgvGioHang.TabIndex = 121;
             // 
             // IDSach
@@ -265,13 +266,13 @@
             panel5.Dock = DockStyle.Top;
             panel5.Location = new Point(0, 0);
             panel5.Name = "panel5";
-            panel5.Size = new Size(826, 125);
+            panel5.Size = new Size(860, 125);
             panel5.TabIndex = 0;
             // 
             // numSoLuong
             // 
             numSoLuong.Anchor = AnchorStyles.None;
-            numSoLuong.Location = new Point(328, 86);
+            numSoLuong.Location = new Point(345, 86);
             numSoLuong.Name = "numSoLuong";
             numSoLuong.Size = new Size(268, 27);
             numSoLuong.TabIndex = 131;
@@ -279,7 +280,7 @@
             // txtGiaBan
             // 
             txtGiaBan.Anchor = AnchorStyles.None;
-            txtGiaBan.Location = new Point(328, 28);
+            txtGiaBan.Location = new Point(345, 28);
             txtGiaBan.Name = "txtGiaBan";
             txtGiaBan.Size = new Size(268, 27);
             txtGiaBan.TabIndex = 130;
@@ -287,7 +288,7 @@
             // btnThemGioHang
             // 
             btnThemGioHang.Anchor = AnchorStyles.None;
-            btnThemGioHang.Location = new Point(627, 31);
+            btnThemGioHang.Location = new Point(644, 31);
             btnThemGioHang.Name = "btnThemGioHang";
             btnThemGioHang.Size = new Size(105, 85);
             btnThemGioHang.TabIndex = 122;
@@ -299,7 +300,7 @@
             // 
             label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
-            label2.Location = new Point(23, 63);
+            label2.Location = new Point(40, 63);
             label2.Name = "label2";
             label2.Size = new Size(67, 20);
             label2.TabIndex = 127;
@@ -309,7 +310,7 @@
             // 
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
-            label1.Location = new Point(328, 63);
+            label1.Location = new Point(345, 63);
             label1.Name = "label1";
             label1.Size = new Size(72, 20);
             label1.TabIndex = 126;
@@ -319,7 +320,7 @@
             // 
             label.Anchor = AnchorStyles.None;
             label.AutoSize = true;
-            label.Location = new Point(328, 5);
+            label.Location = new Point(345, 5);
             label.Name = "label";
             label.Size = new Size(64, 20);
             label.TabIndex = 124;
@@ -329,7 +330,7 @@
             // 
             label6.Anchor = AnchorStyles.None;
             label6.AutoSize = true;
-            label6.Location = new Point(23, 3);
+            label6.Location = new Point(40, 3);
             label6.Name = "label6";
             label6.Size = new Size(65, 20);
             label6.TabIndex = 125;
@@ -338,7 +339,7 @@
             // txtMaSach
             // 
             txtMaSach.Anchor = AnchorStyles.None;
-            txtMaSach.Location = new Point(23, 28);
+            txtMaSach.Location = new Point(40, 28);
             txtMaSach.Name = "txtMaSach";
             txtMaSach.Size = new Size(268, 27);
             txtMaSach.TabIndex = 128;
@@ -346,7 +347,7 @@
             // txtTenSach
             // 
             txtTenSach.Anchor = AnchorStyles.None;
-            txtTenSach.Location = new Point(23, 86);
+            txtTenSach.Location = new Point(40, 86);
             txtTenSach.Name = "txtTenSach";
             txtTenSach.Size = new Size(268, 27);
             txtTenSach.TabIndex = 129;
@@ -361,13 +362,13 @@
             panel4.Dock = DockStyle.Bottom;
             panel4.Location = new Point(0, 671);
             panel4.Name = "panel4";
-            panel4.Size = new Size(826, 106);
+            panel4.Size = new Size(860, 106);
             panel4.TabIndex = 119;
             // 
             // btnThoat
             // 
             btnThoat.Anchor = AnchorStyles.None;
-            btnThoat.Location = new Point(707, 64);
+            btnThoat.Location = new Point(724, 64);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(94, 29);
             btnThoat.TabIndex = 120;
@@ -378,7 +379,7 @@
             // BtnThanhToan
             // 
             BtnThanhToan.Anchor = AnchorStyles.None;
-            BtnThanhToan.Location = new Point(592, 64);
+            BtnThanhToan.Location = new Point(609, 64);
             BtnThanhToan.Name = "BtnThanhToan";
             BtnThanhToan.Size = new Size(94, 29);
             BtnThanhToan.TabIndex = 119;
@@ -389,7 +390,7 @@
             // btnXoa
             // 
             btnXoa.Anchor = AnchorStyles.None;
-            btnXoa.Location = new Point(24, 64);
+            btnXoa.Location = new Point(41, 64);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(169, 29);
             btnXoa.TabIndex = 57;
@@ -401,7 +402,7 @@
             // 
             lblThanhTien.Anchor = AnchorStyles.None;
             lblThanhTien.AutoSize = true;
-            lblThanhTien.Location = new Point(251, 26);
+            lblThanhTien.Location = new Point(268, 26);
             lblThanhTien.Name = "lblThanhTien";
             lblThanhTien.Size = new Size(40, 20);
             lblThanhTien.TabIndex = 53;
@@ -412,7 +413,7 @@
             label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(24, 17);
+            label3.Location = new Point(41, 17);
             label3.Name = "label3";
             label3.Size = new Size(126, 31);
             label3.TabIndex = 54;
@@ -426,14 +427,14 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(826, 52);
+            panel1.Size = new Size(860, 52);
             panel1.TabIndex = 106;
             // 
             // label7
             // 
             label7.Anchor = AnchorStyles.None;
             label7.AutoSize = true;
-            label7.Location = new Point(21, 16);
+            label7.Location = new Point(38, 16);
             label7.Name = "label7";
             label7.Size = new Size(72, 20);
             label7.TabIndex = 52;
@@ -443,15 +444,17 @@
             // 
             txtTimKiem.Anchor = AnchorStyles.None;
             txtTimKiem.ForeColor = Color.Black;
-            txtTimKiem.Location = new Point(112, 13);
+            txtTimKiem.Location = new Point(129, 13);
             txtTimKiem.Name = "txtTimKiem";
             txtTimKiem.Size = new Size(494, 27);
             txtTimKiem.TabIndex = 55;
+            txtTimKiem.Enter += txtTimKiem_Enter;
+            txtTimKiem.Leave += txtTimKiem_Leave;
             // 
             // btnTimKiem
             // 
             btnTimKiem.Anchor = AnchorStyles.None;
-            btnTimKiem.Location = new Point(625, 12);
+            btnTimKiem.Location = new Point(642, 12);
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(105, 29);
             btnTimKiem.TabIndex = 56;
@@ -474,7 +477,7 @@
             dgvKhachHang.RowHeadersWidth = 51;
             dgvKhachHang.ScrollBars = ScrollBars.Vertical;
             dgvKhachHang.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvKhachHang.Size = new Size(363, 575);
+            dgvKhachHang.Size = new Size(379, 575);
             dgvKhachHang.TabIndex = 108;
             // 
             // MaKH
@@ -520,14 +523,14 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(363, 96);
+            panel2.Size = new Size(379, 96);
             panel2.TabIndex = 0;
             // 
             // label4
             // 
             label4.Anchor = AnchorStyles.None;
             label4.AutoSize = true;
-            label4.Location = new Point(32, 38);
+            label4.Location = new Point(3, 39);
             label4.Name = "label4";
             label4.Size = new Size(72, 20);
             label4.TabIndex = 58;
@@ -536,7 +539,7 @@
             // btnTimSDT
             // 
             btnTimSDT.Anchor = AnchorStyles.None;
-            btnTimSDT.Location = new Point(264, 34);
+            btnTimSDT.Location = new Point(300, 35);
             btnTimSDT.Name = "btnTimSDT";
             btnTimSDT.Size = new Size(67, 29);
             btnTimSDT.TabIndex = 59;
@@ -548,11 +551,12 @@
             // 
             txtTimSDT.Anchor = AnchorStyles.None;
             txtTimSDT.ForeColor = SystemColors.ControlDark;
-            txtTimSDT.Location = new Point(110, 35);
+            txtTimSDT.Location = new Point(81, 35);
             txtTimSDT.Name = "txtTimSDT";
-            txtTimSDT.Size = new Size(148, 27);
+            txtTimSDT.Size = new Size(213, 27);
             txtTimSDT.TabIndex = 60;
-            txtTimSDT.Text = "Nhập SDT";
+            txtTimSDT.Enter += txtTimSDT_Enter;
+            txtTimSDT.Leave += txtTimSDT_Leave;
             // 
             // panel3
             // 
@@ -560,13 +564,13 @@
             panel3.Dock = DockStyle.Bottom;
             panel3.Location = new Point(0, 671);
             panel3.Name = "panel3";
-            panel3.Size = new Size(363, 106);
+            panel3.Size = new Size(379, 106);
             panel3.TabIndex = 109;
             // 
             // btnThem
             // 
             btnThem.Anchor = AnchorStyles.None;
-            btnThem.Location = new Point(110, 17);
+            btnThem.Location = new Point(118, 17);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(148, 29);
             btnThem.TabIndex = 60;
@@ -578,7 +582,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1193, 777);
+            ClientSize = new Size(1243, 777);
             Controls.Add(splitContainer1);
             MinimumSize = new Size(1211, 824);
             Name = "BanHang";
