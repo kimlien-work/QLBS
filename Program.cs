@@ -12,6 +12,7 @@ namespace QLBS
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new main());
+            Application.Run(new BanHang());
         }
     }
 }
