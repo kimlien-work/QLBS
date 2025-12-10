@@ -276,5 +276,10 @@ namespace QLBS
                 txtTimKiem.ForeColor = Color.Gray; // Đặt lại màu chữ xám
             }
         }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
