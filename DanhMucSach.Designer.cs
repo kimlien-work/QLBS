@@ -78,7 +78,7 @@
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.None;
+            label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
             label1.Location = new Point(27, 45);
             label1.Name = "label1";
@@ -88,7 +88,7 @@
             // 
             // btnThoat
             // 
-            btnThoat.Anchor = AnchorStyles.None;
+            btnThoat.Anchor = AnchorStyles.Top;
             btnThoat.Location = new Point(27, 163);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(297, 29);
@@ -98,7 +98,7 @@
             // 
             // btnXoa
             // 
-            btnXoa.Anchor = AnchorStyles.None;
+            btnXoa.Anchor = AnchorStyles.Top;
             btnXoa.Location = new Point(227, 93);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(97, 29);
@@ -108,7 +108,7 @@
             // 
             // btnLuu
             // 
-            btnLuu.Anchor = AnchorStyles.None;
+            btnLuu.Anchor = AnchorStyles.Top;
             btnLuu.Location = new Point(27, 128);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(128, 29);
@@ -118,7 +118,7 @@
             // 
             // btnSua
             // 
-            btnSua.Anchor = AnchorStyles.None;
+            btnSua.Anchor = AnchorStyles.Top;
             btnSua.Location = new Point(129, 93);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(94, 29);
@@ -128,7 +128,7 @@
             // 
             // label6
             // 
-            label6.Anchor = AnchorStyles.None;
+            label6.Anchor = AnchorStyles.Top;
             label6.AutoSize = true;
             label6.Location = new Point(27, 14);
             label6.Name = "label6";
@@ -138,7 +138,7 @@
             // 
             // btnThem
             // 
-            btnThem.Anchor = AnchorStyles.None;
+            btnThem.Anchor = AnchorStyles.Top;
             btnThem.Location = new Point(27, 93);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(98, 29);
@@ -148,7 +148,7 @@
             // 
             // btnHuy
             // 
-            btnHuy.Anchor = AnchorStyles.None;
+            btnHuy.Anchor = AnchorStyles.Top;
             btnHuy.Location = new Point(196, 128);
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(128, 29);
@@ -158,7 +158,7 @@
             // 
             // txtTenDM
             // 
-            txtTenDM.Anchor = AnchorStyles.None;
+            txtTenDM.Anchor = AnchorStyles.Top;
             txtTenDM.Location = new Point(139, 45);
             txtTenDM.Name = "txtTenDM";
             txtTenDM.Size = new Size(185, 27);
@@ -166,7 +166,7 @@
             // 
             // txtMaDM
             // 
-            txtMaDM.Anchor = AnchorStyles.None;
+            txtMaDM.Anchor = AnchorStyles.Top;
             txtMaDM.Location = new Point(139, 14);
             txtMaDM.Name = "txtMaDM";
             txtMaDM.Size = new Size(185, 27);

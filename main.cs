@@ -238,6 +238,8 @@ namespace QLBS
                 danhMuc.MdiParent = this;
                 danhMuc.Show();
             }
+            else
+                danhMuc.Activate();
         }
 
         private void mnuKhoSach_Click(object sender, EventArgs e)
@@ -248,6 +250,8 @@ namespace QLBS
                 khoSach.MdiParent = this;
                 khoSach.Show();
             }
+            else
+                khoSach.Activate();
         }
 
         private void mnuKhachHang_Click(object sender, EventArgs e)
@@ -259,6 +263,8 @@ namespace QLBS
                 khachHang.MdiParent = this;
                 khachHang.Show();
             }
+            else
+                khachHang.Activate();
         }
 
         private void mnuTaiKhoan_Click(object sender, EventArgs e)
@@ -269,24 +275,17 @@ namespace QLBS
                 taiKhoan.MdiParent = this;
                 taiKhoan.Show();
             }
+            else
+                taiKhoan.Activate();
         }
 
         private void mnuBanHang_Click(object sender, EventArgs e)
         {
-            //MoFormCon(new BanHang());
-            /*
-            if (banHang == null || banHang.IsDisposed)
-            {
-                banHang = new BanHang();
-                banHang.MdiParent = this;
-                banHang.Show();
-            }
-            */
+            
             if (banHang == null || banHang.IsDisposed)
             {
                 banHang = new BanHang();
 
-                // --- THÊM DÒNG NÀY ---
                 // Truyền tài khoản đang đăng nhập sang form Bán Hàng
                 banHang.CurrentNguoiBan = taiKhoanHienTai;
 
@@ -302,13 +301,14 @@ namespace QLBS
 
         private void mnuDoanhThu_Click(object sender, EventArgs e)
         {
-            //MoFormCon(new DoanhThu());
             if (doanhThu == null || doanhThu.IsDisposed)
             {
                 doanhThu = new DoanhThu();
                 doanhThu.MdiParent = this;
                 doanhThu.Show();
             }
+            else
+                doanhThu.Activate();
         }
 
         private void mnuThongTinPM_Click(object sender, EventArgs e)
@@ -376,7 +376,6 @@ namespace QLBS
             {
                 banHang = new BanHang();
 
-                // --- THÊM DÒNG NÀY ---
                 // Truyền tài khoản đang đăng nhập sang form Bán Hàng
                 banHang.CurrentNguoiBan = taiKhoanHienTai;
 
