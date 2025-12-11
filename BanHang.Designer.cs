@@ -76,6 +76,7 @@
             btnTimSDT = new Button();
             txtTimSDT = new TextBox();
             panel3 = new Panel();
+            btnHuy = new Button();
             btnThem = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -560,6 +561,7 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(btnHuy);
             panel3.Controls.Add(btnThem);
             panel3.Dock = DockStyle.Bottom;
             panel3.Location = new Point(0, 671);
@@ -567,10 +569,21 @@
             panel3.Size = new Size(379, 106);
             panel3.TabIndex = 109;
             // 
+            // btnHuy
+            // 
+            btnHuy.Anchor = AnchorStyles.None;
+            btnHuy.Location = new Point(209, 17);
+            btnHuy.Name = "btnHuy";
+            btnHuy.Size = new Size(148, 29);
+            btnHuy.TabIndex = 61;
+            btnHuy.Text = "Hủy";
+            btnHuy.UseVisualStyleBackColor = true;
+            btnHuy.Click += btnHuy_Click;
+            // 
             // btnThem
             // 
             btnThem.Anchor = AnchorStyles.None;
-            btnThem.Location = new Point(118, 17);
+            btnThem.Location = new Point(21, 17);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(148, 29);
             btnThem.TabIndex = 60;
@@ -659,5 +672,6 @@
         private DataGridViewTextBoxColumn soLuong;
         private DataGridViewTextBoxColumn donGia;
         private DataGridViewTextBoxColumn thanhTien;
+        private Button btnHuy;
     }
 }

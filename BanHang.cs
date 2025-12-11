@@ -123,14 +123,14 @@ namespace QLBS
                 return;
             }
 
-            // 2. Lấy dữ liệu sách đang chọn (Sử dụng CurrentRow là đúng)
+            // Lấy dữ liệu sách đang chọn (Sử dụng CurrentRow là đúng)
             string maSach = dgvSach.CurrentRow.Cells["MaSach"].Value.ToString();
             string tenSach = dgvSach.CurrentRow.Cells["TenSach"].Value.ToString();
             decimal donGia = Convert.ToDecimal(dgvSach.CurrentRow.Cells["GiaBan"].Value);
             // Lấy Tồn Kho thực tế từ dtSach (đã load)
             int tonKho = Convert.ToInt32(dgvSach.CurrentRow.Cells["SoLuongTon"].Value);
 
-            // 3. Kiểm tra và CỘNG DỒN số lượng trong giỏ hàng
+            // Kiểm tra và CỘNG DỒN số lượng trong giỏ hàng
             DataRow existingRow = dtGioHang.AsEnumerable().FirstOrDefault(row => row.Field<string>("MaSach") == maSach);
 
             if (existingRow != null)
@@ -167,10 +167,10 @@ namespace QLBS
                 dtGioHang.Rows.Add(newRow);
             }
 
-            // 4. Tính tổng tiền hóa đơn
+            // Tính tổng tiền hóa đơn
             CapNhatTongTien();
 
-            // 5. Làm sạch control sau khi thêm thành công (Đã sửa: reset tất cả controls)
+            // Làm sạch control sau khi thêm thành công (Đã sửa: reset tất cả controls)
             txtMaSach.Text = string.Empty; // <<< QUAN TRỌNG: Ngăn thêm lần 2
             txtTenSach.Text = string.Empty;
             txtGiaBan.Text = string.Empty;
@@ -202,7 +202,7 @@ namespace QLBS
                         return;
                     }
 
-                    // BƯỚC 1: TẠO HÓA ĐƠN
+                    // TẠO HÓA ĐƠN
                     string sqlHD = @"INSERT INTO HoaDon (NgayTao, NguoiTao, MaKH, TongTien, TrangThai) 
                  VALUES (GETDATE(), @NguoiTao, @MaKH, @TongTien, N'Đã thanh toán');
                  SELECT SCOPE_IDENTITY();";
@@ -216,7 +216,7 @@ namespace QLBS
 
                     int maHD = Convert.ToInt32(cmdHD.ExecuteScalar());
 
-                    // BƯỚC 2: LƯU CHI TIẾT & TRỪ KHO
+                    // LƯU CHI TIẾT & TRỪ KHO
                     foreach (DataRow row in dtGioHang.Rows)
                     {
                         string maSach = row["MaSach"].ToString();
@@ -247,7 +247,7 @@ namespace QLBS
                     // Hoàn tất giao dịch hóa đơn và cập nhật kho
                     transaction.Commit();
 
-                    // BƯỚC 3: TÍCH ĐIỂM TỰ ĐỘNG (THỰC THI NGOÀI TRANSACTION CHÍNH)
+                    // TÍCH ĐIỂM TỰ ĐỘNG (THỰC THI NGOÀI TRANSACTION CHÍNH)
                     if (maKhachHangHienTai > 1) // Chỉ tích điểm cho khách hàng có đăng ký
                     {
                         // Công thức tích điểm: 1 điểm cho mỗi 10,000 VND
@@ -276,7 +276,6 @@ namespace QLBS
                     }
 
 
-                    // BƯỚC 4: RESET GIAO DIỆN SAU THANH TOÁN
                     dtGioHang.Clear();
                     lblThanhTien.Text = "0"; // Đặt lại đơn vị
 
@@ -292,7 +291,6 @@ namespace QLBS
                 }
                 catch (Exception ex)
                 {
-                    // Nếu có lỗi, rollback transaction (hủy bỏ BƯỚC 1 và BƯỚC 2)
                     transaction.Rollback();
                     MessageBox.Show("Lỗi thanh toán: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -303,9 +301,24 @@ namespace QLBS
         {
             string tuKhoa = txtTimSDT.Text.Trim();
 
-            if (tuKhoa == "")
+            if (tuKhoa == "" || tuKhoa == placeholderText2)
             {
                 LayDuLieuKhachHang();
+                return;
+            }
+
+            if (tuKhoa.Length != 10 || !long.TryParse(tuKhoa, out _))
+            {
+                MessageBox.Show("Số điện thoại tìm kiếm phải là 10 chữ số.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Reset trạng thái khách hàng về vãng lai và xóa kết quả tìm kiếm cũ
+                dgvKhachHang.DataSource = null;
+                if (dtKhachHang != null)
+                {
+                    dtKhachHang.Clear();
+                }
+                maKhachHangHienTai = 1;
+
                 return;
             }
 
@@ -536,6 +549,34 @@ namespace QLBS
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            dtGioHang.Clear();
+            CapNhatTongTien();
+            maKhachHangHienTai = 1;
+
+            if (txtTimSDT.Text != placeholderText2)
+            {
+                txtTimSDT.Text = placeholderText2;
+                txtTimSDT.ForeColor = Color.Gray;
+            }
+
+            if (dgvKhachHang.DataSource != null)
+            {
+                dtKhachHang.Clear();
+            }
+
+            txtMaSach.Text = string.Empty;
+            txtTenSach.Text = string.Empty;
+            txtGiaBan.Text = string.Empty;
+
+            numSoLuong.Value = 1;
+            numSoLuong.Maximum = 1;
+            numSoLuong.Enabled = false;
+
+            MessageBox.Show("Đơn hàng đã được hủy. Giỏ hàng và thông tin khách hàng đã được đặt lại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

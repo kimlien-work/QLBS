@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             splitContainer1 = new SplitContainer();
             btnThoat = new Button();
             txtMaSach = new TextBox();
@@ -112,7 +112,7 @@
             btnThoat.Location = new Point(153, 523);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(125, 29);
-            btnThoat.TabIndex = 64;
+            btnThoat.TabIndex = 12;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
             btnThoat.Click += btnThoat_Click;
@@ -122,14 +122,14 @@
             txtMaSach.Location = new Point(10, 37);
             txtMaSach.Name = "txtMaSach";
             txtMaSach.Size = new Size(268, 27);
-            txtMaSach.TabIndex = 51;
+            txtMaSach.TabIndex = 1;
             // 
             // txtTenSach
             // 
             txtTenSach.Location = new Point(10, 95);
             txtTenSach.Name = "txtTenSach";
             txtTenSach.Size = new Size(268, 27);
-            txtTenSach.TabIndex = 52;
+            txtTenSach.TabIndex = 2;
             // 
             // label4
             // 
@@ -154,14 +154,14 @@
             txtTacGia.Location = new Point(10, 214);
             txtTacGia.Name = "txtTacGia";
             txtTacGia.Size = new Size(268, 27);
-            txtTacGia.TabIndex = 63;
+            txtTacGia.TabIndex = 4;
             // 
             // txtGhiChu
             // 
             txtGhiChu.Location = new Point(10, 383);
             txtGhiChu.Name = "txtGhiChu";
             txtGhiChu.Size = new Size(268, 27);
-            txtGhiChu.TabIndex = 55;
+            txtGhiChu.TabIndex = 7;
             // 
             // cboDanhMuc
             // 
@@ -169,7 +169,7 @@
             cboDanhMuc.Location = new Point(10, 153);
             cboDanhMuc.Name = "cboDanhMuc";
             cboDanhMuc.Size = new Size(268, 28);
-            cboDanhMuc.TabIndex = 61;
+            cboDanhMuc.TabIndex = 3;
             // 
             // label5
             // 
@@ -195,7 +195,7 @@
             btnSua.Location = new Point(10, 483);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(132, 29);
-            btnSua.TabIndex = 59;
+            btnSua.TabIndex = 9;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
             btnSua.Click += btnSua_Click;
@@ -214,7 +214,7 @@
             btnHuy.Location = new Point(153, 483);
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(125, 29);
-            btnHuy.TabIndex = 57;
+            btnHuy.TabIndex = 10;
             btnHuy.Text = "Hủy";
             btnHuy.UseVisualStyleBackColor = true;
             btnHuy.Click += btnHuy_Click;
@@ -233,7 +233,7 @@
             btnThem.Location = new Point(10, 443);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(132, 29);
-            btnThem.TabIndex = 50;
+            btnThem.TabIndex = 7;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
             btnThem.Click += btnThem_Click;
@@ -252,7 +252,7 @@
             btnLuu.Location = new Point(10, 523);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(132, 29);
-            btnLuu.TabIndex = 56;
+            btnLuu.TabIndex = 11;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
             btnLuu.Click += btnLuu_Click;
@@ -262,14 +262,14 @@
             txtSoLuongTon.Location = new Point(10, 325);
             txtSoLuongTon.Name = "txtSoLuongTon";
             txtSoLuongTon.Size = new Size(268, 27);
-            txtSoLuongTon.TabIndex = 54;
+            txtSoLuongTon.TabIndex = 6;
             // 
             // btnXoa
             // 
             btnXoa.Location = new Point(153, 443);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(125, 29);
-            btnXoa.TabIndex = 58;
+            btnXoa.TabIndex = 8;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = true;
             btnXoa.Click += btnXoa_Click;
@@ -279,7 +279,7 @@
             txtGiaBan.Location = new Point(10, 267);
             txtGiaBan.Name = "txtGiaBan";
             txtGiaBan.Size = new Size(268, 27);
-            txtGiaBan.TabIndex = 53;
+            txtGiaBan.TabIndex = 5;
             // 
             // dgvSach
             // 
@@ -327,9 +327,9 @@
             // GiaBan
             // 
             GiaBan.DataPropertyName = "GiaBan";
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = null;
-            GiaBan.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            GiaBan.DefaultCellStyle = dataGridViewCellStyle2;
             GiaBan.FillWeight = 70F;
             GiaBan.HeaderText = "Giá ";
             GiaBan.MinimumWidth = 6;
@@ -379,7 +379,7 @@
             btnTimKiem.Location = new Point(726, 18);
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(94, 29);
-            btnTimKiem.TabIndex = 46;
+            btnTimKiem.TabIndex = 14;
             btnTimKiem.Text = "Tim Kiếm";
             btnTimKiem.UseVisualStyleBackColor = true;
             btnTimKiem.Click += btnTimKiem_Click;
@@ -391,9 +391,9 @@
             txtTimKiem.Location = new Point(333, 18);
             txtTimKiem.Name = "txtTimKiem";
             txtTimKiem.Size = new Size(387, 27);
-            txtTimKiem.TabIndex = 45;
-            txtTimKiem.Leave += txtTimKiem_Leave;
+            txtTimKiem.TabIndex = 13;
             txtTimKiem.Enter += txtTimKiem_Enter;
+            txtTimKiem.Leave += txtTimKiem_Leave;
             // 
             // label2
             // 

@@ -135,7 +135,7 @@
             btnThoat.Location = new Point(244, 399);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(110, 29);
-            btnThoat.TabIndex = 24;
+            btnThoat.TabIndex = 11;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
             btnThoat.Click += btnThoat_Click;
@@ -145,7 +145,7 @@
             txtTenNhanVien.Location = new Point(6, 236);
             txtTenNhanVien.Name = "txtTenNhanVien";
             txtTenNhanVien.Size = new Size(349, 27);
-            txtTenNhanVien.TabIndex = 17;
+            txtTenNhanVien.TabIndex = 4;
             // 
             // lblGhiChuMK
             // 
@@ -172,7 +172,7 @@
             btnXoa.Location = new Point(246, 365);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(108, 29);
-            btnXoa.TabIndex = 22;
+            btnXoa.TabIndex = 8;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = true;
             btnXoa.Click += btnXoa_Click;
@@ -191,7 +191,7 @@
             txtAccount.Location = new Point(6, 104);
             txtAccount.Name = "txtAccount";
             txtAccount.Size = new Size(349, 27);
-            txtAccount.TabIndex = 15;
+            txtAccount.TabIndex = 2;
             // 
             // label3
             // 
@@ -207,7 +207,7 @@
             btnLuu.Location = new Point(6, 397);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(106, 29);
-            btnLuu.TabIndex = 20;
+            btnLuu.TabIndex = 9;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
             btnLuu.Click += btnLuu_Click;
@@ -219,7 +219,7 @@
             cboChucVu.Location = new Point(6, 302);
             cboChucVu.Name = "cboChucVu";
             cboChucVu.Size = new Size(349, 28);
-            cboChucVu.TabIndex = 18;
+            cboChucVu.TabIndex = 5;
             // 
             // label5
             // 
@@ -235,14 +235,14 @@
             txtID.Location = new Point(6, 38);
             txtID.Name = "txtID";
             txtID.Size = new Size(349, 27);
-            txtID.TabIndex = 14;
+            txtID.TabIndex = 1;
             // 
             // btnThem
             // 
             btnThem.Location = new Point(6, 365);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(106, 29);
-            btnThem.TabIndex = 19;
+            btnThem.TabIndex = 6;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
             btnThem.Click += btnThem_Click;
@@ -252,7 +252,7 @@
             btnSua.Location = new Point(124, 365);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(110, 29);
-            btnSua.TabIndex = 23;
+            btnSua.TabIndex = 7;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
             btnSua.Click += btnSua_Click;
@@ -263,7 +263,7 @@
             txtMatKhau.Name = "txtMatKhau";
             txtMatKhau.PasswordChar = '•';
             txtMatKhau.Size = new Size(349, 27);
-            txtMatKhau.TabIndex = 16;
+            txtMatKhau.TabIndex = 3;
             // 
             // label4
             // 
@@ -280,7 +280,7 @@
             btnHuy.Location = new Point(123, 399);
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(110, 29);
-            btnHuy.TabIndex = 21;
+            btnHuy.TabIndex = 10;
             btnHuy.Text = "Hủy";
             btnHuy.UseVisualStyleBackColor = true;
             btnHuy.Click += btnHuy_Click;

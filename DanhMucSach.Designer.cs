@@ -92,7 +92,7 @@
             btnThoat.Location = new Point(27, 163);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(297, 29);
-            btnThoat.TabIndex = 16;
+            btnThoat.TabIndex = 8;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
             btnThoat.Click += btnThoat_Click;
@@ -103,7 +103,7 @@
             btnXoa.Location = new Point(227, 93);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(97, 29);
-            btnXoa.TabIndex = 13;
+            btnXoa.TabIndex = 5;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = true;
             btnXoa.Click += btnXoa_Click;
@@ -114,7 +114,7 @@
             btnLuu.Location = new Point(27, 128);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(128, 29);
-            btnLuu.TabIndex = 14;
+            btnLuu.TabIndex = 6;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
             btnLuu.Click += btnLuu_Click;
@@ -125,7 +125,7 @@
             btnSua.Location = new Point(129, 93);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(94, 29);
-            btnSua.TabIndex = 10;
+            btnSua.TabIndex = 4;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
             btnSua.Click += btnSua_Click;
@@ -146,7 +146,7 @@
             btnThem.Location = new Point(27, 93);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(98, 29);
-            btnThem.TabIndex = 8;
+            btnThem.TabIndex = 3;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
             btnThem.Click += btnThem_Click;
@@ -157,7 +157,7 @@
             btnHuy.Location = new Point(196, 128);
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(128, 29);
-            btnHuy.TabIndex = 15;
+            btnHuy.TabIndex = 7;
             btnHuy.Text = "Hủy";
             btnHuy.UseVisualStyleBackColor = true;
             btnHuy.Click += btnHuy_Click;
@@ -168,7 +168,7 @@
             txtTenDM.Location = new Point(139, 45);
             txtTenDM.Name = "txtTenDM";
             txtTenDM.Size = new Size(185, 27);
-            txtTenDM.TabIndex = 11;
+            txtTenDM.TabIndex = 2;
             // 
             // txtMaDM
             // 
@@ -176,7 +176,7 @@
             txtMaDM.Location = new Point(139, 14);
             txtMaDM.Name = "txtMaDM";
             txtMaDM.Size = new Size(185, 27);
-            txtMaDM.TabIndex = 9;
+            txtMaDM.TabIndex = 1;
             // 
             // dgvDanhMuc
             // 

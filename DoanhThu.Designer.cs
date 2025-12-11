@@ -94,7 +94,7 @@
             dtpDenNgay.Location = new Point(430, 16);
             dtpDenNgay.Name = "dtpDenNgay";
             dtpDenNgay.Size = new Size(250, 27);
-            dtpDenNgay.TabIndex = 34;
+            dtpDenNgay.TabIndex = 2;
             // 
             // btnXemBC
             // 
@@ -102,7 +102,7 @@
             btnXemBC.Location = new Point(688, 16);
             btnXemBC.Name = "btnXemBC";
             btnXemBC.Size = new Size(143, 29);
-            btnXemBC.TabIndex = 38;
+            btnXemBC.TabIndex = 4;
             btnXemBC.Text = "Xem Báo Cáo";
             btnXemBC.UseVisualStyleBackColor = true;
             btnXemBC.Click += btnXemBC_Click;
@@ -113,7 +113,7 @@
             dtpTuNgay.Location = new Point(86, 16);
             dtpTuNgay.Name = "dtpTuNgay";
             dtpTuNgay.Size = new Size(250, 27);
-            dtpTuNgay.TabIndex = 35;
+            dtpTuNgay.TabIndex = 1;
             // 
             // panel2
             // 
@@ -136,7 +136,7 @@
             btnThoat.Location = new Point(668, 40);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(151, 29);
-            btnThoat.TabIndex = 41;
+            btnThoat.TabIndex = 4;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
             btnThoat.Click += btnThoat_Click;

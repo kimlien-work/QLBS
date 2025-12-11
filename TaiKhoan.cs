@@ -84,7 +84,7 @@ namespace QLBS
             btnXoa.Enabled = !giaTri;
 
             // ID luôn luôn bị khóa (vì là tự tăng)
-            txtID.Enabled = false;
+            txtID.Enabled = giaTri;
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -236,5 +236,6 @@ namespace QLBS
         {
             this.Close();
         }
+
     }
 }
